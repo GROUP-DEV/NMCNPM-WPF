@@ -43,13 +43,114 @@ namespace DoAn
 
         //
         trangchu trangchu = new trangchu();
+        DangNhap login = new DangNhap();
+     
         Setting Settings = new Setting();
         QuangCao qc = new QuangCao();
         //
        
 
-     
+        // phần chức năng đăng nhập
+        void IsLogin(int i)
+        {
+            if (i == 1)
+            {
 
+              
+                login.Visibility = Visibility.Visible;
+                UserControlView.Children.Add(login);
+                
+            }
+            if (i == 2)
+            {
+                // UserControlView.Children.Clear();
+               // ShowView();
+            }
+        }
+        void IsRegis(string t)
+        {
+            if (t == "1")
+            {
+                UserControlView.Children.Remove(login);
+             
+            }
+            if (t == "2")
+            {
+                //ShowView();
+            }
+        }
+        //DANG NHAP
+        void Share(string t)
+        {
+           // ShowView();
+            Loged = t;
+
+            BLT = new QLVeMayBayEntities();
+
+            var User = (from n in BLT.TaiKhoan
+                        where n.IdNguoiDung == Loged
+                        select n).FirstOrDefault();
+
+            if (User != null)
+            {
+                txtNameUser.Text = User.HoTen;
+                if (txtNameUser.Text.Length > 12)
+                {
+                    txtNameUser.FontSize = 14;
+                }
+                byte[] bitImage = User.Avatar;
+                if (bitImage != null)
+                {
+                    eliUser.Fill = new ImageBrush(ToImage(bitImage));
+                }
+                else
+                {
+                    eliUser.Fill = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Image/User.png", UriKind.Absolute)));
+                }
+                if (User.MaLoaiTK == 0)
+                {
+                    eliUser.ToolTip = "Đã đăng nhập";
+                    UserControlView.Children.Clear();
+                 
+                    plane.Visibility = Visibility.Visible;
+                    planetxt.Visibility = Visibility.Visible;
+
+                }
+                else
+                {
+                    eliUser.ToolTip = "Admin";
+                    //Admin AD = new Admin();            ===============ADMIN
+                   // AD.IdAdmin = Loged;
+                   // Hide();
+                   // AD.ShowDialog();
+                    LogOut();
+                    //Load 30 SP trang chu
+                    // LoadSP();
+                    //Load Danh loai sach san pham va nha san xuat
+
+                   // DSLSP_DSNSX();
+                    Show();
+                }
+            }
+        }
+
+        //Thong tin nguoi dung
+        void UserInfo_Share(string i)
+        {
+            if (i == "1")// lúc lưu sản phẩm thì vẫn ở  trang hiện tại
+            {
+                Share(Loged);
+                UserControlView.Children.Clear();
+         
+                //HidenView();
+                //hidden1.Width = Double.NaN;
+            }
+            if (i == "2")//cancel
+            {
+                UserControlView.Children.Clear();
+              //  ShowView();
+            }
+        }
         public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
         {
             if (depObj != null)
@@ -82,7 +183,7 @@ namespace DoAn
         private void plane_Click(object sender, RoutedEventArgs e)
         {
             UserControlView.Children.Clear();
-
+     
         }
 
         //Command 
@@ -97,13 +198,17 @@ namespace DoAn
             {
                 //HidenView();
                 //hidden1.Width = Double.NaN;
-              
+          
             }
             else// ngược lại thì hiên thị lại form đăng nhập
             {
                // HidenView();
                 //hidden1.Width = Double.NaN;
-           
+                login.Visibility = Visibility.Visible;
+                UserControlView.Children.Add(login);
+                login.txtName.Text = "";
+                login.txtPasswd.Password = "";
+                login.errormessage.Text = "";
             }
         }
         private void LogOut()
@@ -249,6 +354,9 @@ namespace DoAn
             //TimeLoad.Tick += new EventHandler(TimeLoad_Clock);
             TimeLoad.Interval = new TimeSpan(0, 0, 1);
             TimeLoad.Start();
+            //Gửi Data Login
+            login.share += new DangNhap.PassData(Share);
+            login._Registration += new DangNhap.PassData(IsRegis);
         }
     }
 }
