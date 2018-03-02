@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="DoAn.Views.mucsic"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Name="Window"
+     xmlns:gif="http://wpfanimatedgif.codeplex.com"
+     xmlns:fa="http://schemas.fontawesome.io/icons/"
+	Width="711" Height="300"  Background="Transparent"   FontWeight="Bold" FontSize="14" >
+    <UserControl.Resources>
+        <Style x:Key="CircleButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Viewbox Stretch="Fill">
+                            <Grid Height="50" Width="50">
+                                <Ellipse x:Name="ellipse" Height="Auto" Width="Auto">
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush >
+                                            <GradientStop Color="#EFEFF2" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Ellipse x:Name="ellipse1" Height="Auto" Width="Auto" Fill="#fff" Margin="8" RenderTransformOrigin="0.5,0.5">
+                                    <Ellipse.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                                <ContentPresenter HorizontalAlignment="Stretch" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" Content="{TemplateBinding Content}" Width="Auto" Height="Auto" Margin="0"/>
+                            </Grid>
+                        </Viewbox>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <MediaElement x:Name="MEmusicPlayer" LoadedBehavior="Manual" UnloadedBehavior="Close"
+                      MediaOpened="MEmusicPlayer_MediaOpened" MediaEnded="MEmusicPlayer_MediaEnded" d:IsHidden="True" Volume="{Binding Path=Value, ElementName=SliderVolume}" />
+
+        <ListBox Margin="65,33,220,172" FontFamily="Britannic Bold" FontSize="14" Foreground="#000" AllowDrop="True" DragEnter="ListBox_DragEnter" x:Name="listaDeReproduccion" 
+                 Drop="listBox1_Drop" Background="Transparent">
+            <ListBox.Effect>
+                <DropShadowEffect/>
+            </ListBox.Effect>
+        </ListBox>
+
+        <!--Position no permite enlaze de datos-->
+
+        <Button Visibility="Hidden" HorizontalAlignment="Center" Height="40"  Width="40" Margin="306,0,331,35" Style="{DynamicResource CircleButtonStyle}" 
+                VerticalAlignment="Bottom" x:Name="btnStop"
+                Click="btnStop_Click">
+            <Rectangle Margin="20" RenderTransformOrigin="0.783,0.528" Width="30" Height="30" Fill="#FF49CA11"/>
+        </Button>
+
+        <Button HorizontalAlignment="Center" Height="40"  Width="40" Margin="245,0,426,67"
+                Style="{DynamicResource CircleButtonStyle}" VerticalAlignment="Bottom" x:Name="btnPause"
+                Click="btnPause_Click">
+            <fa:ImageAwesome Icon="Pause" SpinDuration="30" Width="20" Height="20"  Foreground="#000" ></fa:ImageAwesome>
+        </Button>
+
+
+        <Button Height="40" Width="40" Margin="317,0,354,67" Style="{DynamicResource CircleButtonStyle}" 
+                VerticalAlignment="Bottom"  HorizontalAlignment="Center" x:Name="btnPlay"
+                Click="btnPlay_Click">
+            <fa:ImageAwesome Icon="CaretSquareOutlineRight"  SpinDuration="30" Width="20" Height="20"  Foreground="#000" ></fa:ImageAwesome>
+        </Button>
+        <Slider Height="23" Margin="65,0,220,130" 
+                Name="SliderTimeLine" VerticalAlignment="Bottom"
+                Thumb.DragStarted="SliderTimeLine_DragStarted" Thumb.DragCompleted="SliderTimeLine_DragCompleted" IsMoveToPointEnabled="True"
+                MouseLeftButtonUp="SliderTimeLine_MouseLeftButtonUp" Background="{x:Null}"></Slider>
+        <Button Height="40" Width="40" HorizontalAlignment="Center" Margin="398,0,273,69" Name="btnNext" Style="{DynamicResource CircleButtonStyle}" VerticalAlignment="Bottom" 
+                Click="btnNext_Click">
+            <fa:ImageAwesome Icon="FastForward"  SpinDuration="30" Width="20" Height="20"  Foreground="#000" ></fa:ImageAwesome>
+        </Button>
+        <Button Height="40" Width="40" HorizontalAlignment="Center" Margin="160,0,511,68" Name="btnPrecedent" Style="{DynamicResource CircleButtonStyle}" VerticalAlignment="Bottom" 
+                Click="btnPrecedent_Click">
+            <fa:ImageAwesome Icon="FastBackward"  SpinDuration="30" Width="20" Height="20"  Foreground="#000" ></fa:ImageAwesome>
+        </Button>
+        <Slider HorizontalAlignment="Left" Margin="65,0,0,67" Name="SliderVolume" Width="27" Orientation="Vertical" Height="62" VerticalAlignment="Bottom" Maximum="1" SmallChange="1" TickFrequency="0.1" Value="0.5" />
+    </Grid>
+</UserControl>
