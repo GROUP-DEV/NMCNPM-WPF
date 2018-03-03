@@ -44,9 +44,10 @@ namespace DoAn
         //
         trangchu trangchu = new trangchu();
         DangNhap login = new DangNhap();
-     
+        DangKy Regist = new DangKy();
         Setting Settings = new Setting();
         QuangCao qc = new QuangCao();
+
         //
        
 
@@ -56,7 +57,7 @@ namespace DoAn
             if (i == 1)
             {
 
-              
+                UserControlView.Children.Remove(Regist);
                 login.Visibility = Visibility.Visible;
                 UserControlView.Children.Add(login);
                 
@@ -72,7 +73,8 @@ namespace DoAn
             if (t == "1")
             {
                 UserControlView.Children.Remove(login);
-             
+                Regist.Visibility = Visibility.Visible;
+                UserControlView.Children.Add(Regist);
             }
             if (t == "2")
             {
@@ -111,7 +113,6 @@ namespace DoAn
                 {
                     eliUser.ToolTip = "Đã đăng nhập";
                     UserControlView.Children.Clear();
-                 
                     plane.Visibility = Visibility.Visible;
                     planetxt.Visibility = Visibility.Visible;
 
@@ -141,7 +142,7 @@ namespace DoAn
             {
                 Share(Loged);
                 UserControlView.Children.Clear();
-         
+   
                 //HidenView();
                 //hidden1.Width = Double.NaN;
             }
@@ -183,7 +184,6 @@ namespace DoAn
         private void plane_Click(object sender, RoutedEventArgs e)
         {
             UserControlView.Children.Clear();
-     
         }
 
         //Command 
@@ -198,7 +198,6 @@ namespace DoAn
             {
                 //HidenView();
                 //hidden1.Width = Double.NaN;
-          
             }
             else// ngược lại thì hiên thị lại form đăng nhập
             {
@@ -357,6 +356,9 @@ namespace DoAn
             //Gửi Data Login
             login.share += new DangNhap.PassData(Share);
             login._Registration += new DangNhap.PassData(IsRegis);
+
+            //Gửi Data Regist
+            Regist.Share += new DangKy.PassData(IsLogin);
         }
     }
 }
