@@ -113,6 +113,7 @@ namespace DoAn
                 {
                     eliUser.ToolTip = "Đã đăng nhập";
                     UserControlView.Children.Clear();
+
                     plane.Visibility = Visibility.Visible;
                     planetxt.Visibility = Visibility.Visible;
 
@@ -142,7 +143,6 @@ namespace DoAn
             {
                 Share(Loged);
                 UserControlView.Children.Clear();
-   
                 //HidenView();
                 //hidden1.Width = Double.NaN;
             }
@@ -184,6 +184,7 @@ namespace DoAn
         private void plane_Click(object sender, RoutedEventArgs e)
         {
             UserControlView.Children.Clear();
+ 
         }
 
         //Command 
@@ -353,12 +354,15 @@ namespace DoAn
             //TimeLoad.Tick += new EventHandler(TimeLoad_Clock);
             TimeLoad.Interval = new TimeSpan(0, 0, 1);
             TimeLoad.Start();
+
             //Gửi Data Login
             login.share += new DangNhap.PassData(Share);
             login._Registration += new DangNhap.PassData(IsRegis);
 
             //Gửi Data Regist
             Regist.Share += new DangKy.PassData(IsLogin);
+
+            // plane.IsEnabled = false;
         }
     }
 }

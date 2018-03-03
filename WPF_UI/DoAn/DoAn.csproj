@@ -74,6 +74,7 @@
     </ApplicationDefinition>
     <Compile Include="Controller\function.cs" />
     <Compile Include="Controller\Users.cs" />
+    <Compile Include="Controller\setting.cs" />
     <Compile Include="Model\CaiDat.cs">
       <DependentUpon>QLBanVeMayBay.tt</DependentUpon>
     </Compile>
