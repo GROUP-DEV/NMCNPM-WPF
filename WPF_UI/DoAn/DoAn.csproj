@@ -126,8 +126,8 @@
     <Compile Include="Views\mucsic.xaml.cs">
       <DependentUpon>mucsic.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\QuangCao.xaml.cs">
-      <DependentUpon>QuangCao.xaml</DependentUpon>
+    <Compile Include="Views\plane.xaml.cs">
+      <DependentUpon>plane.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
@@ -162,9 +162,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\QuangCao.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\plane.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Setting.xaml">
       <SubType>Designer</SubType>

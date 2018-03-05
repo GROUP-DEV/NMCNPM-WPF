@@ -1,0 +1,162 @@
+﻿<UserControl x:Class="DoAn.Views.plane"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DoAn.Views"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             Height="740" Width="1300" Loaded="UserControl_Loaded">
+    <UserControl.Resources> 
+        <Style x:Key="stylebuttonbigIMG"> <!--style cho button-->
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.2"                                                Storyboard.TargetProperty="Height" To="100" />
+                                <DoubleAnimation Duration="0:0:0.2"
+                                                                     Storyboard.TargetProperty="Width" To="100" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.2"
+                          Storyboard.TargetProperty="Height" To="70" />
+                                <DoubleAnimation Duration="0:0:0.2"
+                          Storyboard.TargetProperty="Width" To="70" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="123*"/>
+            <RowDefinition Height="123*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="131*"/>
+            <RowDefinition Height="136*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="134*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background >
+            <!--hình nen-->
+            <!--Stretch="Fill"-->
+            <ImageBrush  ImageSource="../Images/bg-plane.jpg" TileMode="Tile"/>
+        </Grid.Background>
+      
+        <!--lich chuyen bay-->
+        <Button Click="btnchuyenbay_Click" x:Name="btnchuyenbay"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="1" Grid.Row="1" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="Plane" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+                <!--<Image.Style>
+                </Image.Style>-->
+            </fa:ImageAwesome>
+        </Button>
+        <TextBlock Name="txtchuyenbay" Foreground="Navy" Grid.Row="2" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Nhận Lịch Chuyến Bay</TextBlock>
+        <!--BAN VE-->
+        <Button  Style="{StaticResource StyleButtonXem}" Background="#714A28"  Margin="2,0,2,0" x:Name="btnbanve"  BorderThickness="0" BorderBrush="White"  Grid.Column="3" Grid.Row="1" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="AddressCard" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+            </fa:ImageAwesome>
+        </Button>
+        <TextBlock Name="txtbanve" Foreground="Navy" Grid.Row="2" Grid.Column="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Bán Vé</TextBlock>
+
+        <!--ghi nhan dat ve-->
+        <Button  x:Name="btnGNdatve" Background="#90A930"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="5" Grid.Row="1" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="CalendarCheckOutline" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+            </fa:ImageAwesome>
+        </Button>
+        <TextBlock Name="txtGNdatve" Foreground="Navy" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Ghi Nhận Đặt Vé</TextBlock>
+
+        <!--danh sach chuyen bay-->
+        <Button  x:Name="btnDSCB" Background="#EECD50"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="7" Grid.Row="1" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="ListUl" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+            </fa:ImageAwesome>
+        </Button>
+        <TextBlock Name="txtdscb" Foreground="Navy" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Danh Sách Chuyến Bay</TextBlock>
+
+        <!--tra cuu -->
+        <Button x:Name="btntracuu" Background="#6A0040"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="2" Grid.Row="4" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="SearchPlus" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+            </fa:ImageAwesome>
+        </Button>
+        <TextBlock Name="txttracuu" Foreground="Navy" Grid.Row="5" Grid.Column="2" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Tra Cứu</TextBlock>
+
+        <!--bao cao -->
+        <Button  x:Name="btnbaocao" Background="#3A3145"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="4" Grid.Row="4" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="ExternalLink" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+            </fa:ImageAwesome>
+        </Button>
+        <TextBlock Name="txtbaocao" Foreground="Navy" Grid.Row="5" Grid.Column="4" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Báo Cáo</TextBlock>
+
+        <!--thong tin -->
+        <Button Click="btnchuyenbay_Click" x:Name="btnthongtin" Background="#7F5DAA"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="6" Grid.Row="4" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="UserPlus" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+            </fa:ImageAwesome>
+        </Button>
+        <TextBlock Name="txtthongtin" Foreground="Navy" Grid.Row="5" Grid.Column="6" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Thông Tin</TextBlock>
+
+        <!--CONTAINER-->
+        <StackPanel  Name="container" Grid.ColumnSpan="9" Grid.RowSpan="6">
+        </StackPanel>
+        
+
+        <WrapPanel Visibility="Collapsed" HorizontalAlignment="right" VerticalAlignment="Bottom" Style="{StaticResource StyleTheLoai}" Margin="0" >
+            <TextBlock FontSize="20" FontWeight="Bold" TextAlignment="Center" Width="468" Padding="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="32">Thể Loại</TextBlock>
+            <!--<ListBox  VerticalAlignment="Stretch" HorizontalAlignment="Left" BorderThickness="0"  x:Name="lstTheLoaiAnime" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel  MaxWidth="467" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Cursor="Hand" Click="btnTheLoai_Click"  FontSize="15" FontWeight="Light" Width="90" BorderThickness="0" Tag="{Binding LinkAnime}" Style="{StaticResource ImageButton}" Margin="20,10,30,5"  Content="{Binding TenHienThi}"></Button>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>-->
+            <StackPanel Name="LoaiAnime">
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Background="AliceBlue" Width="627" Height="330">
+                    <TextBlock Height="23" HorizontalAlignment="Center" Margin="10,10,0,0" Name="LoginHeading" Text="LOGIN" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed" RenderTransformOrigin="5.246,0.995"/>
+                    <TextBlock Height="57" HorizontalAlignment="Center" Margin="97,48,54,0" Name="textBlockHeading" VerticalAlignment="Top" FontSize="12" FontStyle="Italic" Padding="5" Width="368">
+                    Note: Please login here to Home . If you are new on this site then <LineBreak /><!--line break-->
+                please click on
+                <!--textblock as a Hyperlink.-->
+                <TextBlock>
+                        <Hyperlink FontSize="14" FontStyle="Normal">Register</Hyperlink>
+                </TextBlock>
+                <!--end textblock as a hyperlink-->
+                .If you have forgotten your password.<LineBreak /> please contact at AdminBLT@gmail.com
+                    
+            </TextBlock>
+
+                    <TextBlock Height="23" HorizontalAlignment="Left" Margin="49,120,0,0" Name="textBlock1" Text="User Name" VerticalAlignment="Top" Width="84" />
+                    <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,168,0,0" Name="textBlock2" Text="PassWord" VerticalAlignment="Top" Width="77" />
+                    <TextBox   Height="23" HorizontalAlignment="Left" Margin="118,115,0,0" Name="txtName" VerticalAlignment="Top" Width="247" />
+                    <PasswordBox  Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" Name="txtPasswd" VerticalAlignment="Top" Width="247" />
+                    <Button  Content="Login" Height="23" HorizontalAlignment="Left" Margin="118,211,0,0" Name="btnLogin" VerticalAlignment="Top" Width="104" />
+                    <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="260,211,0,0" Name="btnCancel" VerticalAlignment="Top" Width="104" />
+                    <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="118,253,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
+                </Grid>
+
+            </StackPanel>
+        </WrapPanel>
+    </Grid>
+</UserControl>
