@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLVeMayBayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CaiDat">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullScreen" Type="nvarchar" MaxLength="20" />
+    <Property Name="Back" Type="nvarchar" MaxLength="20" />
+    <Property Name="font" Type="nvarchar" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="CHUYENBAY">
+    <Key>
+      <PropertyRef Name="MaCB" />
+    </Key>
+    <Property Name="MaCB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenCB" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="DANHSACHCHUYENBAY">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaCB" Type="int" />
+    <Property Name="MaSanBayDi" Type="varchar" MaxLength="10" />
+    <Property Name="MaSanBayDen" Type="varchar" MaxLength="10" />
+    <Property Name="NgayKhoiHanh" Type="datetime" />
+    <Property Name="ThoiGian" Type="time" Precision="7" />
+    <Property Name="SoLuongGheTrong" Type="int" />
+    <Property Name="SoLuongGheDat" Type="int" />
+  </EntityType>
+  <EntityType Name="LICHBAY">
+    <Key>
+      <PropertyRef Name="MaCB" />
+      <PropertyRef Name="MaSanBayDi" />
+      <PropertyRef Name="MaSanBayDen" />
+    </Key>
+    <Property Name="MaCB" Type="int" Nullable="false" />
+    <Property Name="MaSanBayDi" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaSanBayDen" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="NgayGio" Type="datetime" />
+    <Property Name="ThoiGianBay" Type="time" Precision="7" />
+    <Property Name="SoLuongGheHang1" Type="int" />
+    <Property Name="SoLuongGheHang2" Type="int" />
+    <Property Name="MaSBTrungGian" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="LOAIVE">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DonGia" Type="int" />
+  </EntityType>
+  <EntityType Name="PHIEUDATVE">
+    <Key>
+      <PropertyRef Name="CMND" />
+    </Key>
+    <Property Name="CMND" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaCB" Type="int" />
+    <Property Name="TenHanhKhach" Type="nvarchar" MaxLength="255" />
+    <Property Name="DienThoai" Type="varchar" MaxLength="11" />
+    <Property Name="MaLoai" Type="varchar" MaxLength="10" />
+    <Property Name="DonGia" Type="int" />
+    <Property Name="NgayDat" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SANBAY">
+    <Key>
+      <PropertyRef Name="MaSB" />
+    </Key>
+    <Property Name="MaSB" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenSB" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="SANBAYTRUNGGIAN">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaSBTrungGian" Type="varchar" MaxLength="10" />
+    <Property Name="MaCB" Type="int" />
+    <Property Name="TenSB" Type="nvarchar" MaxLength="255" />
+    <Property Name="ThoiGianDung" Type="time" Precision="7" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="IdNguoiDung" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdNguoiDung" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PassND" Type="char" MaxLength="32" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NgaySinh" Type="date" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="3" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
+    <Property Name="SoDT" Type="nvarchar" MaxLength="15" />
+    <Property Name="Avatar" Type="image" />
+    <Property Name="MaLoaiTK" Type="int" />
+  </EntityType>
+  <Association Name="FK__SANBAYTRU__MaSBT__1FCDBCEB">
+    <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="0..1" />
+    <End Role="SANBAYTRUNGGIAN" Type="Self.SANBAYTRUNGGIAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANBAY">
+        <PropertyRef Name="MaSB" />
+      </Principal>
+      <Dependent Role="SANBAYTRUNGGIAN">
+        <PropertyRef Name="MaSBTrungGian" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLVeMayBayModelStoreContainer">
+    <EntitySet Name="CaiDat" EntityType="Self.CaiDat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHUYENBAY" EntityType="Self.CHUYENBAY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DANHSACHCHUYENBAY" EntityType="Self.DANHSACHCHUYENBAY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LICHBAY" EntityType="Self.LICHBAY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAIVE" EntityType="Self.LOAIVE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHIEUDATVE" EntityType="Self.PHIEUDATVE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SANBAY" EntityType="Self.SANBAY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SANBAYTRUNGGIAN" EntityType="Self.SANBAYTRUNGGIAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__SANBAYTRU__MaSBT__1FCDBCEB" Association="Self.FK__SANBAYTRU__MaSBT__1FCDBCEB">
+      <End Role="SANBAY" EntitySet="SANBAY" />
+      <End Role="SANBAYTRUNGGIAN" EntitySet="SANBAYTRUNGGIAN" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

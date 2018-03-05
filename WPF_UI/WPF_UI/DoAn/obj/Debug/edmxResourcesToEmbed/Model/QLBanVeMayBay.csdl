@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLVeMayBayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QLVeMayBayEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CaiDat" EntityType="QLVeMayBayModel.CaiDat" />
+    <EntitySet Name="CHUYENBAY" EntityType="QLVeMayBayModel.CHUYENBAY" />
+    <EntitySet Name="DANHSACHCHUYENBAY" EntityType="QLVeMayBayModel.DANHSACHCHUYENBAY" />
+    <EntitySet Name="LICHBAY" EntityType="QLVeMayBayModel.LICHBAY" />
+    <EntitySet Name="LOAIVE" EntityType="QLVeMayBayModel.LOAIVE" />
+    <EntitySet Name="PHIEUDATVE" EntityType="QLVeMayBayModel.PHIEUDATVE" />
+    <EntitySet Name="TaiKhoan" EntityType="QLVeMayBayModel.TaiKhoan" />
+    <EntitySet Name="SANBAY" EntityType="QLVeMayBayModel.SANBAY" />
+    <EntitySet Name="SANBAYTRUNGGIAN" EntityType="QLVeMayBayModel.SANBAYTRUNGGIAN" />
+    <AssociationSet Name="FK__SANBAYTRU__MaSBT__1FCDBCEB" Association="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__1FCDBCEB">
+      <End Role="SANBAY" EntitySet="SANBAY" />
+      <End Role="SANBAYTRUNGGIAN" EntitySet="SANBAYTRUNGGIAN" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CaiDat">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullScreen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Back" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="font" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CHUYENBAY">
+    <Key>
+      <PropertyRef Name="MaCB" />
+    </Key>
+    <Property Name="MaCB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenCB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DANHSACHCHUYENBAY">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaCB" Type="Int32" />
+    <Property Name="MaSanBayDi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaSanBayDen" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NgayKhoiHanh" Type="DateTime" Precision="3" />
+    <Property Name="ThoiGian" Type="Time" Precision="7" />
+    <Property Name="SoLuongGheTrong" Type="Int32" />
+    <Property Name="SoLuongGheDat" Type="Int32" />
+  </EntityType>
+  <EntityType Name="LICHBAY">
+    <Key>
+      <PropertyRef Name="MaCB" />
+      <PropertyRef Name="MaSanBayDi" />
+      <PropertyRef Name="MaSanBayDen" />
+    </Key>
+    <Property Name="MaCB" Type="Int32" Nullable="false" />
+    <Property Name="MaSanBayDi" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaSanBayDen" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NgayGio" Type="DateTime" Precision="3" />
+    <Property Name="ThoiGianBay" Type="Time" Precision="7" />
+    <Property Name="SoLuongGheHang1" Type="Int32" />
+    <Property Name="SoLuongGheHang2" Type="Int32" />
+    <Property Name="MaSBTrungGian" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="LOAIVE">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DonGia" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PHIEUDATVE">
+    <Key>
+      <PropertyRef Name="CMND" />
+    </Key>
+    <Property Name="CMND" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaCB" Type="Int32" />
+    <Property Name="TenHanhKhach" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DonGia" Type="Int32" />
+    <Property Name="NgayDat" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="IdNguoiDung" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdNguoiDung" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PassND" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+    <Property Name="HoTen" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GioiTinh" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SoDT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="MaLoaiTK" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SANBAY">
+    <Key>
+      <PropertyRef Name="MaSB" />
+    </Key>
+    <Property Name="MaSB" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TenSB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SANBAYTRUNGGIAN" Relationship="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__1FCDBCEB" FromRole="SANBAY" ToRole="SANBAYTRUNGGIAN" />
+  </EntityType>
+  <EntityType Name="SANBAYTRUNGGIAN">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaSBTrungGian" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaCB" Type="Int32" />
+    <Property Name="TenSB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ThoiGianDung" Type="Time" Precision="7" />
+    <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SANBAY" Relationship="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__1FCDBCEB" FromRole="SANBAYTRUNGGIAN" ToRole="SANBAY" />
+  </EntityType>
+  <Association Name="FK__SANBAYTRU__MaSBT__1FCDBCEB">
+    <End Type="QLVeMayBayModel.SANBAY" Role="SANBAY" Multiplicity="0..1" />
+    <End Type="QLVeMayBayModel.SANBAYTRUNGGIAN" Role="SANBAYTRUNGGIAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANBAY">
+        <PropertyRef Name="MaSB" />
+      </Principal>
+      <Dependent Role="SANBAYTRUNGGIAN">
+        <PropertyRef Name="MaSBTrungGian" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
