@@ -48,6 +48,7 @@ namespace DoAn.Views
                 "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
                 "Portable Network Graphic (*.png)|*.png";
 
+
             if (FileDialog.ShowDialog() == true)
             {
                 DuongDan = FileDialog.FileName;
@@ -57,6 +58,19 @@ namespace DoAn.Views
 
         }
 
+        //Convert byte[] array to BitmapImage
+        public BitmapImage ToImage(byte[] array)
+        {
+            using (var ms = new System.IO.MemoryStream(array))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
+        }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             string email = txtEmail.Text;
@@ -94,7 +108,7 @@ namespace DoAn.Views
                 txtSDT.Focus();
                 return;
             }
-            bool UP = uc.Update_info(txtID.Text, email, sex, Hoten, diachi, sdt, SinhNhat.SelectedDate.Value, DuongDan);// goi ham update
+            bool UP = uc.Update_info(txtID.Text, email, sex, Hoten, diachi, sdt, SinhNhat.SelectedDate.Value, DuongDan);
             if (UP == false)
             {
                 MessageBox.Show("Fail!");
@@ -118,11 +132,12 @@ namespace DoAn.Views
             }
             if (uc.LoadInfo(txtID.Text) == true)
             {
+
                 ImgAvatar.Source = uc.sc;// load images avata
             }
             else
             {
-                Uri imageUri = new Uri("pack://application:,,,/Image/User.png", UriKind.Absolute);//neu trong database khong co hinh thi mac dinh cho no hin nya
+                Uri imageUri = new Uri("pack://application:,,,/Image/User.png", UriKind.Absolute);
                 ImgAvatar.Source = new BitmapImage(imageUri);
             }
         }
@@ -130,6 +145,7 @@ namespace DoAn.Views
         {
 
             txtID.Text = IdNguoiDung;
+            //   LoadInfo();
             LoadIF();
         }
 
@@ -159,7 +175,6 @@ namespace DoAn.Views
         {
             IsReadOnlyTextBox(true);
         }
-
         // CHANGE PASSWOR
         private void SavePasswd_Click(object sender, RoutedEventArgs e)
         {

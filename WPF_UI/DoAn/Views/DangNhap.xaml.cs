@@ -21,8 +21,6 @@ namespace DoAn.Views
     /// Interaction logic for DangNhap.xaml
     /// </summary>
     /// 
-
-      
     public partial class DangNhap : UserControl
     {
         

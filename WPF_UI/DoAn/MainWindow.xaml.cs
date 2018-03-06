@@ -47,15 +47,15 @@ namespace DoAn
         DangKy Regist = new DangKy();
         ThongTinNguoiDung info = new ThongTinNguoiDung();
         Setting Settings = new Setting();
-
- 
+        QuangCao qc = new QuangCao();
+        plane p = new plane();
         //
        
 
         // phần chức năng đăng nhập
         void IsLogin(int i)
         {
-            if (i == 1)// truyen trang nhap
+            if (i == 1)
             {
 
                 UserControlView.Children.Remove(Regist);
@@ -63,7 +63,7 @@ namespace DoAn
                 UserControlView.Children.Add(login);
                 
             }
-            if (i == 2)//cannel
+            if (i == 2)
             {
                 // UserControlView.Children.Clear();
                // ShowView();
@@ -114,7 +114,7 @@ namespace DoAn
                 {
                     eliUser.ToolTip = "Đã đăng nhập";
                     UserControlView.Children.Clear();
-         
+                    UserControlView.Children.Add(p);
                     plane.Visibility = Visibility.Visible;
                     planetxt.Visibility = Visibility.Visible;
 
@@ -122,7 +122,16 @@ namespace DoAn
                 else
                 {
                     eliUser.ToolTip = "Admin";
+                    //Admin AD = new Admin();            ===============ADMIN
+                   // AD.IdAdmin = Loged;
+                   // Hide();
+                   // AD.ShowDialog();
                     LogOut();
+                    //Load 30 SP trang chu
+                    // LoadSP();
+                    //Load Danh loai sach san pham va nha san xuat
+
+                   // DSLSP_DSNSX();
                     Show();
                 }
             }
@@ -136,10 +145,13 @@ namespace DoAn
                 Share(Loged);
                 UserControlView.Children.Clear();
                 UserControlView.Children.Add(info);
+                //HidenView();
+                //hidden1.Width = Double.NaN;
             }
             if (i == "2")//cancel
             {
                 UserControlView.Children.Clear();
+              //  ShowView();
             }
         }
         public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
@@ -174,6 +186,7 @@ namespace DoAn
         private void plane_Click(object sender, RoutedEventArgs e)
         {
             UserControlView.Children.Clear();
+            UserControlView.Children.Add(p);
         }
 
         //Command 
@@ -194,6 +207,8 @@ namespace DoAn
             }
             else// ngược lại thì hiên thị lại form đăng nhập
             {
+               // HidenView();
+                //hidden1.Width = Double.NaN;
                 login.Visibility = Visibility.Visible;
                 UserControlView.Children.Add(login);
                 login.txtName.Text = "";
@@ -201,10 +216,9 @@ namespace DoAn
                 login.errormessage.Text = "";
             }
         }
-
-        // đăng xuất
         private void LogOut()
         {
+           // DelTableTemp();
             Loged = "";
             txtNameUser.Text = "Khách hàng ?";
             eliUser.ToolTip = "Chưa Đăng Nhập";
@@ -228,6 +242,8 @@ namespace DoAn
             if (UserControlView.Children.Count != 0)
             {
                 UserControlView.Children.RemoveAt(UserControlView.Children.Count - 1);
+                //ShowView();
+                //  LoadSP();
             }
         }
         private void ShowHideMenu(string Storyboard, Button btnHide, Button btnShow, StackPanel pnl)

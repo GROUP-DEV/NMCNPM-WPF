@@ -117,6 +117,9 @@
     <Compile Include="Model\TaiKhoan.cs">
       <DependentUpon>QLBanVeMayBay.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\chuyenbay.xaml.cs">
+      <DependentUpon>chuyenbay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DangKy.xaml.cs">
       <DependentUpon>DangKy.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,12 @@
     <Compile Include="Views\plane.xaml.cs">
       <DependentUpon>plane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\QuangCao.xaml.cs">
+      <DependentUpon>QuangCao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SanBayTrungGian.xaml.cs">
+      <DependentUpon>SanBayTrungGian.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
@@ -137,6 +146,9 @@
     </Compile>
     <Compile Include="Views\trangchu.xaml.cs">
       <DependentUpon>trangchu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\XemTheoLoai.xaml.cs">
+      <DependentUpon>XemTheoLoai.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +162,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\chuyenbay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DangKy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,8 +179,16 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\plane.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuangCao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SanBayTrungGian.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Setting.xaml">
       <SubType>Designer</SubType>
@@ -175,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\trangchu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\XemTheoLoai.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

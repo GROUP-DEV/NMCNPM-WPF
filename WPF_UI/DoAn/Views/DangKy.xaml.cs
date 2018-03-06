@@ -32,9 +32,9 @@ namespace DoAn.Views
         public delegate void PassData(int i);
         public event PassData Share;
         function fc = new function();
-        // lick truyen du lieu di cho cac form
         private void Login_Click(object sender, RoutedEventArgs e)
         {
+
             Visibility = Visibility.Collapsed;
             Share?.Invoke(1);
         }
