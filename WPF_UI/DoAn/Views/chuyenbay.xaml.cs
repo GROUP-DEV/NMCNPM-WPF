@@ -38,15 +38,42 @@ namespace DoAn.Views
         }
         void LoadMaCB()
         {
+            cbbMacb.ItemsSource = LT.CHUYENBAY.ToList();
         }
-      
+        void LoadSBtrunggian(int str)
+        {
+            gridSBTG.ItemsSource = LT.SANBAYTRUNGGIAN.Where(m => m.MaCB == str).ToList();
+        }
+       
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-          
+            LoadMaCB();
+            // LoadSBtrunggian();
         }
         int valuecbb = 0;
         private void cbbMacb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            valuecbb = int.Parse(cbbMacb.SelectedValue.ToString());
+            var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();
+            var sanbaydi = (from lb in LT.LICHBAY
+                            from sb in LT.SANBAY
+                            where lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
+                            select new { sb.TenSB }).FirstOrDefault();
+            var sanbayden = (from lb in LT.LICHBAY
+                             from sb in LT.SANBAY
+                             where lb.MaSanBayDen == sb.MaSB && lb.MaCB == valuecbb
+                             select new { sb.TenSB }).FirstOrDefault();
+            txtSBDen.Text = sanbayden.TenSB.ToString();
+            txtSBDi.Text = sanbaydi.TenSB.ToString();
+            txtngaygio.Text = query.NgayGio.ToString();
+            txttgbay.Text = query.ThoiGianBay.ToString();
+            txtgheh1.Text = query.SoLuongGheHang1.ToString();
+            txtgheh2.Text = query.SoLuongGheHang2.ToString();
+            LoadSBtrunggian(valuecbb);
+            //var query = (from lb in LT.LICHBAY
+            //             from sb in LT.SANBAY
+            //             where lb.MaSanBayDen == sb.MaSB || lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
+            //             select new { lb.MaCB, lb.MaSanBayDen, lb.MaSanBayDi, lb.NgayGio, lb.ThoiGianBay, lb.SoLuongGheHang1, lb.SoLuongGheHang2, sb.TenSB }).FirstOrDefault(); /* (m => m.MaCB == valuecbb).FirstOrDefault()*/
         }
 
         private void WrapPanel_MouseEnter(object sender, MouseEventArgs e)
@@ -78,8 +105,7 @@ namespace DoAn.Views
             txtSBDi.Visibility = Visibility.Collapsed;
             txttgbay.Visibility = Visibility.Collapsed;
             //cbbMacb.Visibility = Visibility.Collapsed;
-
-
+  
         }
         void showMouseLeave()
         {
@@ -101,7 +127,7 @@ namespace DoAn.Views
             txtSBDi.Visibility = Visibility.Visible;
             txttgbay.Visibility = Visibility.Visible;
             // cbbMacb.Visibility = Visibility.Visible;
-           
+   
         }
         // tìm tên 1 element trong datatemplate
         public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
@@ -120,13 +146,31 @@ namespace DoAn.Views
                 }
             }
         }
-     
-       
-
-
-        private void btnthemsanbaytrunggian_Click(object sender, RoutedEventArgs e)
+        string chuoi = "";
+        private SANBAYTRUNGGIAN LoopData(string STT)
         {
+            var CT = new SANBAYTRUNGGIAN();
+            using (var BH = new QLVeMayBayEntities())
+            {
+                var sanbay = (from h in BH.SANBAY
+                              where h.MaSB == chuoi
+                              select h);
 
+                foreach (var Temp in sanbay)
+                {
+                    CT.MaSBTrungGian = Temp.MaSB;
+                    CT.TenSB = Temp.TenSB;
+                }
+            }
+
+            return CT;
         }
+
+
+
+
+
+
+       
     }
 }

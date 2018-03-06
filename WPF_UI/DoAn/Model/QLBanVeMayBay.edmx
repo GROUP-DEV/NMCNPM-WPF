@@ -83,7 +83,7 @@
           <Property Name="MaSBTrungGian" Type="varchar" MaxLength="10" />
           <Property Name="MaCB" Type="int" />
           <Property Name="TenSB" Type="nvarchar" MaxLength="255" />
-          <Property Name="ThoiGianDung" Type="time" Precision="7" />
+          <Property Name="ThoiGianDung" Type="int" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="TaiKhoan">
@@ -243,7 +243,7 @@
           <Property Name="MaSBTrungGian" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaCB" Type="Int32" />
           <Property Name="TenSB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ThoiGianDung" Type="Time" Precision="7" />
+          <Property Name="ThoiGianDung" Type="Int32" />
           <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SANBAY" Relationship="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__1FCDBCEB" FromRole="SANBAYTRUNGGIAN" ToRole="SANBAY" />
         </EntityType>

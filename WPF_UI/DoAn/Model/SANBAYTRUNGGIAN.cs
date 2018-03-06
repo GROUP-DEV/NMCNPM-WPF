@@ -18,7 +18,7 @@ namespace DoAn.Model
         public string MaSBTrungGian { get; set; }
         public Nullable<int> MaCB { get; set; }
         public string TenSB { get; set; }
-        public Nullable<System.TimeSpan> ThoiGianDung { get; set; }
+        public Nullable<int> ThoiGianDung { get; set; }
         public string GhiChu { get; set; }
     
         public virtual SANBAY SANBAY { get; set; }
