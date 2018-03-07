@@ -78,7 +78,7 @@
     <Property Name="MaSBTrungGian" Type="varchar" MaxLength="10" />
     <Property Name="MaCB" Type="int" />
     <Property Name="TenSB" Type="nvarchar" MaxLength="255" />
-    <Property Name="ThoiGianDung" Type="time" Precision="7" />
+    <Property Name="ThoiGianDung" Type="int" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="TaiKhoan">
