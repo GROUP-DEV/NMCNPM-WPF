@@ -154,7 +154,26 @@ namespace DoAn.Views
                 }
             }
         }
-        
+        string chuoi = "";
+        private SANBAYTRUNGGIAN LoopData(string STT)
+        {
+            var CT = new SANBAYTRUNGGIAN();
+            using (var BH = new QLVeMayBayEntities())
+            {
+                var sanbay = (from h in BH.SANBAY
+                              where h.MaSB == chuoi
+                              select h);
+
+                foreach (var Temp in sanbay)
+                {
+                    CT.MaSBTrungGian = Temp.MaSB;
+                    CT.TenSB = Temp.TenSB;
+                }
+            }
+
+            return CT;
+        }
+
 
 
         private void btnthemsanbaytrunggian_Click(object sender, RoutedEventArgs e)
@@ -199,8 +218,6 @@ namespace DoAn.Views
                                 LT.SaveChanges();
                                 LoadSBtrunggian(valuecbb);
                                 LoadSB();
-
-
                             }
                             else
                             {
@@ -209,7 +226,7 @@ namespace DoAn.Views
                         }
                         catch
                         {
-                            MessageBox.Show("Lỗi.Nhập nội dung thêm đi!");
+                            MessageBox.Show("Lỗi.bị gì rồi. kiểm tra lại");
                         }
                     }
                 }
@@ -221,6 +238,46 @@ namespace DoAn.Views
             }
         }
 
-         
+          //cat doan nay 1
+        private void btnxoasbtg_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                QLVeMayBayEntities LT = new QLVeMayBayEntities();
+                string ID = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).MaSBTrungGian;
+                var xoa = (LT.SANBAYTRUNGGIAN.Where(m => m.MaSBTrungGian == ID && m.MaCB == valuecbb)).SingleOrDefault();
+                LT.SANBAYTRUNGGIAN.Remove(xoa);
+                LT.SaveChanges();
+                LoadSBtrunggian(valuecbb);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("row empty!(^^)");
+                return;
+            }
+           
+
+        }
+
+        private void btnsua_Click(object sender, RoutedEventArgs e)
+        {
+           // LoadSBtrunggian(valuecbb);
+
+            SANBAYTRUNGGIAN sbtg = new SANBAYTRUNGGIAN();
+            // lay thoi gian dung trong database
+            string ID = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).MaSBTrungGian;
+            var laySBGR = (LT.SANBAYTRUNGGIAN.Where(m => m.MaSBTrungGian == ID && m.MaCB == valuecbb)).SingleOrDefault();
+            laySBGR.ThoiGianDung = laySBGR.ThoiGianDung;
+            laySBGR.GhiChu = laySBGR.GhiChu;
+            if (laySBGR != null)
+            {
+                LT.SaveChanges();
+                MessageBox.Show("done!");
+            }
+            else
+            {
+                MessageBox.Show("chưa update được!");
+            }
+        }
     }
 }

@@ -546,7 +546,7 @@
             </Button.Content>
         </Button>
         <!--danh sach chuyen bay trung gian-->
-        <DataGrid FontSize="20" Name="gridSBTG" Grid.Row="8" Grid.ColumnSpan="9" Grid.RowSpan="7" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
+        <DataGrid FontSize="20" Name="gridSBTG" Grid.Row="8" Grid.ColumnSpan="9" Grid.RowSpan="8" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
               AutoGenerateColumns="False" Margin="51,5,44,5"  >
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="  STT" Width="70"
@@ -557,7 +557,7 @@
                 <DataGridTemplateColumn  Header="Thời Gian dừng" Width="160" SortMemberPath="ThoiGianDung">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Name="txtthoigiandung" Width="20" Text="{Binding ThoiGianDung}" />
+                            <TextBlock Name="txtthoigiandung" Width="23" Text="{Binding ThoiGianDung}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
@@ -568,7 +568,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox Text="{Binding ThoiGianDung}" />
-                                <ScrollBar Grid.Column="1" Minimum="1" Maximum="99" SmallChange="1"
+                                <ScrollBar Grid.Column="1" Minimum="10" Maximum="30" SmallChange="1"
                                         Orientation="Vertical"
                                         Value="{Binding ThoiGianDung,UpdateSourceTrigger=PropertyChanged}"
                                         RenderTransformOrigin="0.5,0.5">
@@ -581,11 +581,55 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTextColumn  Binding="{Binding GhiChu}" Width="230" Header="Ghi Chú"
-                                    />
+                <DataGridTemplateColumn  Header="ghi chú" Width="240" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Name="txtghichu" Text="{Binding GhiChu}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Text="{Binding GhiChu}"  Height="50"/>
+                                <!--<ScrollBar Grid.Column="1"
+                                        Orientation="Vertical"
+                                        Value="{Binding GhiChu,UpdateSourceTrigger=PropertyChanged}"
+                                       >
+                                  
+                                </ScrollBar>-->
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <!--<DataGridTextColumn  Binding="{Binding GhiChu}" Width="230" Header="Ghi Chú"
+                                    />-->
              
 
-            
+              <!--xoa san bay trung gian-->
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Background="Transparent" BorderThickness="0" Name="btnxoasbtg" Click="btnxoasbtg_Click" Width="70" >
+                                <fa:ImageAwesome Icon="Remove" SpinDuration="30" Width="18" Height="18"  Foreground="#FF8080" ></fa:ImageAwesome>
+                            </Button>
+                        
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnsua_Click" Background="Transparent" BorderThickness="0" Name="btnsua"  Width="70" >
+                                <fa:ImageAwesome Icon="PencilSquareOutline" SpinDuration="30" Width="18" Height="18"  Foreground="#67B459" ></fa:ImageAwesome>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <WrapPanel  Width="250"   Height="50" MouseLeave="WrapPanel_MouseLeave" MouseEnter="WrapPanel_MouseEnter" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="13" Grid.RowSpan="9" HorizontalAlignment="right" VerticalAlignment="Bottom" Style="{StaticResource StyleTheLoai}" Margin="0" >
