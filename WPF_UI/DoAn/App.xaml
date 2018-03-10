@@ -5,6 +5,8 @@
            
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!--STYLE VALIDATE-->
+      
         <!--STYLE BUTTON PLANE-->
         <Style x:Key="StyleButtonchuyenbay" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#A4BEE0" />

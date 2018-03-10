@@ -72,9 +72,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\chuyenbay.cs" />
     <Compile Include="Controller\function.cs" />
     <Compile Include="Controller\Users.cs" />
     <Compile Include="Controller\setting.cs" />
+    <Compile Include="Controller\checkF.cs" />
     <Compile Include="Model\CaiDat.cs">
       <DependentUpon>QLBanVeMayBay.tt</DependentUpon>
     </Compile>
@@ -116,6 +118,9 @@
     </Compile>
     <Compile Include="Model\TaiKhoan.cs">
       <DependentUpon>QLBanVeMayBay.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\banve.xaml.cs">
+      <DependentUpon>banve.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\chuyenbay.xaml.cs">
       <DependentUpon>chuyenbay.xaml</DependentUpon>
@@ -162,6 +167,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\banve.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\chuyenbay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -154,28 +154,7 @@ namespace DoAn.Views
                 }
             }
         }
-        string chuoi = "";
-        private SANBAYTRUNGGIAN LoopData(string STT)
-        {
-            var CT = new SANBAYTRUNGGIAN();
-            using (var BH = new QLVeMayBayEntities())
-            {
-                var sanbay = (from h in BH.SANBAY
-                              where h.MaSB == chuoi
-                              select h);
-
-                foreach (var Temp in sanbay)
-                {
-                    CT.MaSBTrungGian = Temp.MaSB;
-                    CT.TenSB = Temp.TenSB;
-                }
-            }
-
-            return CT;
-        }
-
-
-
+      
         private void btnthemsanbaytrunggian_Click(object sender, RoutedEventArgs e)
         {
             QLVeMayBayEntities LT = new QLVeMayBayEntities();
@@ -255,29 +234,38 @@ namespace DoAn.Views
                 MessageBox.Show("row empty!(^^)");
                 return;
             }
-           
-
         }
 
         private void btnsua_Click(object sender, RoutedEventArgs e)
         {
            // LoadSBtrunggian(valuecbb);
 
-            SANBAYTRUNGGIAN sbtg = new SANBAYTRUNGGIAN();
-            // lay thoi gian dung trong database
-            string ID = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).MaSBTrungGian;
-            var laySBGR = (LT.SANBAYTRUNGGIAN.Where(m => m.MaSBTrungGian == ID && m.MaCB == valuecbb)).SingleOrDefault();
-            laySBGR.ThoiGianDung = laySBGR.ThoiGianDung;
-            laySBGR.GhiChu = laySBGR.GhiChu;
-            if (laySBGR != null)
+           
+            try
             {
-                LT.SaveChanges();
-                MessageBox.Show("done!");
+                SANBAYTRUNGGIAN sbtg = new SANBAYTRUNGGIAN();
+                // lay thoi gian dung trong database
+                string ID = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).MaSBTrungGian;
+                var laySBGR = (LT.SANBAYTRUNGGIAN.Where(m => m.MaSBTrungGian == ID && m.MaCB == valuecbb)).SingleOrDefault();
+                laySBGR.ThoiGianDung = laySBGR.ThoiGianDung;
+                laySBGR.GhiChu = laySBGR.GhiChu;
+                if (laySBGR != null)
+                {
+                    LT.SaveChanges();
+                    MessageBox.Show("done!");
+                }
+                else
+                {
+                    MessageBox.Show("chưa update được!");
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("chưa update được!");
+
+                MessageBox.Show("row empty!(^^)");
+                return;
             }
+           
         }
     }
 }

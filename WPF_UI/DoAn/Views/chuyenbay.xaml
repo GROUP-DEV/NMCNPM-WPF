@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:DoAn.Views"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
-             Height="1000" Width="1300" Loaded="UserControl_Loaded"
+             Height="740" Width="1300" Loaded="UserControl_Loaded"
              >
     <UserControl.Resources>
         <Style x:Key="Styletxtblock" TargetType="{x:Type TextBlock}">
@@ -470,11 +470,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="85"/>
-            <RowDefinition  Height="80"/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition />
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -490,7 +486,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="3" Grid.ColumnSpan="6" TextAlignment="Center" VerticalAlignment="Bottom" Margin="4,0,0,15">NHẬN LỊCH CHUYẾN BAY</TextBlock>
-        <GroupBox Name="grinfo" Grid.Row="1" Grid.ColumnSpan="9" Grid.RowSpan="6" Margin="51,42,44,31">
+        <GroupBox Name="grinfo" Grid.Row="1" Grid.ColumnSpan="9" Grid.RowSpan="6" Margin="51,10,44,31">
             <GroupBox.Header>
                 <TextBlock  Style="{StaticResource Styletxtblock}" >Thông tin chuyến bay</TextBlock>
             </GroupBox.Header>
@@ -546,8 +542,8 @@
             </Button.Content>
         </Button>
         <!--danh sach chuyen bay trung gian-->
-        <DataGrid FontSize="20" Name="gridSBTG" Grid.Row="8" Grid.ColumnSpan="9" Grid.RowSpan="8" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
-              AutoGenerateColumns="False" Margin="51,5,44,5"  >
+        <DataGrid FontSize="20" Name="gridSBTG" Grid.Row="8" Grid.ColumnSpan="9" Grid.RowSpan="5" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
+              AutoGenerateColumns="False" Margin="51,0,44,36"  >
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="  STT" Width="70"
                                 Foreground="Blue" FontWeight="Bold"/>
@@ -608,16 +604,16 @@
 
                 <!--<DataGridTextColumn  Binding="{Binding GhiChu}" Width="230" Header="Ghi Chú"
                                     />-->
-             
 
-              <!--xoa san bay trung gian-->
+
+                <!--xoa san bay trung gian-->
                 <DataGridTemplateColumn >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Background="Transparent" BorderThickness="0" Name="btnxoasbtg" Click="btnxoasbtg_Click" Width="70" >
                                 <fa:ImageAwesome Icon="Remove" SpinDuration="30" Width="18" Height="18"  Foreground="#FF8080" ></fa:ImageAwesome>
                             </Button>
-                        
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -632,7 +628,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <WrapPanel  Width="250"   Height="50" MouseLeave="WrapPanel_MouseLeave" MouseEnter="WrapPanel_MouseEnter" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="13" Grid.RowSpan="9" HorizontalAlignment="right" VerticalAlignment="Bottom" Style="{StaticResource StyleTheLoai}" Margin="0" >
+        <WrapPanel  Width="250" Height="50" MouseLeave="WrapPanel_MouseLeave" MouseEnter="WrapPanel_MouseEnter" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="13" Grid.RowSpan="9" HorizontalAlignment="right" VerticalAlignment="Bottom" Style="{StaticResource StyleTheLoai}" Margin="0" >
             <TextBlock Margin="400 80"   Visibility="Collapsed" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Name="txtthemsbtg"  TextAlignment="Center" Width="900"   HorizontalAlignment="Center" VerticalAlignment="Center" Height="32">THÊM SÂN BAY TRUNG GIAN</TextBlock>
             <Button Name="btnsbtg"    Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="250"   Height="50">
                 <Button.Content>
@@ -641,13 +637,16 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
+
             <StackPanel>
-                <TextBlock Margin="500 0 0 10" Name="tberror" Foreground="Red" FontSize="15" Visibility="Collapsed">
-                <fa:ImageAwesome Icon="Exclamation" SpinDuration="30" Width="18" Height="18"  Foreground="#FF8080" ></fa:ImageAwesome>
-                chú ý: Sân bay trung gian tối đa là 2!
-                </TextBlock>
+                <Canvas >
+                    <TextBlock Margin="500 0 0 35" Name="tberror" Foreground="Red" FontSize="15" Visibility="Collapsed">
+                    <fa:ImageAwesome Icon="Exclamation" SpinDuration="30" Width="18" Height="18"  Foreground="#FF8080" ></fa:ImageAwesome>
+                    chú ý: Sân bay trung gian tối đa là 2
+                    </TextBlock>
+                </Canvas>
                 <!--Margin="51,5,44,5"-->
-                <DataGrid Width="780" Height="220" FontSize="20" Margin="60 5 0 0" Name="grsbay"   ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
+                <DataGrid Width="780" Height="220" FontSize="20" Margin="60 25 0 0" Name="grsbay"   ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
               AutoGenerateColumns="False"   >
                     <DataGrid.Columns>
                         <DataGridTextColumn  Header="  STT" Width="70"
@@ -686,7 +685,6 @@
                 </DataGrid>
 
             </StackPanel>
-           
         </WrapPanel>
 
     </Grid>

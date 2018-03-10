@@ -23,6 +23,7 @@ namespace DoAn.Views
         DangNhap dn = new DangNhap();
         //lich chuyen bay
         chuyenbay cb = new chuyenbay();
+        banve bv = new banve();
         public plane()
         {
             InitializeComponent();
@@ -53,6 +54,12 @@ namespace DoAn.Views
             hideCN();
         }
 
+        private void btnbanve_Click(object sender, RoutedEventArgs e)
+        {
+            container.Children.Clear();
+            container.Children.Add(bv);
+            hideCN();
+        }
         // Come BACK
         void Back_Share(string i)
         {
@@ -65,7 +72,8 @@ namespace DoAn.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            cb.DataCB += new chuyenbay.PassData(Back_Share);
+            cb.DataCB += new chuyenbay.PassData(Back_Share);//truyen lai cho window chuyenbay
+            bv.DataCB += new banve.PassData(Back_Share);//truyen lai cho window chuyenbay
         }
         private void hideCN()
         {
@@ -103,5 +111,7 @@ namespace DoAn.Views
             txtthongtin.Visibility = Visibility.Visible;
             txtbaocao.Visibility = Visibility.Visible;
         }
+
+       
     }
 }
