@@ -5,11 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
               xmlns:clr="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:DoAn.Views"
+             xmlns:m="clr-namespace:DoAn.Controller"
               xmlns:fa="http://schemas.fontawesome.io/icons/"
               xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d" Loaded="UserControl_Loaded"
               Height="740" Width="1300">
     <UserControl.Resources>
+        <m:Pages x:Key="dbForWd"></m:Pages>
         <Style TargetType="{x:Type TextBox}" x:Key="styletextbox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
@@ -511,8 +513,8 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            
-      
+
+
         </Grid.RowDefinitions>
 
         <TextBlock Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="4" Grid.ColumnSpan="6" TextAlignment="Center" VerticalAlignment="Bottom" Margin="4,0,0,15">BÁN VÉ CHUYẾN BAY</TextBlock>
@@ -592,19 +594,19 @@
         <TextBox Style="{StaticResource styletextbox}" Text="{Binding Path=Email,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Name="txthanhkhach" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,11"></TextBox>
         <TextBox Style="{StaticResource styletextbox}" Text="{Binding Path=Phone,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Name="txtdienthoai" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
         <TextBox Name="txtcmnd" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
-      
+
         <!--thong tin ban ve-->
-        <DataGrid FontSize="20" Name="gridSBTG" Grid.Row="7" Grid.ColumnSpan="15" Grid.RowSpan="8" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
+        <DataGrid FontSize="20" Name="gridBV" Grid.Row="7" Grid.ColumnSpan="15" Grid.RowSpan="6" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
               AutoGenerateColumns="False" Margin="51 44 "  >
             <DataGrid.Columns>
-                <DataGridTextColumn  Header="Chuyến bay" Width="210"
+                <DataGridTextColumn Binding="{Binding MaCB}"  Header="Mã CB" Width="100"
                                 Foreground="Blue" FontWeight="Bold"/>
-                <DataGridTextColumn     Header="Tên khách hàng" Width="210"/>
+                <DataGridTextColumn Binding="{Binding TenHanhKhach}"    Header="Tên khách hàng" Width="210"/>
                 <!--<DataGridTextColumn Binding="{Binding ThoiGianDung}"  Header="Thời Gian Dừng" Width="160"/>-->
-                <DataGridTextColumn  Header="Loại vé" Width="70"/>
-                <DataGridTextColumn  Header="Đơn giá" Width="120"/>
-                <DataGridTextColumn  Header="Ngày Đặt" Width="220"/>
-                <DataGridTextColumn  Header="Điện thoại" Width="200"/>
+                <DataGridTextColumn Binding="{Binding MaLoai}"  Header="Loại vé" Width="70"/>
+                <DataGridTextColumn Binding="{Binding DonGia}"  Header="Đơn giá" Width="120"/>
+                <DataGridTextColumn Binding="{Binding NgayDat}"  Header="Ngày Đặt" Width="220"/>
+                <DataGridTextColumn  Binding="{Binding DienThoai}" Header="Điện thoại" Width="200"/>
 
                 <!--<DataGridTextColumn  Binding="{Binding GhiChu}" Width="230" Header="Ghi Chú"
                                     />-->
@@ -646,6 +648,43 @@
                 </StackPanel>
             </Button.Content>
         </Button>
+        <!--phan trang-->
+        <WrapPanel MinWidth="200"  HorizontalAlignment="Center" VerticalAlignment="Top"   Grid.Row="12" Grid.ColumnSpan="3" Grid.Column="4" Height="85" Margin="65,8,128,0" Grid.RowSpan="2">
+            <StackPanel MinWidth="200" >
+                <WrapPanel HorizontalAlignment="Center" >
+                    <TextBlock FontWeight="Bold"  FontSize="20" Foreground="Navy" Height="30"><Run Text="Trang"/></TextBlock>
+                    <TextBox BorderBrush="BlueViolet" BorderThickness="1" Foreground="DarkBlue" FontWeight="Bold" FontSize="15" Background="Transparent" TextAlignment="Center" x:Name="btnInPage" KeyDown="btnInPage_KeyDown" Text="{Binding CurPage, Source={StaticResource dbForWd}}" Margin="5,0,3,0" Width="25" Height="22"/>
+                    <Border Panel.ZIndex="-1"  BorderBrush="Red"  BorderThickness="10" RenderTransformOrigin="0.5,0.5" Height="34" Width="1" >
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="11.829"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                    </Border>
+                    <TextBox x:Name="txtTotal" Foreground="DarkGreen" FontWeight="Bold"  FontSize="15" Background="Transparent" BorderThickness="0" IsReadOnly="True" Text="{Binding TotalPage, Source={StaticResource dbForWd}}" Margin="0,0,0,0" Width="12" Height="20"/>
+                </WrapPanel>
+
+                <WrapPanel Margin="0,10,0,50" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Button x:Name="btnPrev" Click="btnPrev_Click" Height="30" Width="30" Content="Prev" Margin="0,0,3,0"/>
+                    <ListView BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True"  x:Name="ListButton"  Background="Transparent">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel MaxWidth="400"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Button VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="btnNumber" Click="btnNumber_Click" Content="{Binding I}" Margin="0,0,3,0" Height="25" Width="25"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:Name="btnNext" Click="btnNext_Click" Height="30" Width="30"  Content="Next"/>
+                </WrapPanel>
+            </StackPanel>
+        </WrapPanel>
 
     </Grid>
 </UserControl>

@@ -26,20 +26,35 @@ namespace DoAn.Views
         public delegate void PassData(string s);
         public event PassData DataCB;
         QLVeMayBayEntities LT = new QLVeMayBayEntities();
-
+        IQueryable<PHIEUDATVE> SourceFill;// SOURCE PAGES
         public banve()
         {
             InitializeComponent();
-
+            var db = this.FindResource("dbForWd") as Pages;// SET PAGES CURR
+            db.CurPage = 1;
             // ham kiem tra
             //checkF v = new checkF();
             //v.Phone = "";
             //v.Email = "";
             //DataContext = v;
         }
+        void LoadBV()
+        {
+            gridBV.ItemsSource = LT.PHIEUDATVE.ToList();
+        }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadMaCB();
+            LoadBV();
+
+            // START LOAD PAGES
+            SourceFill = LT.PHIEUDATVE;
+            var db = this.FindResource("dbForWd") as Pages;
+            int totalPage;
+            db.CurPage = 1;
+            db.Products = GetSearchQuery(db.CurPage, Pages.PageSize, out totalPage);
+            db.TotalPage = totalPage;
+            ButtunPage(totalPage);
         }
         int valuecbb = 0;
         private void back_Click(object sender, RoutedEventArgs e)
@@ -75,14 +90,6 @@ namespace DoAn.Views
             //             select new { lb.MaCB, lb.MaSanBayDen, lb.MaSanBayDi, lb.NgayGio, lb.ThoiGianBay, lb.SoLuongGheHang1, lb.SoLuongGheHang2, sb.TenSB }).FirstOrDefault(); /* (m => m.MaCB == valuecbb).FirstOrDefault()*/
         }
 
-        private void btnthem_Click(object sender, RoutedEventArgs e)
-        {
-            checkF v = new checkF();
-            v.Phone = "";
-            v.Email = "";
-            DataContext = v;
-    
-        }
 
         private void gridSBTG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -93,5 +100,103 @@ namespace DoAn.Views
         {
 
         }
+
+
+
+        // START PAGES
+        List<PHIEUDATVE> GetSearchQuery(int curPage, int pageSize, out int totalPage)
+        {
+            IQueryable<PHIEUDATVE> q = SourceFill;
+
+            totalPage = (int)Math.Ceiling(q.Count() * 1.0 / pageSize);
+            gridBV.ItemsSource = q.OrderBy(p => p.CMND).Skip((curPage - 1) * pageSize).Take(pageSize).ToList();
+            return q.OrderBy(c => c.CMND).Skip((curPage - 1) * pageSize).Take(pageSize).ToList();
+        }
+        private void ButtunPage(int total)
+        {
+            int totalPage = total;
+            List<PageButton> ListBtn = new List<PageButton>();
+            PageButton t;
+            for (int i = 0; i < totalPage; i++)
+            {
+                t = new PageButton();
+                t.I = i + 1;
+                ListBtn.Add(t);
+            }
+            ListButton.ItemsSource = ListBtn;
+
+        }
+        private void btnPrev_Click(object sender, RoutedEventArgs e)
+        {
+            var db = this.FindResource("dbForWd") as Pages;
+            int temp;
+            int totalPage;
+            if (db.CurPage > 1 && int.TryParse(btnInPage.Text, out temp) && temp <= Convert.ToInt32(txtTotal.Text) && temp >= 1)
+            {
+                db.CurPage--;
+            }
+            else { return; }
+            db.Products = GetSearchQuery(db.CurPage, Pages.PageSize, out totalPage);
+            db.TotalPage = totalPage;
+            ListButton.SelectedIndex = db.CurPage - 1;
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            var db = this.FindResource("dbForWd") as Pages;
+
+            int totalPage;
+            int temp;
+            if (db.CurPage < db.TotalPage && int.TryParse(btnInPage.Text, out temp) && temp <= Convert.ToInt32(txtTotal.Text) && temp >= 1)
+            {
+                db.CurPage++;
+            }
+            else
+            {
+                return;
+            }
+            db.Products = GetSearchQuery(db.CurPage, Pages.PageSize, out totalPage);
+            db.TotalPage = totalPage;
+            ListButton.SelectedIndex = db.CurPage - 1;
+        }
+
+
+        private void btnInPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            int n;
+            if (!int.TryParse(btnInPage.Text, out n))
+            {
+                n = 1;
+            }
+            else if (n <= Convert.ToInt32(txtTotal.Text) && n >= 1)
+            {
+                var db = this.FindResource("dbForWd") as Pages;
+
+                int totalPage;
+
+                db.CurPage = n;
+
+                db.Products = GetSearchQuery(db.CurPage, Pages.PageSize, out totalPage);
+                db.TotalPage = totalPage;
+                ListButton.SelectedIndex = n - 1;
+            }
+        }
+
+        private void btnNumber_Click(object sender, RoutedEventArgs e)
+        {
+            Button temp = sender as Button;
+
+            PageButton D = temp.DataContext as PageButton;
+            int Id = D.I;
+            var db = this.FindResource("dbForWd") as Pages;
+            ListButton.SelectedIndex = Id - 1;
+            int totalPage;
+
+            db.CurPage = Id;
+
+            db.Products = GetSearchQuery(db.CurPage, Pages.PageSize, out totalPage);
+            db.TotalPage = totalPage;
+        }
+        // END PAGES
     }
 }

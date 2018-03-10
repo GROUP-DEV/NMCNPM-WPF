@@ -74,6 +74,8 @@
     </ApplicationDefinition>
     <Compile Include="Controller\chuyenbay.cs" />
     <Compile Include="Controller\function.cs" />
+    <Compile Include="Controller\PageButton.cs" />
+    <Compile Include="Controller\Pages.cs" />
     <Compile Include="Controller\Users.cs" />
     <Compile Include="Controller\setting.cs" />
     <Compile Include="Controller\checkF.cs" />

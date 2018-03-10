@@ -47,3 +47,4 @@ D:\WPF_UI\DoAn\obj\Debug\Views\SanBayTrungGian.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\SanBayTrungGian.baml
 D:\WPF_UI\DoAn\obj\Debug\Views\banve.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\banve.baml
+D:\WPF_UI\DoAn\obj\Debug\GeneratedInternalTypeHelper.g.cs
