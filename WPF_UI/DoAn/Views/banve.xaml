@@ -538,8 +538,8 @@
         <!--<TextBlock Name="tbslghe1" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5">SLượng Ghé hạng1:</TextBlock>-->
         <TextBlock Name="tbslghetrong" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11">SL ghế trống: </TextBlock>
        
-        <TextBlock Visibility="Collapsed" Name="txttemp" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11">Số ghế hạng:</TextBlock>
-        <TextBlock Visibility="Collapsed" Name="txtsoghetheohang" Grid.Column="2" Grid.Row="5" Style="{StaticResource Styletxtblock}" TextAlignment="Center">1</TextBlock>
+        <!--<TextBlock Visibility="Collapsed" Name="txttemp" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11">Số ghế hạng:</TextBlock>-->
+        <!--<TextBlock Visibility="Collapsed" Name="txtsoghetheohang" Grid.Column="2" Grid.Row="5" Style="{StaticResource Styletxtblock}" TextAlignment="Center">1</TextBlock>-->
         <TextBlock Name="tbngayban" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11">Ngày bán:</TextBlock>
         <!--hang ve-->
         <TextBlock Name="tbhangve" Style="{StaticResource Styletxtblock}"  Grid.Column="6" Grid.Row="2" Margin="0,11">Hạng vé:</TextBlock>

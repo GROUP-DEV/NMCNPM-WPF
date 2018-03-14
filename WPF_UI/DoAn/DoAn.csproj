@@ -72,7 +72,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controller\chuyenbay.cs" />
+    <Compile Include="Controller\Cchuyenbay.cs" />
+    <Compile Include="Controller\connect.cs" />
+    <Compile Include="Controller\DatVe.cs" />
     <Compile Include="Controller\function.cs" />
     <Compile Include="Controller\PageButton.cs" />
     <Compile Include="Controller\Pages.cs" />

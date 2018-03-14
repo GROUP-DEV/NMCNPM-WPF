@@ -74,7 +74,7 @@ namespace DoAn.Views
         int? soluongghetrong;
         private void cbbMacb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            hide();
+            
             cbbhangve.IsEnabled = true;
             valuecbb = int.Parse(cbbMacb.SelectedValue.ToString());
             var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();
@@ -94,7 +94,8 @@ namespace DoAn.Views
             txtsoluongghetrong.Text = soluongghetrong.ToString();
             //txtgheh1.Text = query.SoLuongGheHang1.ToString();
             //txtgheh2.Text = query.SoLuongGheHang2.ToString();
-
+            cbbhangve.Text = "--Chọn Hạng Vé--";
+            txtgiave.Text = "0";
             //var query = (from lb in LT.LICHBAY
             //             from sb in LT.SANBAY
             //             where lb.MaSanBayDen == sb.MaSB || lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
@@ -103,10 +104,8 @@ namespace DoAn.Views
 
         private void cbbhangve_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            show();// khi select cbb hangve thi se thay doi gia trị
             try
             {
-            
                 string maloai = cbbhangve.SelectedValue.ToString();// lay ma loai ve tu cbb
                 var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();// gia tri de ss neu chua chon chuyen bay
                 var layDG = LT.LOAIVE.Where(m => m.MaLoai == maloai).FirstOrDefault();// lay ten ma loai
@@ -114,35 +113,20 @@ namespace DoAn.Views
                 if (maloai == "1")// neu bang 1 thi thu thi theo nó ok
                 {
                     txtsoluongghetrong.Text = query.SoLuongGheHang1.ToString();
-                    txtsoghetheohang.Text = "1";
+                   
                     txtgiave.Text = layDG.DonGia.ToString();
                 }
                 else
                 {
                     txtsoluongghetrong.Text = query.SoLuongGheHang2.ToString();
-                    txtsoghetheohang.Text = "2";
                     txtgiave.Text = layDG.DonGia.ToString();
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("ERROR");
+                //MessageBox.Show("ERROR");
             }  
            
-        }
-
-
-        void hide()
-        {
-            txttemp.Visibility = Visibility.Collapsed;
-            txtsoghetheohang.Visibility = Visibility.Collapsed;
-            tbslghetrong.Visibility = Visibility.Visible;
-        }
-        void show()
-        {
-            txttemp.Visibility = Visibility.Visible;
-            txtsoghetheohang.Visibility = Visibility.Visible;
-            tbslghetrong.Visibility = Visibility.Collapsed;
         }
         private void gridSBTG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -25,7 +25,6 @@ namespace DoAn.Views
     /// </summary>
     public partial class ThongTinNguoiDung : UserControl
     {
-        Model.QLVeMayBayEntities BLT = new Model.QLVeMayBayEntities();
         Users uc = new Users();
         Setting Settings = new Setting();
         function fc = new function();

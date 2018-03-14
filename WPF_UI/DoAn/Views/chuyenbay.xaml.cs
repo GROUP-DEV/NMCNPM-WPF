@@ -1,4 +1,5 @@
-﻿using DoAn.Model;
+﻿using DoAn.Controller;
+using DoAn.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,29 +25,57 @@ namespace DoAn.Views
         public delegate void PassData(string s);
         public event PassData DataCB;
         // CONNECT DATABSE
-        QLVeMayBayEntities LT = new QLVeMayBayEntities();
+        // CLASS CHUYEN BAY
+        Cchuyenbay cb = new Cchuyenbay();
         public chuyenbay()
         {
             InitializeComponent();
-            // txtthemsbtg.Visibility = Visibility.Collapsed;// mặc định nó ẩn
-
         }
-
+        // come back
         private void back_Click(object sender, RoutedEventArgs e)
         {
             DataCB?.Invoke("1");// truyền data di cho cac form
         }
+        // load cbb chuyen bay
         void LoadMaCB()
         {
-            cbbMacb.ItemsSource = LT.CHUYENBAY.ToList();
+            //cbbMacb.ItemsSource = LT.CHUYENBAY.ToList();
+            bool check = cb.LoadCBBChuyenbay();
+            if (check == true)
+            {
+                cbbMacb.ItemsSource = cb.CloadcbbMacb;
+            }
+            else
+            {
+                return;
+            }
         }
-        void LoadSBtrunggian(int str)
+        // load san bay trung gian
+        void LoadSBtrunggian()
         {
-            gridSBTG.ItemsSource = LT.SANBAYTRUNGGIAN.Where(m => m.MaCB == str).ToList();
+            //gridSBTG.ItemsSource = LT.SANBAYTRUNGGIAN.Where(m => m.MaCB == str).ToList();
+            bool check = cb.LoadSBtrunggian(valuecbb);
+            if (check == true)
+            {
+                gridSBTG.ItemsSource = cb.CLoadSBtrunggian;
+            }
+            else
+            {
+                return;
+            }
         }
         void LoadSB()
         {
-            grsbay.ItemsSource = LT.SANBAY.ToList();
+            //grsbay.ItemsSource = LT.SANBAY.ToList();
+            bool check = cb.LoadSB();
+            if (check == true)
+            {
+                grsbay.ItemsSource = cb.CLoadSB;
+            }
+            else
+            {
+                return;
+            }
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -55,31 +84,20 @@ namespace DoAn.Views
             // LoadSBtrunggian();
             txtthemsbtg.Visibility = Visibility.Collapsed;// mặc định nó ẩn
         }
-        int valuecbb = 0;
+        // LAY ID TU COMBOBOX CHUYEN BAY
+        int valuecbb = 0;// lưu ID khi selectItem combobox
         private void cbbMacb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             tberror.Visibility = Visibility.Collapsed;
             valuecbb = int.Parse(cbbMacb.SelectedValue.ToString());
-            var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();
-            var sanbaydi = (from lb in LT.LICHBAY
-                            from sb in LT.SANBAY
-                            where lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
-                            select new { sb.TenSB }).FirstOrDefault();
-            var sanbayden = (from lb in LT.LICHBAY
-                             from sb in LT.SANBAY
-                             where lb.MaSanBayDen == sb.MaSB && lb.MaCB == valuecbb
-                             select new { sb.TenSB }).FirstOrDefault();
-            txtSBDen.Text = sanbayden.TenSB.ToString();
-            txtSBDi.Text = sanbaydi.TenSB.ToString();
-            txtngaygio.Text = query.NgayGio.ToString();
-            txttgbay.Text = query.ThoiGianBay.ToString();
-            txtgheh1.Text = query.SoLuongGheHang1.ToString();
-            txtgheh2.Text = query.SoLuongGheHang2.ToString();
-            LoadSBtrunggian(valuecbb);
-            //var query = (from lb in LT.LICHBAY
-            //             from sb in LT.SANBAY
-            //             where lb.MaSanBayDen == sb.MaSB || lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
-            //             select new { lb.MaCB, lb.MaSanBayDen, lb.MaSanBayDi, lb.NgayGio, lb.ThoiGianBay, lb.SoLuongGheHang1, lb.SoLuongGheHang2, sb.TenSB }).FirstOrDefault(); /* (m => m.MaCB == valuecbb).FirstOrDefault()*/
+            cb.bingdingCBB(valuecbb);// hàm bingding element
+            txtSBDen.Text = cb.tenSBden;
+            txtSBDi.Text = cb.TenSBdi;
+            txtngaygio.Text = cb.ngaygio;
+            txttgbay.Text = cb.Thoigianbay;
+            txtgheh1.Text = cb.SLghe1;
+            txtgheh2.Text = cb.SLghe2;
+            LoadSBtrunggian();
         }
 
         private void WrapPanel_MouseEnter(object sender, MouseEventArgs e)
@@ -113,6 +131,10 @@ namespace DoAn.Views
             //cbbMacb.Visibility = Visibility.Collapsed;
             btnsbtg.Visibility = Visibility.Collapsed;
             txtthemsbtg.Visibility = Visibility.Visible;
+            btnthemCB.Visibility = Visibility.Collapsed;
+            btnxoaCB.Visibility = Visibility.Collapsed;
+            btncapnhatCB.Visibility = Visibility.Collapsed;
+            btnluulaiCB.Visibility = Visibility.Collapsed;
         }
         void showMouseLeave()
         {
@@ -136,40 +158,21 @@ namespace DoAn.Views
             // cbbMacb.Visibility = Visibility.Visible;
             btnsbtg.Visibility = Visibility.Visible;
             txtthemsbtg.Visibility = Visibility.Collapsed;
-        }
-        // tìm tên 1 element trong datatemplate
-        public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
-        {
-            if (depObj != null)
-            {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-                {
-                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+            btnthemCB.Visibility = Visibility.Visible;
+            btnxoaCB.Visibility = Visibility.Visible;
+            btncapnhatCB.Visibility = Visibility.Visible;
+            btnluulaiCB.Visibility = Visibility.Visible;
 
-                    if (child != null && child is T)
-                        yield return (T)child;
-
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
-                        yield return childOfChild;
-                }
-            }
         }
+      
       
         private void btnthemsanbaytrunggian_Click(object sender, RoutedEventArgs e)
         {
-            QLVeMayBayEntities LT = new QLVeMayBayEntities();
             try
             {
                 string ID = (grsbay.SelectedItem as SANBAY).MaSB;// lấy ID từ grid
-
-                var query = LT.SANBAY.Where(m => m.MaSB == ID).FirstOrDefault();
-                int n = (from d in LT.SANBAYTRUNGGIAN
-                         where d.MaSBTrungGian == ID && d.MaCB == valuecbb
-                         select d).Count();
-                int nsb = (from d in LT.SANBAYTRUNGGIAN
-                         where d.MaCB == valuecbb
-                         select d).Count();
-                if (nsb >= 2)
+            
+                if (cb.Soluongsanbaytrunggian(valuecbb) >= 2)
                 {
                     tberror.Visibility = Visibility.Visible;
                     return;
@@ -177,7 +180,7 @@ namespace DoAn.Views
                 else
                 {
                     tberror.Visibility = Visibility.Collapsed;
-                    if (n >= 1)
+                    if (cb.exist(ID,valuecbb) >= 1)// Kiểm tra đã tồn tại nêu  >=1 thì chứng tỏ đã tồn tại zồi ok
                     {
                         return;
                     }
@@ -185,17 +188,10 @@ namespace DoAn.Views
                     {
                         try
                         {
-                            if (valuecbb != 0)
+                            if (valuecbb != 0)// phải chọn chuyến bay mới tiến hành thục thi ok
                             {
-
-                                SANBAYTRUNGGIAN l = new SANBAYTRUNGGIAN();
-                                l.MaCB = valuecbb;
-                                l.MaSBTrungGian = ID;
-                                l.TenSB = query.TenSB;
-                                l.ThoiGianDung = 10;
-                                LT.SANBAYTRUNGGIAN.Add(l);
-                                LT.SaveChanges();
-                                LoadSBtrunggian(valuecbb);
+                                cb.themsanbaytrunggian(ID, valuecbb);// hàm them sân bây
+                                LoadSBtrunggian();
                                 LoadSB();
                             }
                             else
@@ -222,12 +218,10 @@ namespace DoAn.Views
         {
             try
             {
-                QLVeMayBayEntities LT = new QLVeMayBayEntities();
+                //QLVeMayBayEntities LT = new QLVeMayBayEntities();
                 string ID = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).MaSBTrungGian;
-                var xoa = (LT.SANBAYTRUNGGIAN.Where(m => m.MaSBTrungGian == ID && m.MaCB == valuecbb)).SingleOrDefault();
-                LT.SANBAYTRUNGGIAN.Remove(xoa);
-                LT.SaveChanges();
-                LoadSBtrunggian(valuecbb);
+                cb.xoasanbaytrunggian(ID, valuecbb);
+                LoadSBtrunggian();
             }
             catch (Exception)
             {
@@ -238,34 +232,26 @@ namespace DoAn.Views
 
         private void btnsua_Click(object sender, RoutedEventArgs e)
         {
-           // LoadSBtrunggian(valuecbb);
-
-           
             try
             {
-                SANBAYTRUNGGIAN sbtg = new SANBAYTRUNGGIAN();
                 // lay thoi gian dung trong database
                 string ID = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).MaSBTrungGian;
-                var laySBGR = (LT.SANBAYTRUNGGIAN.Where(m => m.MaSBTrungGian == ID && m.MaCB == valuecbb)).SingleOrDefault();
-                laySBGR.ThoiGianDung = laySBGR.ThoiGianDung;
-                laySBGR.GhiChu = laySBGR.GhiChu;
-                if (laySBGR != null)
-                {
-                    LT.SaveChanges();
-                    MessageBox.Show("done!");
-                }
-                else
-                {
-                    MessageBox.Show("chưa update được!");
-                }
+                cb.capnhatsanbaytrunggian(ID, valuecbb);
             }
             catch (Exception)
             {
-
                 MessageBox.Show("row empty!(^^)");
                 return;
             }
-           
+        }
+        private void cbbsanbaydi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cbbsanbayden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
