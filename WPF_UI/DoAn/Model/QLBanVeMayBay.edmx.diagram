@@ -6,15 +6,15 @@
     <edmx:Diagrams>
       <Diagram DiagramId="da16ba364b874e6096c7e34d1a14b761" Name="Diagram1">
         <EntityTypeShape EntityType="QLVeMayBayModel.CaiDat" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.CHUYENBAY" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="QLVeMayBayModel.DANHSACHCHUYENBAY" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.LICHBAY" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="QLVeMayBayModel.LOAIVE" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="QLVeMayBayModel.PHIEUDATVE" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="QLVeMayBayModel.TaiKhoan" Width="1.5" PointX="6.75" PointY="6.75" />
         <EntityTypeShape EntityType="QLVeMayBayModel.SANBAY" Width="1.5" PointX="7.375" PointY="1.375" />
         <EntityTypeShape EntityType="QLVeMayBayModel.SANBAYTRUNGGIAN" Width="1.5" PointX="9.625" PointY="1" />
         <AssociationConnector Association="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__1FCDBCEB" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.LICHBAY" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.CHUYENBAY" Width="1.5" PointX="3.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

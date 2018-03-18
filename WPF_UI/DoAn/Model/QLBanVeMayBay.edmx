@@ -18,7 +18,7 @@
           <Key>
             <PropertyRef Name="MaCB" />
           </Key>
-          <Property Name="MaCB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaCB" Type="int" Nullable="false" />
           <Property Name="TenCB" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="DANHSACHCHUYENBAY">
@@ -135,9 +135,7 @@
       <Schema Namespace="QLVeMayBayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="QLVeMayBayEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CaiDat" EntityType="QLVeMayBayModel.CaiDat" />
-          <EntitySet Name="CHUYENBAY" EntityType="QLVeMayBayModel.CHUYENBAY" />
           <EntitySet Name="DANHSACHCHUYENBAY" EntityType="QLVeMayBayModel.DANHSACHCHUYENBAY" />
-          <EntitySet Name="LICHBAY" EntityType="QLVeMayBayModel.LICHBAY" />
           <EntitySet Name="LOAIVE" EntityType="QLVeMayBayModel.LOAIVE" />
           <EntitySet Name="PHIEUDATVE" EntityType="QLVeMayBayModel.PHIEUDATVE" />
           <EntitySet Name="TaiKhoan" EntityType="QLVeMayBayModel.TaiKhoan" />
@@ -147,6 +145,8 @@
             <End Role="SANBAY" EntitySet="SANBAY" />
             <End Role="SANBAYTRUNGGIAN" EntitySet="SANBAYTRUNGGIAN" />
           </AssociationSet>
+          <EntitySet Name="LICHBAY" EntityType="QLVeMayBayModel.LICHBAY" />
+          <EntitySet Name="CHUYENBAY" EntityType="QLVeMayBayModel.CHUYENBAY" />
         </EntityContainer>
         <EntityType Name="CaiDat">
           <Key>
@@ -156,13 +156,6 @@
           <Property Name="FullScreen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Back" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="font" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="CHUYENBAY">
-          <Key>
-            <PropertyRef Name="MaCB" />
-          </Key>
-          <Property Name="MaCB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenCB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DANHSACHCHUYENBAY">
           <Key>
@@ -176,21 +169,6 @@
           <Property Name="ThoiGian" Type="Time" Precision="7" />
           <Property Name="SoLuongGheTrong" Type="Int32" />
           <Property Name="SoLuongGheDat" Type="Int32" />
-        </EntityType>
-        <EntityType Name="LICHBAY">
-          <Key>
-            <PropertyRef Name="MaCB" />
-            <PropertyRef Name="MaSanBayDi" />
-            <PropertyRef Name="MaSanBayDen" />
-          </Key>
-          <Property Name="MaCB" Type="Int32" Nullable="false" />
-          <Property Name="MaSanBayDi" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MaSanBayDen" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NgayGio" Type="DateTime" Precision="3" />
-          <Property Name="ThoiGianBay" Type="Time" Precision="7" />
-          <Property Name="SoLuongGheHang1" Type="Int32" />
-          <Property Name="SoLuongGheHang2" Type="Int32" />
-          <Property Name="MaSBTrungGian" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LOAIVE">
           <Key>
@@ -259,6 +237,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LICHBAY">
+          <Key>
+            <PropertyRef Name="MaCB" />
+            <PropertyRef Name="MaSanBayDi" />
+            <PropertyRef Name="MaSanBayDen" />
+          </Key>
+          <Property Name="MaCB" Type="Int32" Nullable="false" />
+          <Property Name="MaSanBayDi" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaSanBayDen" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NgayGio" Type="DateTime" Precision="3" />
+          <Property Name="ThoiGianBay" Type="Time" Precision="7" />
+          <Property Name="SoLuongGheHang1" Type="Int32" />
+          <Property Name="SoLuongGheHang2" Type="Int32" />
+          <Property Name="MaSBTrungGian" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CHUYENBAY">
+          <Key>
+            <PropertyRef Name="MaCB" />
+          </Key>
+          <Property Name="MaCB" Type="Int32" Nullable="false" />
+          <Property Name="TenCB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -275,14 +275,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CHUYENBAY">
-            <EntityTypeMapping TypeName="QLVeMayBayModel.CHUYENBAY">
-              <MappingFragment StoreEntitySet="CHUYENBAY">
-                <ScalarProperty Name="TenCB" ColumnName="TenCB" />
-                <ScalarProperty Name="MaCB" ColumnName="MaCB" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DANHSACHCHUYENBAY">
             <EntityTypeMapping TypeName="QLVeMayBayModel.DANHSACHCHUYENBAY">
               <MappingFragment StoreEntitySet="DANHSACHCHUYENBAY">
@@ -294,20 +286,6 @@
                 <ScalarProperty Name="MaSanBayDi" ColumnName="MaSanBayDi" />
                 <ScalarProperty Name="MaCB" ColumnName="MaCB" />
                 <ScalarProperty Name="STT" ColumnName="STT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LICHBAY">
-            <EntityTypeMapping TypeName="QLVeMayBayModel.LICHBAY">
-              <MappingFragment StoreEntitySet="LICHBAY">
-                <ScalarProperty Name="MaSBTrungGian" ColumnName="MaSBTrungGian" />
-                <ScalarProperty Name="SoLuongGheHang2" ColumnName="SoLuongGheHang2" />
-                <ScalarProperty Name="SoLuongGheHang1" ColumnName="SoLuongGheHang1" />
-                <ScalarProperty Name="ThoiGianBay" ColumnName="ThoiGianBay" />
-                <ScalarProperty Name="NgayGio" ColumnName="NgayGio" />
-                <ScalarProperty Name="MaSanBayDen" ColumnName="MaSanBayDen" />
-                <ScalarProperty Name="MaSanBayDi" ColumnName="MaSanBayDi" />
-                <ScalarProperty Name="MaCB" ColumnName="MaCB" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -366,6 +344,28 @@
                 <ScalarProperty Name="MaCB" ColumnName="MaCB" />
                 <ScalarProperty Name="MaSBTrungGian" ColumnName="MaSBTrungGian" />
                 <ScalarProperty Name="STT" ColumnName="STT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LICHBAY">
+            <EntityTypeMapping TypeName="QLVeMayBayModel.LICHBAY">
+              <MappingFragment StoreEntitySet="LICHBAY">
+                <ScalarProperty Name="MaSBTrungGian" ColumnName="MaSBTrungGian" />
+                <ScalarProperty Name="SoLuongGheHang2" ColumnName="SoLuongGheHang2" />
+                <ScalarProperty Name="SoLuongGheHang1" ColumnName="SoLuongGheHang1" />
+                <ScalarProperty Name="ThoiGianBay" ColumnName="ThoiGianBay" />
+                <ScalarProperty Name="NgayGio" ColumnName="NgayGio" />
+                <ScalarProperty Name="MaSanBayDen" ColumnName="MaSanBayDen" />
+                <ScalarProperty Name="MaSanBayDi" ColumnName="MaSanBayDi" />
+                <ScalarProperty Name="MaCB" ColumnName="MaCB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHUYENBAY">
+            <EntityTypeMapping TypeName="QLVeMayBayModel.CHUYENBAY">
+              <MappingFragment StoreEntitySet="CHUYENBAY">
+                <ScalarProperty Name="TenCB" ColumnName="TenCB" />
+                <ScalarProperty Name="MaCB" ColumnName="MaCB" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

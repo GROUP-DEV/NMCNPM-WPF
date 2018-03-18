@@ -12,7 +12,6 @@ namespace DoAn.Controller
 {
     class Cchuyenbay
     {
-
         QLVeMayBayEntities LT = new QLVeMayBayEntities();
         public ICollectionView CloadcbbMacb { get; set; }
         public ICollectionView CLoadSBtrunggian { get; set; }
@@ -55,7 +54,7 @@ namespace DoAn.Controller
             }
             return false;
         }
-      //  , string ngaygio,string Thoigianbay,string SLghe1,string SLghe2
+
         //select cbb binding text
         public void bingdingCBB(int macb)
         {
@@ -78,10 +77,6 @@ namespace DoAn.Controller
                 SLghe2 = query.SoLuongGheHang2.ToString();
                
             }
-            
-              
-            
-
         }
 
         // DEM SỐ LƯỢNG SÂN BAY TRUNG GIAN
@@ -113,7 +108,6 @@ namespace DoAn.Controller
                 l.ThoiGianDung = 10;
                 LT.SANBAYTRUNGGIAN.Add(l);
                 LT.SaveChanges();
-
             }
             else
             {
@@ -124,7 +118,6 @@ namespace DoAn.Controller
         public void xoasanbaytrunggian(string ID, int valuecbb)
         {
             var xoa = (LT.SANBAYTRUNGGIAN.Where(m => m.MaSBTrungGian == ID && m.MaCB == valuecbb)).SingleOrDefault();
-     
             if (xoa != null)
             {
                 if (MessageBox.Show("BẠN CHẮC CHƯA?", "            THÔNG BÁO    ", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
@@ -135,15 +128,13 @@ namespace DoAn.Controller
                 {
                     LT.SANBAYTRUNGGIAN.Remove(xoa);
                     LT.SaveChanges();
-                }
-               
+                }            
             }
             else
             {
                 MessageBox.Show("[KHÔNG LÂY ĐƯƠC MÃ SÂN BAY!]");
             }
         }
-
         // cập nhật sân bay trung gian
         public void capnhatsanbaytrunggian(string ID, int valuecbb)
         {

@@ -5,11 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:local="clr-namespace:DoAn.Views"
+             xmlns:wpfx="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              Height="740" Width="1300" Loaded="UserControl_Loaded"
              >
     <UserControl.Resources>
+        
         <Style x:Key="Styletxtblock" TargetType="{x:Type TextBlock}">
             <!--style for textblock-->
             <Setter Property="FontSize" Value="20" />
@@ -452,6 +454,7 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+       
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70"/>
             <ColumnDefinition Width="180"/>
@@ -485,20 +488,46 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="3" Grid.ColumnSpan="6" TextAlignment="Center" VerticalAlignment="Bottom" Margin="4,0,0,15">NHẬN LỊCH CHUYẾN BAY</TextBlock>
+        <!--1đoạn này để nhấn chuột phải-->
+        <Grid.ContextMenu>
+            <ContextMenu Grid.ColumnSpan="15" Grid.RowSpan="11" Width="300" Height="150" Background="White" BorderThickness="1" FontWeight="DemiBold">
+                <MenuItem  Header="Refresh"/>
+                <MenuItem  Header="Xem Danh Sách"/>
+                <Separator/>
+                <MenuItem  Header="Tra Cứu"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        <TextBlock Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="3" Grid.ColumnSpan="6" TextAlignment="Center" VerticalAlignment="Bottom" Margin="4,0,0,15">NHẬN LỊCH CHUYẾN BAY
+            <TextBlock.ContextMenu>
+                <ContextMenu Width="300" Height="150" Background="White" BorderThickness="1" FontWeight="DemiBold">
+                    <MenuItem  Header="Refresh"/>
+                    <MenuItem  Header="Xem Danh Sách"/>
+                    <Separator/>
+                    <MenuItem  Header="Tra Cứu"/>
+                </ContextMenu>
+            </TextBlock.ContextMenu>
+        </TextBlock>
         <GroupBox Name="grinfo" Grid.Row="1" Grid.ColumnSpan="9" Grid.RowSpan="6" Margin="51,10,44,31">
             <GroupBox.Header>
                 <TextBlock  Style="{StaticResource Styletxtblock}" >Thông tin chuyến bay</TextBlock>
             </GroupBox.Header>
+            <GroupBox.ContextMenu>
+                <ContextMenu Width="300" Height="150" Background="White" BorderThickness="1" FontWeight="DemiBold">
+                    <MenuItem  Header="Refresh"/>
+                    <MenuItem  Header="Xem Danh Sách"/>
+                    <Separator/>
+                    <MenuItem  Header="Tra Cứu"/>
+                </ContextMenu>
+            </GroupBox.ContextMenu>
         </GroupBox>
         <!--Group text-->
         <TextBlock Name="tbcb" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="2">Chuyến Bay:</TextBlock>
         <TextBlock Name="tbsbdi" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="3">SB Đi:</TextBlock>
-        <TextBlock Name="tbngio" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="4">Ngày-Giờ:</TextBlock>
-        <TextBlock Name="tbslghe1" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5">SLượng Ghé hạng1:</TextBlock>
-        <TextBlock Name="tbsbden" Style="{StaticResource Styletxtblock}"  Grid.Column="5" Grid.Row="3">SB Đến:</TextBlock>
-        <TextBlock Name="tgtgbay" Style="{StaticResource Styletxtblock}"  Grid.Column="5" Grid.Row="4">Thời Gian Bay:</TextBlock>
-        <TextBlock Name="tbslghe2" Style="{StaticResource Styletxtblock}"  Grid.Column="5" Grid.Row="5">SLượng Ghé hạng2:</TextBlock>
+        <TextBlock Name="tbngio" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5">Ngày-Giờ:</TextBlock>
+        <TextBlock Name="tbslghe1" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="4">SLượng Ghé hạng1:</TextBlock>
+        <TextBlock  Name="tbsbden" Style="{StaticResource Styletxtblock}"  Grid.Column="5" Grid.Row="3">SB Đến:</TextBlock>
+        <TextBlock Name="tgtgbay" Style="{StaticResource Styletxtblock}"  Grid.Column="5" Grid.Row="5">Thời Gian Bay:</TextBlock>
+        <TextBlock Name="tbslghe2" Style="{StaticResource Styletxtblock}"  Grid.Column="5" Grid.Row="4">SLượng Ghé hạng2:</TextBlock>
 
         <!--group box-->
         <ComboBox SelectionChanged="cbbMacb_SelectionChanged"
@@ -516,21 +545,30 @@
         <!--box san bay di-->
         <TextBox Name="txtSBDi" VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"></TextBox>
         <!--box ngay gio-->
-        <TextBox Name="txtngaygio" VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>
+        <!--<TextBox  Name="txtngaygio" VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>-->
         <!--box so luong ghe hang 1-->
-        <TextBox Name="txtgheh1" VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"></TextBox>
+        <!--<TextBox Name="txtgheh1" VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>-->
         <!--box san bay den-->
         <TextBox Name="txtSBDen" VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2"></TextBox>
         <!--box thoi gian bay-->
-        <TextBox Name="txttgbay" VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>
+        <!--<TextBox Name="txttgbay" VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>-->
         <!--box san bay den-->
-        <TextBox Name="txtgheh2" VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2"></TextBox>
+        <!--<TextBox Name="txtgheh2" VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2">
+        </TextBox>-->
+        <!--NumericBox so luong ghe-->
+        <local:NumericBox  VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" x:Name="txtgheh1"  />
+        <local:NumericBox  VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2" x:Name="txtgheh2" />
+
         <!--BACK-->
         <Button Name="back" Click="back_Click"  Style="{StaticResource IconButton}"    Background="Transparent" BorderThickness="0" Width="55" Height="55"  Grid.Column="1" Margin="19,2" >
             <fa:ImageAwesome Icon="ArrowCircleLeft" Spin="False" SpinDuration="30" Width="40" Height="40"  Foreground="Black" ></fa:ImageAwesome>
         </Button>
-       <!--END BACK-->
-        
+        <!--BACK THEM XOA SƯA-->
+        <Button Visibility="Collapsed" Name="backtxs" Click="backtxs_Click"  Style="{StaticResource IconButton}"    Background="Transparent" BorderThickness="0" Width="55" Height="55"  Grid.Column="1" Margin="19,2" >
+            <fa:ImageAwesome Icon="ArrowCircleLeft" Spin="False" SpinDuration="30" Width="40" Height="40"  Foreground="Black" ></fa:ImageAwesome>
+        </Button>
+        <!--END BACK-->
+
         <!--<Button Visibility="Collapsed" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="4" x:Name="btnthemsbtrunggian"  Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="250"   Height="50">
             <Button.Content>
                 <StackPanel>
@@ -626,9 +664,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <!--end danh sach chuyen bay trung gian-->
-        
+
         <!--chuc nang them san bay trung gian-->
-        <WrapPanel  Width="250" Height="50" MouseLeave="WrapPanel_MouseLeave" MouseEnter="WrapPanel_MouseEnter" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="13" Grid.RowSpan="10" HorizontalAlignment="right" VerticalAlignment="Bottom" Style="{StaticResource StyleTheLoai}" Margin="0" >
+        <WrapPanel  Name="wrsbtg"  Width="250" Height="50" MouseLeave="WrapPanel_MouseLeave" MouseEnter="WrapPanel_MouseEnter" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="13" Grid.RowSpan="10" HorizontalAlignment="right" VerticalAlignment="Bottom" Style="{StaticResource StyleTheLoai}" Margin="0" >
             <TextBlock Margin="400 80 400 35"   Visibility="Collapsed" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Name="txtthemsbtg"  TextAlignment="Center" Width="900"   HorizontalAlignment="Center" VerticalAlignment="Center" Height="32">THÊM SÂN BAY TRUNG GIAN</TextBlock>
             <Button Name="btnsbtg" Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="250"   Height="50">
                 <Button.Content>
@@ -675,7 +713,7 @@
                                 <DataTemplate>
                                     <Button Width="200" Name="btnxoa" Background="Transparent" BorderThickness="0">
                                         <WrapPanel>
-                                            
+
                                             <TextBlock  Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Margin="5,0,5,0">Thêm sân bay mới</TextBlock>
                                         </WrapPanel>
                                     </Button>
@@ -688,9 +726,9 @@
             </StackPanel>
         </WrapPanel>
         <!--end chuc nang them san bay trung gian-->
-        
+
         <!--them chuyen bay-->
-        <Button Name="btnthemCB"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="1" Grid.ColumnSpan="3">
+        <Button Name="btnthemCB"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="1" Grid.ColumnSpan="3" Click="btnthemCB_Click">
             <Button.Content>
                 <StackPanel>
                     <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Thêm CB" FontSize="21" />
@@ -714,37 +752,72 @@
             </Button.Content>
         </Button>
         <!--Luu Lai-->
-        <Button Name="btnluulaiCB"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="7" Grid.ColumnSpan="3">
+        <Button Name="btnluulaiCB" Click="btnluulaiCB_Click"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="7" Grid.ColumnSpan="3">
             <Button.Content>
                 <StackPanel>
                     <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Lưu" FontSize="21" />
                 </StackPanel>
             </Button.Content>
         </Button>
-        
-        
-        <!--CHUC NANG THEM CHUYEN BAY-->
+
+
+        <!-- =======================================CHUC NANG THEM CHUYEN BAY=========================================== -->
         <!--hien ô textbox chuyen bay-->
-        <TextBox Visibility="Collapsed"  Name="txtchuyenbay" VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"></TextBox>
+        <TextBox Visibility="Collapsed" Height="29"  Name="txtchuyenbay" VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3"></TextBox>
         <!--CBB san bay di-->
         <ComboBox Visibility="Collapsed"  SelectionChanged="cbbsanbaydi_SelectionChanged"
-            DisplayMemberPath="TenCB"
-            SelectedValuePath="MaCB" 
-            ItemsSource="{Binding Path=LICHBAY}" 
-            SelectedValue="{Binding SelectedItem.MaCB}"
+            DisplayMemberPath="TenSB"
+            SelectedValuePath="TenSB" 
+            ItemsSource="{Binding Path=SANBAY}" 
+            SelectedValue="{Binding SelectedItem.TenSB}"
             Text="--chọn sân bay đi--"
             Name="cbbsanbaydi" FontSize="19" VerticalAlignment="Center" IsEditable="True" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
         </ComboBox>
         <!--CBB san bay đến-->
         <ComboBox Visibility="Collapsed" SelectionChanged="cbbsanbayden_SelectionChanged"
-            DisplayMemberPath="TenCB"
-            SelectedValuePath="MaCB" 
-            ItemsSource="{Binding Path=LICHBAY}" 
-            SelectedValue="{Binding SelectedItem.MaCB}"
+            DisplayMemberPath="TenSB"
+            SelectedValuePath="TenSB" 
+            ItemsSource="{Binding Path=SANBAY}" 
+            SelectedValue="{Binding SelectedItem.TenSB}"
             Text="--chọn sân bay đến--"
             Name="cbbsanbayden" FontSize="19" VerticalAlignment="Center" IsEditable="True" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2">
         </ComboBox>
+        <!--datetimepicker-->
+        <!--Ngày giờ bay-->
+        <wpfx:DateTimePicker Format="Custom" FormatString="yyyy-MM-dd HH:mm:ss" 
+                         Name="dtpicker" Height="33" FontSize="19" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" 
+     />
+        <!--<DatePicker Name="dtpicker" Height="33" FontSize="19" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBox  BorderThickness="0" Name="txtdtpicker" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType=DatePicker}, StringFormat={}{0:dd/MM/yyyy hh:mm:ss}}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>-->
 
+        <!--thời gian bay-->
+        <!--<DatePicker Name="dtpickerthoigianbay" Height="33"  FontSize="19" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBox  BorderThickness="0"  Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType=DatePicker}, StringFormat={}{0:hh:mm:ss}}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>-->
+        <wpfx:DateTimeUpDown Name="dtpickerthoigianbay" Height="33"  FontSize="19" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2" Value="{Binding LastUpdated}" Format="LongTime" />
+        <!-- =======================================END CHUC NANG THEM CHUYEN BAY=========================================== -->
+       
     </Grid>
-
+    
 </UserControl>

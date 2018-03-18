@@ -13,7 +13,7 @@
     <Key>
       <PropertyRef Name="MaCB" />
     </Key>
-    <Property Name="MaCB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaCB" Type="int" Nullable="false" />
     <Property Name="TenCB" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="DANHSACHCHUYENBAY">
