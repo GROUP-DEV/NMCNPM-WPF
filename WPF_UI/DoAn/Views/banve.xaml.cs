@@ -58,7 +58,7 @@ namespace DoAn.Views
             db.TotalPage = totalPage;
             ButtunPage(totalPage);
         }
-        int valuecbb = 0;
+        string valuecbb = "";
         private void back_Click(object sender, RoutedEventArgs e)
         {
             DataCB?.Invoke("1");// truyền data di cho cac form
@@ -74,34 +74,41 @@ namespace DoAn.Views
         int? soluongghetrong;
         private void cbbMacb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            cbbhangve.IsEnabled = true;
-            valuecbb = int.Parse(cbbMacb.SelectedValue.ToString());
-            var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();
-            var sanbaydi = (from lb in LT.LICHBAY
-                            from sb in LT.SANBAY
-                            where lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
-                            select new { sb.TenSB }).FirstOrDefault();
-            var sanbayden = (from lb in LT.LICHBAY
-                             from sb in LT.SANBAY
-                             where lb.MaSanBayDen == sb.MaSB && lb.MaCB == valuecbb
-                             select new { sb.TenSB }).FirstOrDefault();
-            //txtSBDen.Text = sanbayden.TenSB.ToString();
-            //txtSBDi.Text = sanbaydi.TenSB.ToString();
-            txtngaygio.Text = query.NgayGio.ToString();
-            txttgbay.Text = query.ThoiGianBay.ToString();
-            soluongghetrong = query.SoLuongGheHang1 + query.SoLuongGheHang2;
-            txtsoluongghetrong.Text = soluongghetrong.ToString();
-            //txtgheh1.Text = query.SoLuongGheHang1.ToString();
-            //txtgheh2.Text = query.SoLuongGheHang2.ToString();
-            cbbhangve.Text = "--Chọn Hạng Vé--";
-            txtgiave.Text = "0";
-            //var query = (from lb in LT.LICHBAY
-            //             from sb in LT.SANBAY
-            //             where lb.MaSanBayDen == sb.MaSB || lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
-            //             select new { lb.MaCB, lb.MaSanBayDen, lb.MaSanBayDi, lb.NgayGio, lb.ThoiGianBay, lb.SoLuongGheHang1, lb.SoLuongGheHang2, sb.TenSB }).FirstOrDefault(); /* (m => m.MaCB == valuecbb).FirstOrDefault()*/
+            try
+            {
+                cbbhangve.IsEnabled = true;
+                valuecbb = cbbMacb.SelectedValue.ToString();
+                var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();
+                var sanbaydi = (from lb in LT.LICHBAY
+                                from sb in LT.SANBAY
+                                where lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
+                                select new { sb.TenSB }).FirstOrDefault();
+                var sanbayden = (from lb in LT.LICHBAY
+                                 from sb in LT.SANBAY
+                                 where lb.MaSanBayDen == sb.MaSB && lb.MaCB == valuecbb
+                                 select new { sb.TenSB }).FirstOrDefault();
+                //txtSBDen.Text = sanbayden.TenSB.ToString();
+                //txtSBDi.Text = sanbaydi.TenSB.ToString();
+                cbbMacb.Text = query.MaCB;
+                txtngaygio.Text = query.NgayGio.ToString();
+                txttgbay.Text = query.ThoiGianBay.ToString();
+                soluongghetrong = query.SoLuongGheHang1 + query.SoLuongGheHang2;
+                txtsoluongghetrong.Text = soluongghetrong.ToString();
+                //txtgheh1.Text = query.SoLuongGheHang1.ToString();
+                //txtgheh2.Text = query.SoLuongGheHang2.ToString();
+                cbbhangve.Text = "--Chọn Hạng Vé--";
+                txtgiave.Text = "0";
+
+            }
+            catch (Exception)
+            {
+                // MessageBox.Show("!!!"); khi nhấn btnres_Click(object sender, RoutedEventArgs e) fild err
+                return;
+            }
+          
         }
 
+        // SELECT COMBOX HANGVE
         private void cbbhangve_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -238,6 +245,80 @@ namespace DoAn.Views
         private void btnbanve_Click(object sender, RoutedEventArgs e)
         {
 
+            try
+            {
+                var LT = new QLVeMayBayEntities();
+                if (cbbhangve.Text=="--Chọn Hạng Vé--" || txtcmnd.Text == "" || txtdienthoai.Text == "" || txthanhkhach.Text == "")
+                {
+                    MessageBox.Show("Bạn Chưa chọn hạng vé");
+                }
+                else
+                {
+                        var PDV = new PHIEUDATVE
+                        {
+                            MaCB = cbbMacb.SelectedValue.ToString(),
+                            TenHanhKhach = txthanhkhach.Text,
+                            CMND = txtcmnd.Text,
+                            DienThoai = txtdienthoai.Text,
+                            DonGia = int.Parse(txtgiave.Text.ToString()),
+                            MaLoai = cbbhangve.SelectedValue.ToString(),
+                            NgayDat = datepk.SelectedDate
+                        };
+
+                        LT.PHIEUDATVE.Add(PDV);
+
+                        if (LT.SaveChanges() > 0)
+                        {
+                            //LoadBV();
+                            MessageBox.Show("bán Thành công");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Chưa thêm được!");
+                        }
+                }
+             
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Chưa Bán được!");
+                return;
+            }
+        
+        }
+
+        private void gridBV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string ID = (gridBV.SelectedItem as PHIEUDATVE).MaCB;
+                string IDma = (gridBV.SelectedItem as PHIEUDATVE).MaLoai;
+
+                var qr = LT.LICHBAY.Where(m => m.MaCB == ID).SingleOrDefault();
+                cbbMacb.Text = qr.MaCB;
+                txttgbay.Text = qr.ThoiGianBay;
+                txtngaygio.Text = qr.NgayGio.ToString();
+                cbbhangve.Text = IDma;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            
+        }
+
+        private void btnres_Click(object sender, RoutedEventArgs e)
+        {
+            cbbMacb.Text        = "--Chọn chuyến bay--";
+            txtngaygio.Text     = "";
+            txtsoluongghetrong.Text = "0";
+            txttgbay.Text       = "";
+            txthanhkhach.Text   = "";
+            txtgiave.Text       = "0";
+            txtdienthoai.Text   = "";
+            txtcmnd.Text        = "";
+            datepk.Text    = "1-1-2018";
+            cbbhangve.Text = "--Chọn hang ve--";
         }
 
         // END PAGES

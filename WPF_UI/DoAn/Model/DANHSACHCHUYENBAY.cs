@@ -15,7 +15,7 @@ namespace DoAn.Model
     public partial class DANHSACHCHUYENBAY
     {
         public int STT { get; set; }
-        public Nullable<int> MaCB { get; set; }
+        public string MaCB { get; set; }
         public string MaSanBayDi { get; set; }
         public string MaSanBayDen { get; set; }
         public Nullable<System.DateTime> NgayKhoiHanh { get; set; }

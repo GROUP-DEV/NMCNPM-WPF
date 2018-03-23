@@ -13,7 +13,7 @@
     <Key>
       <PropertyRef Name="MaCB" />
     </Key>
-    <Property Name="MaCB" Type="int" Nullable="false" />
+    <Property Name="MaCB" Type="char" MaxLength="50" Nullable="false" />
     <Property Name="TenCB" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="DANHSACHCHUYENBAY">
@@ -21,7 +21,7 @@
       <PropertyRef Name="STT" />
     </Key>
     <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="MaCB" Type="int" />
+    <Property Name="MaCB" Type="char" MaxLength="50" />
     <Property Name="MaSanBayDi" Type="varchar" MaxLength="10" />
     <Property Name="MaSanBayDen" Type="varchar" MaxLength="10" />
     <Property Name="NgayKhoiHanh" Type="datetime" />
@@ -35,11 +35,11 @@
       <PropertyRef Name="MaSanBayDi" />
       <PropertyRef Name="MaSanBayDen" />
     </Key>
-    <Property Name="MaCB" Type="int" Nullable="false" />
+    <Property Name="MaCB" Type="char" MaxLength="50" Nullable="false" />
     <Property Name="MaSanBayDi" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MaSanBayDen" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="NgayGio" Type="datetime" />
-    <Property Name="ThoiGianBay" Type="time" Precision="7" />
+    <Property Name="ThoiGianBay" Type="varchar" MaxLength="50" />
     <Property Name="SoLuongGheHang1" Type="int" />
     <Property Name="SoLuongGheHang2" Type="int" />
     <Property Name="MaSBTrungGian" Type="varchar" MaxLength="10" />
@@ -56,7 +56,7 @@
       <PropertyRef Name="CMND" />
     </Key>
     <Property Name="CMND" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="MaCB" Type="int" />
+    <Property Name="MaCB" Type="char" MaxLength="50" />
     <Property Name="TenHanhKhach" Type="nvarchar" MaxLength="255" />
     <Property Name="DienThoai" Type="varchar" MaxLength="11" />
     <Property Name="MaLoai" Type="varchar" MaxLength="10" />
@@ -76,7 +76,7 @@
     </Key>
     <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MaSBTrungGian" Type="varchar" MaxLength="10" />
-    <Property Name="MaCB" Type="int" />
+    <Property Name="MaCB" Type="char" MaxLength="50" />
     <Property Name="TenSB" Type="nvarchar" MaxLength="255" />
     <Property Name="ThoiGianDung" Type="int" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />

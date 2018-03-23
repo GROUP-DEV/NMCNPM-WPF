@@ -26,13 +26,13 @@ namespace DoAn.Model
         }
     
         public virtual DbSet<CaiDat> CaiDat { get; set; }
+        public virtual DbSet<CHUYENBAY> CHUYENBAY { get; set; }
         public virtual DbSet<DANHSACHCHUYENBAY> DANHSACHCHUYENBAY { get; set; }
         public virtual DbSet<LOAIVE> LOAIVE { get; set; }
         public virtual DbSet<PHIEUDATVE> PHIEUDATVE { get; set; }
-        public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
         public virtual DbSet<SANBAY> SANBAY { get; set; }
         public virtual DbSet<SANBAYTRUNGGIAN> SANBAYTRUNGGIAN { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
         public virtual DbSet<LICHBAY> LICHBAY { get; set; }
-        public virtual DbSet<CHUYENBAY> CHUYENBAY { get; set; }
     }
 }

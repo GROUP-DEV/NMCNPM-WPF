@@ -17,7 +17,8 @@ namespace DoAn.Controller
         public ICollectionView CLoadSBtrunggian { get; set; }
         public ICollectionView CLoadSB { get; set; }
         public string sbd { get; set; }
-        public string tenSBden, TenSBdi, ngaygio, Thoigianbay, SLghe1, SLghe2;
+        public string tenSBden, TenSBdi, ngaygio, Thoigianbay,Tenchuyenbay;
+        public int? SLghe1, SLghe2;
         // load chuyến bay
         public bool LoadCBBChuyenbay()
         {
@@ -31,7 +32,7 @@ namespace DoAn.Controller
         }
 
         // load sân bay trung gian
-        public bool LoadSBtrunggian(int str)
+        public bool LoadSBtrunggian(string str)
         {
             var sql = LT.SANBAYTRUNGGIAN.Where(m => m.MaCB == str);
             if (sql != null)
@@ -56,7 +57,7 @@ namespace DoAn.Controller
         }
 
         //select cbb binding text
-        public void bingdingCBB(int macb)
+        public void bingdingCBB(string macb)
         {
             var query = LT.LICHBAY.Where(m => m.MaCB == macb).FirstOrDefault();
             var sanbaydi = (from lb in LT.LICHBAY
@@ -73,14 +74,15 @@ namespace DoAn.Controller
                 TenSBdi = sanbaydi.TenSB.ToString();
                 ngaygio = query.NgayGio.ToString();
                 Thoigianbay = query.ThoiGianBay.ToString();
-                SLghe1 = query.SoLuongGheHang1.ToString();
-                SLghe2 = query.SoLuongGheHang2.ToString();
+                SLghe1 = query.SoLuongGheHang1;
+                SLghe2 = query.SoLuongGheHang2;
+             //   Tenchuyenbay = query.
                
             }
         }
 
         // DEM SỐ LƯỢNG SÂN BAY TRUNG GIAN
-        public int Soluongsanbaytrunggian(int valuecbb)
+        public int Soluongsanbaytrunggian(string valuecbb)
         {
             int nsb = (from d in LT.SANBAYTRUNGGIAN
                        where d.MaCB == valuecbb
@@ -88,7 +90,7 @@ namespace DoAn.Controller
             return nsb;
         }
         // KIÊM TRA TỒN TẠI 
-        public int exist(string ID , int valuecbb)
+        public int exist(string ID , string valuecbb)
         {
             // Kiểm tra đã tồn tại nêu  >=1 thì chứng tỏ đã tồn tại zồi ok
             int n = (from d in LT.SANBAYTRUNGGIAN
@@ -97,7 +99,7 @@ namespace DoAn.Controller
             return n;
         }
         //THÊM SÂN BAY TRUNG GIAN
-        public void themsanbaytrunggian(string ID ,int valuecbb) {
+        public void themsanbaytrunggian(string ID ,string valuecbb) {
             var query = LT.SANBAY.Where(m => m.MaSB == ID).FirstOrDefault();
             if (query !=null)
             {
@@ -115,7 +117,7 @@ namespace DoAn.Controller
             }
         }
         // XÓA SÂN BAY TRUNG GIAN
-        public void xoasanbaytrunggian(string ID, int valuecbb)
+        public void xoasanbaytrunggian(string ID, string valuecbb)
         {
             var xoa = (LT.SANBAYTRUNGGIAN.Where(m => m.MaSBTrungGian == ID && m.MaCB == valuecbb)).SingleOrDefault();
             if (xoa != null)
@@ -136,7 +138,7 @@ namespace DoAn.Controller
             }
         }
         // cập nhật sân bay trung gian
-        public void capnhatsanbaytrunggian(string ID, int valuecbb)
+        public void capnhatsanbaytrunggian(string ID, string valuecbb)
         {
             var laySBGR = (LT.SANBAYTRUNGGIAN.Where(m => m.MaSBTrungGian == ID && m.MaCB == valuecbb)).SingleOrDefault();
             laySBGR.ThoiGianDung = laySBGR.ThoiGianDung;

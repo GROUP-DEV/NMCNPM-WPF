@@ -14,7 +14,7 @@ namespace DoAn.Model
     
     public partial class CHUYENBAY
     {
-        public int MaCB { get; set; }
+        public string MaCB { get; set; }
         public string TenCB { get; set; }
     }
 }

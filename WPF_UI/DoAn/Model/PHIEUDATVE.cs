@@ -15,7 +15,7 @@ namespace DoAn.Model
     public partial class PHIEUDATVE
     {
         public string CMND { get; set; }
-        public Nullable<int> MaCB { get; set; }
+        public string MaCB { get; set; }
         public string TenHanhKhach { get; set; }
         public string DienThoai { get; set; }
         public string MaLoai { get; set; }
