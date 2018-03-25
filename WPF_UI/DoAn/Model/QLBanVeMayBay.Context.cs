@@ -34,9 +34,5 @@ namespace DoAn.Model
         public virtual DbSet<SANBAY> SANBAY { get; set; }
         public virtual DbSet<SANBAYTRUNGGIAN> SANBAYTRUNGGIAN { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
-<<<<<<< HEAD
-=======
-        public virtual DbSet<LICHBAY> LICHBAY { get; set; }
->>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
     }
 }

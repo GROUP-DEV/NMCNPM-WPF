@@ -64,10 +64,7 @@
           <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
           <ScalarProperty Name="TenHanhKhach" ColumnName="TenHanhKhach" />
           <ScalarProperty Name="MaCB" ColumnName="MaCB" />
-<<<<<<< HEAD
           <ScalarProperty Name="STT" ColumnName="STT" />
-=======
->>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
           <ScalarProperty Name="CMND" ColumnName="CMND" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -109,22 +106,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-<<<<<<< HEAD
-=======
-    <EntitySetMapping Name="LICHBAY">
-      <EntityTypeMapping TypeName="QLVeMayBayModel.LICHBAY">
-        <MappingFragment StoreEntitySet="LICHBAY">
-          <ScalarProperty Name="MaSBTrungGian" ColumnName="MaSBTrungGian" />
-          <ScalarProperty Name="SoLuongGheHang2" ColumnName="SoLuongGheHang2" />
-          <ScalarProperty Name="SoLuongGheHang1" ColumnName="SoLuongGheHang1" />
-          <ScalarProperty Name="ThoiGianBay" ColumnName="ThoiGianBay" />
-          <ScalarProperty Name="NgayGio" ColumnName="NgayGio" />
-          <ScalarProperty Name="MaSanBayDen" ColumnName="MaSanBayDen" />
-          <ScalarProperty Name="MaSanBayDi" ColumnName="MaSanBayDi" />
-          <ScalarProperty Name="MaCB" ColumnName="MaCB" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
->>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
   </EntityContainerMapping>
 </Mapping>

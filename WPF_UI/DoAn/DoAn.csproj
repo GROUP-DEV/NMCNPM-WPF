@@ -138,6 +138,9 @@
     <Compile Include="Views\DangNhap.xaml.cs">
       <DependentUpon>DangNhap.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DSChuyenBay.xaml.cs">
+      <DependentUpon>DSChuyenBay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\mucsic.xaml.cs">
       <DependentUpon>mucsic.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DangNhap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DSChuyenBay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
