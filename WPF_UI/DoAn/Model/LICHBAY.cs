@@ -14,13 +14,17 @@ namespace DoAn.Model
     
     public partial class LICHBAY
     {
-        public int MaCB { get; set; }
+        public string MaCB { get; set; }
         public string MaSanBayDi { get; set; }
         public string MaSanBayDen { get; set; }
         public Nullable<System.DateTime> NgayGio { get; set; }
-        public Nullable<System.TimeSpan> ThoiGianBay { get; set; }
+        public string ThoiGianBay { get; set; }
         public Nullable<int> SoLuongGheHang1 { get; set; }
         public Nullable<int> SoLuongGheHang2 { get; set; }
         public string MaSBTrungGian { get; set; }
+    
+        public virtual CHUYENBAY CHUYENBAY { get; set; }
+        public virtual SANBAY SANBAY { get; set; }
+        public virtual SANBAY SANBAY1 { get; set; }
     }
 }

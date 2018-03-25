@@ -16,7 +16,7 @@ namespace DoAn.Model
     {
         public int STT { get; set; }
         public string MaSBTrungGian { get; set; }
-        public Nullable<int> MaCB { get; set; }
+        public string MaCB { get; set; }
         public string TenSB { get; set; }
         public Nullable<int> ThoiGianDung { get; set; }
         public string GhiChu { get; set; }

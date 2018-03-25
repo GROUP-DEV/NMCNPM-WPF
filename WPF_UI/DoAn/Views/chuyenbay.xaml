@@ -526,12 +526,13 @@
         <TextBlock Name="tbngio" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5">Ngày-Giờ:</TextBlock>
         <TextBlock Name="tbslghe1" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="4">SLượng Ghé hạng1:</TextBlock>
         <TextBlock  Name="tbsbden" Style="{StaticResource Styletxtblock}"  Grid.Column="5" Grid.Row="3">SB Đến:</TextBlock>
+
         <TextBlock Name="tgtgbay" Style="{StaticResource Styletxtblock}"  Grid.Column="5" Grid.Row="5">Thời Gian Bay:</TextBlock>
         <TextBlock Name="tbslghe2" Style="{StaticResource Styletxtblock}"  Grid.Column="5" Grid.Row="4">SLượng Ghé hạng2:</TextBlock>
 
         <!--group box-->
         <ComboBox SelectionChanged="cbbMacb_SelectionChanged"
-            DisplayMemberPath="TenCB"
+            DisplayMemberPath="MaCB"
             SelectedValuePath="MaCB" 
             ItemsSource="{Binding Path=LICHBAY}" 
             SelectedValue="{Binding SelectedItem.MaCB}"
@@ -549,7 +550,9 @@
         <!--box so luong ghe hang 1-->
         <!--<TextBox Name="txtgheh1" VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>-->
         <!--box san bay den-->
+
         <TextBox Name="txtSBDen" VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2"></TextBox>
+        
         <!--box thoi gian bay-->
         <!--<TextBox Name="txttgbay" VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>-->
         <!--box san bay den-->
@@ -561,10 +564,20 @@
 
         <!--BACK-->
         <Button Name="back" Click="back_Click"  Style="{StaticResource IconButton}"    Background="Transparent" BorderThickness="0" Width="55" Height="55"  Grid.Column="1" Margin="19,2" >
+            <Button.ToolTip>
+                <ToolTip>
+                    Quay về trang trước
+                </ToolTip>
+            </Button.ToolTip>
             <fa:ImageAwesome Icon="ArrowCircleLeft" Spin="False" SpinDuration="30" Width="40" Height="40"  Foreground="Black" ></fa:ImageAwesome>
         </Button>
         <!--BACK THEM XOA SƯA-->
         <Button Visibility="Collapsed" Name="backtxs" Click="backtxs_Click"  Style="{StaticResource IconButton}"    Background="Transparent" BorderThickness="0" Width="55" Height="55"  Grid.Column="1" Margin="19,2" >
+            <Button.ToolTip>
+                <ToolTip>
+                    Quay về trang trước
+                </ToolTip>
+            </Button.ToolTip>
             <fa:ImageAwesome Icon="ArrowCircleLeft" Spin="False" SpinDuration="30" Width="40" Height="40"  Foreground="Black" ></fa:ImageAwesome>
         </Button>
         <!--END BACK-->
@@ -577,7 +590,7 @@
             </Button.Content>
         </Button>-->
         <!--danh sach chuyen bay trung gian-->
-        <DataGrid FontSize="20" Name="gridSBTG" Grid.Row="8" Grid.ColumnSpan="9" Grid.RowSpan="5" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
+        <DataGrid SelectionChanged="gridSBTG_SelectionChanged" FontSize="20" Name="gridSBTG" Grid.Row="8" Grid.ColumnSpan="9" Grid.RowSpan="5" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
               AutoGenerateColumns="False" Margin="51,0,44,36"  >
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="  STT" Width="70"
@@ -736,7 +749,7 @@
             </Button.Content>
         </Button>
         <!--xóa chuyến bay-->
-        <Button Name="btnxoaCB"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="3" Grid.ColumnSpan="3">
+        <Button Name="btnxoaCB" Click="btnxoaCB_Click"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="3" Grid.ColumnSpan="3">
             <Button.Content>
                 <StackPanel>
                     <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Xóa CB" FontSize="21" />
@@ -767,18 +780,18 @@
         <!--CBB san bay di-->
         <ComboBox Visibility="Collapsed"  SelectionChanged="cbbsanbaydi_SelectionChanged"
             DisplayMemberPath="TenSB"
-            SelectedValuePath="TenSB" 
+            SelectedValuePath="MaSB" 
             ItemsSource="{Binding Path=SANBAY}" 
-            SelectedValue="{Binding SelectedItem.TenSB}"
+            SelectedValue="{Binding SelectedItem.MaSB}"
             Text="--chọn sân bay đi--"
             Name="cbbsanbaydi" FontSize="19" VerticalAlignment="Center" IsEditable="True" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
         </ComboBox>
         <!--CBB san bay đến-->
         <ComboBox Visibility="Collapsed" SelectionChanged="cbbsanbayden_SelectionChanged"
             DisplayMemberPath="TenSB"
-            SelectedValuePath="TenSB" 
+            SelectedValuePath="MaSB" 
             ItemsSource="{Binding Path=SANBAY}" 
-            SelectedValue="{Binding SelectedItem.TenSB}"
+            SelectedValue="{Binding SelectedItem.MaSB}"
             Text="--chọn sân bay đến--"
             Name="cbbsanbayden" FontSize="19" VerticalAlignment="Center" IsEditable="True" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2">
         </ComboBox>
@@ -815,7 +828,8 @@
                 </Style>
             </DatePicker.Resources>
         </DatePicker>-->
-        <wpfx:DateTimeUpDown Name="dtpickerthoigianbay" Height="33"  FontSize="19" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2" Value="{Binding LastUpdated}" Format="LongTime" />
+        <!--Value="{Binding LastUpdated}"-->
+        <wpfx:DateTimeUpDown Name="dtpickerthoigianbay" Height="33"  FontSize="19" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2" Format="Custom" FormatString="HH:mm:ss"/>
         <!-- =======================================END CHUC NANG THEM CHUYEN BAY=========================================== -->
        
     </Grid>

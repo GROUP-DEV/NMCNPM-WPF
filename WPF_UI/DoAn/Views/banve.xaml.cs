@@ -27,6 +27,7 @@ namespace DoAn.Views
         public event PassData DataCB;
         QLVeMayBayEntities LT = new QLVeMayBayEntities();
         IQueryable<PHIEUDATVE> SourceFill;// SOURCE PAGES
+
         public banve()
         {
             InitializeComponent();
@@ -41,14 +42,27 @@ namespace DoAn.Views
         }
         void LoadBV()
         {
-            gridBV.ItemsSource = LT.PHIEUDATVE.ToList();
+            //var sql = (from cb in LT.PHIEUDATVE
+            //                      orderby
+            //                        cb.MaCB.Substring(cb.MaCB.Length - 4, 4) descending
+            //                      select new
+            //                      {
+            //                          DienThoai1 = cb.DienThoai,
+            //                          MaLoai1 = cb.MaLoai,
+            //                          DonGia1 = cb.DonGia,
+            //                          NgayDat1 = cb.NgayDat,
+            //                          TenHanhKhach1 = cb.TenHanhKhach,
+            //                          MaCB1 = cb.MaCB,
+            //                          soCB = cb.MaCB.Substring(cb.MaCB.Length - 4, 4)
+            //                      });
+            //gridBV.DataContext = sql.ToList();
+            var sql = from PHIEUDATVE in LT.PHIEUDATVE
+                      orderby PHIEUDATVE.STT
+                      select PHIEUDATVE;
+            gridBV.ItemsSource = sql.ToList();
         }
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        void loadtrang()
         {
-            LoadMaCB();
-            LoadLoaive();
-            LoadBV();
-
             // START LOAD PAGES
             SourceFill = LT.PHIEUDATVE;
             var db = this.FindResource("dbForWd") as Pages;
@@ -58,7 +72,16 @@ namespace DoAn.Views
             db.TotalPage = totalPage;
             ButtunPage(totalPage);
         }
-        int valuecbb = 0;
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadMaCB();
+            LoadLoaive();
+            LoadBV();
+            loadtrang();
+
+
+        }
+        string valuecbb = "";
         private void back_Click(object sender, RoutedEventArgs e)
         {
             DataCB?.Invoke("1");// truyền data di cho cac form
@@ -74,34 +97,140 @@ namespace DoAn.Views
         int? soluongghetrong;
         private void cbbMacb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            cbbhangve.IsEnabled = true;
-            valuecbb = int.Parse(cbbMacb.SelectedValue.ToString());
-            var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();
-            var sanbaydi = (from lb in LT.LICHBAY
-                            from sb in LT.SANBAY
-                            where lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
-                            select new { sb.TenSB }).FirstOrDefault();
-            var sanbayden = (from lb in LT.LICHBAY
-                             from sb in LT.SANBAY
-                             where lb.MaSanBayDen == sb.MaSB && lb.MaCB == valuecbb
-                             select new { sb.TenSB }).FirstOrDefault();
-            //txtSBDen.Text = sanbayden.TenSB.ToString();
-            //txtSBDi.Text = sanbaydi.TenSB.ToString();
-            txtngaygio.Text = query.NgayGio.ToString();
-            txttgbay.Text = query.ThoiGianBay.ToString();
-            soluongghetrong = query.SoLuongGheHang1 + query.SoLuongGheHang2;
-            txtsoluongghetrong.Text = soluongghetrong.ToString();
-            //txtgheh1.Text = query.SoLuongGheHang1.ToString();
-            //txtgheh2.Text = query.SoLuongGheHang2.ToString();
-            cbbhangve.Text = "--Chọn Hạng Vé--";
-            txtgiave.Text = "0";
-            //var query = (from lb in LT.LICHBAY
-            //             from sb in LT.SANBAY
-            //             where lb.MaSanBayDen == sb.MaSB || lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
-            //             select new { lb.MaCB, lb.MaSanBayDen, lb.MaSanBayDi, lb.NgayGio, lb.ThoiGianBay, lb.SoLuongGheHang1, lb.SoLuongGheHang2, sb.TenSB }).FirstOrDefault(); /* (m => m.MaCB == valuecbb).FirstOrDefault()*/
+            try
+            {
+                cbbhangve.IsEnabled = true;
+                valuecbb = cbbMacb.SelectedValue.ToString();
+                var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();
+                var sanbaydi = (from lb in LT.LICHBAY
+                                from sb in LT.SANBAY
+                                where lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
+                                select new { sb.TenSB }).FirstOrDefault();
+                var sanbayden = (from lb in LT.LICHBAY
+                                 from sb in LT.SANBAY
+                                 where lb.MaSanBayDen == sb.MaSB && lb.MaCB == valuecbb
+                                 select new { sb.TenSB }).FirstOrDefault();
+                //txtSBDen.Text = sanbayden.TenSB.ToString();
+                //txtSBDi.Text = sanbaydi.TenSB.ToString();
+                cbbMacb.Text = query.MaCB;
+                txtngaygio.Text = query.NgayGio.ToString();
+                txttgbay.Text = query.ThoiGianBay.ToString();
+                soluongghetrong = query.SoLuongGheHang1 + query.SoLuongGheHang2;
+                txtsoluongghetrong.Text = soluongghetrong.ToString();
+                //txtgheh1.Text = query.SoLuongGheHang1.ToString();
+                //txtgheh2.Text = query.SoLuongGheHang2.ToString();
+                cbbhangve.Text = "--Chọn Hạng Vé--";
+                txtgiave.Text = "0";
+
+            }
+            catch (Exception)
+            {
+                // MessageBox.Show("!!!"); khi nhấn btnres_Click(object sender, RoutedEventArgs e) fild err
+                return;
+            }
+          
         }
 
+        //==BÁN VÉ
+        private void btnbanve_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+
+                var LT = new QLVeMayBayEntities();
+
+                if (cbbMacb.Text== "--Chọn chuyến bay--" || cbbhangve.Text == "--Chọn Hạng Vé--" || txtcmnd.Text == "" || txtdienthoai.Text == "" || txthanhkhach.Text == "")
+                {
+                    MessageBox.Show("Bạn Chưa chọn đủ");
+                }
+                else
+                {
+                    // lấy số trong mã chữ
+                    var sql = ((from cb in LT.CHUYENBAY
+                                where cb.MaCB == cbbMacb.SelectedValue.ToString()
+                                orderby
+                                  cb.MaCB.Substring(cb.MaCB.Length - 4, 4) descending
+                                select new
+                                {
+                                    soCB = cb.MaCB.Substring(cb.MaCB.Length - 4, 4)
+                                }).Take(1)).FirstOrDefault();
+                    int soMaxCB = int.Parse(sql.soCB);
+                    var PDV = new PHIEUDATVE
+                    {
+                        MaCB = cbbMacb.SelectedValue.ToString(),
+                        TenHanhKhach = txthanhkhach.Text,
+                        CMND = txtcmnd.Text,
+                        DienThoai = txtdienthoai.Text,
+                        DonGia = int.Parse(txtgiave.Text.ToString()),
+                        MaLoai = cbbhangve.SelectedValue.ToString(),
+                        NgayDat = datepk.SelectedDate,
+                        STT = soMaxCB,
+                    };
+
+                    LT.PHIEUDATVE.Add(PDV);
+
+                    if (LT.SaveChanges() > 0)
+                    {
+                        //LoadBV();
+                        loadtrang();
+                        MessageBox.Show("bán Thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chưa thêm được!");
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Chưa Bán được!");
+                return;
+            }
+
+        }
+
+        private void gridBV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string ID = (gridBV.SelectedItem as PHIEUDATVE).MaCB;
+                string IDma = (gridBV.SelectedItem as PHIEUDATVE).MaLoai;
+
+                var qr = LT.LICHBAY.Where(m => m.MaCB == ID).SingleOrDefault();
+                cbbMacb.Text = qr.MaCB;
+                txttgbay.Text = qr.ThoiGianBay;
+                txtngaygio.Text = qr.NgayGio.ToString();
+                cbbhangve.Text = IDma;
+                txtcmnd.Text = (gridBV.SelectedItem as PHIEUDATVE).CMND;
+                txtdienthoai.Text = (gridBV.SelectedItem as PHIEUDATVE).DienThoai;
+                txthanhkhach.Text = (gridBV.SelectedItem as PHIEUDATVE).TenHanhKhach;
+                datepk.Text = (gridBV.SelectedItem as PHIEUDATVE).NgayDat.ToString();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+        }
+
+        private void btnres_Click(object sender, RoutedEventArgs e)
+        {
+            cbbMacb.Text = "--Chọn chuyến bay--";
+            txtngaygio.Text = "";
+            txtsoluongghetrong.Text = "0";
+            txttgbay.Text = "";
+            txthanhkhach.Text = "";
+            txtgiave.Text = "0";
+            txtdienthoai.Text = "";
+            txtcmnd.Text = "";
+            datepk.Text = "1-1-2018";
+            cbbhangve.Text = "--Chọn hang ve--";
+        }
+
+//======================================================SATRT PAGEs==================================
+        // SELECT COMBOX HANGVE
         private void cbbhangve_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -138,16 +267,14 @@ namespace DoAn.Views
 
         }
 
-
-
         // START PAGES
         List<PHIEUDATVE> GetSearchQuery(int curPage, int pageSize, out int totalPage)
         {
             IQueryable<PHIEUDATVE> q = SourceFill;
 
             totalPage = (int)Math.Ceiling(q.Count() * 1.0 / pageSize);
-            gridBV.ItemsSource = q.OrderBy(p => p.CMND).Skip((curPage - 1) * pageSize).Take(pageSize).ToList();
-            return q.OrderBy(c => c.CMND).Skip((curPage - 1) * pageSize).Take(pageSize).ToList();
+            gridBV.ItemsSource = q.OrderBy(p => p.STT).Skip((curPage - 1) * pageSize).Take(pageSize).ToList();
+            return q.OrderBy(c => c.STT).Skip((curPage - 1) * pageSize).Take(pageSize).ToList();
         }
         private void ButtunPage(int total)
         {
@@ -235,11 +362,6 @@ namespace DoAn.Views
             db.TotalPage = totalPage;
         }
 
-        private void btnbanve_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        // END PAGES
+        // ========================END PAGES========================
     }
 }

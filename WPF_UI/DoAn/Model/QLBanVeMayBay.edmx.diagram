@@ -5,16 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="da16ba364b874e6096c7e34d1a14b761" Name="Diagram1">
-        <EntityTypeShape EntityType="QLVeMayBayModel.CaiDat" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.DANHSACHCHUYENBAY" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.LOAIVE" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.PHIEUDATVE" Width="1.5" PointX="4.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.TaiKhoan" Width="1.5" PointX="6.75" PointY="6.75" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.SANBAY" Width="1.5" PointX="7.375" PointY="1.375" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.SANBAYTRUNGGIAN" Width="1.5" PointX="9.625" PointY="1" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.CaiDat" Width="1.5" PointX="5.75" PointY="2.75" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.CHUYENBAY" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.DANHSACHCHUYENBAY" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.LICHBAY" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.LOAIVE" Width="1.5" PointX="0.75" PointY="12.625" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.PHIEUDATVE" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.SANBAY" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.SANBAYTRUNGGIAN" Width="1.5" PointX="3" PointY="8.875" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.TaiKhoan" Width="1.5" PointX="7.75" PointY="2.75" />
+        <AssociationConnector Association="QLVeMayBayModel.FK__LICHBAY__MaCB__20C1E124" />
+        <AssociationConnector Association="QLVeMayBayModel.FK__PHIEUDATVE__MaCB__239E4DCF" />
+        <AssociationConnector Association="QLVeMayBayModel.FK__LICHBAY__MaSanBa__21B6055D" />
+        <AssociationConnector Association="QLVeMayBayModel.FK__LICHBAY__MaSanBa__22AA2996" />
+        <AssociationConnector Association="QLVeMayBayModel.FK__PHIEUDATV__MaLoa__24927208" />
         <AssociationConnector Association="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__1FCDBCEB" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.LICHBAY" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.CHUYENBAY" Width="1.5" PointX="3.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

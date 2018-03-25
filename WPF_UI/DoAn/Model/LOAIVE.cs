@@ -14,7 +14,16 @@ namespace DoAn.Model
     
     public partial class LOAIVE
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LOAIVE()
+        {
+            this.PHIEUDATVE = new HashSet<PHIEUDATVE>();
+        }
+    
         public string MaLoai { get; set; }
         public Nullable<int> DonGia { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PHIEUDATVE> PHIEUDATVE { get; set; }
     }
 }

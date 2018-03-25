@@ -17,12 +17,18 @@ namespace DoAn.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SANBAY()
         {
+            this.LICHBAY = new HashSet<LICHBAY>();
+            this.LICHBAY1 = new HashSet<LICHBAY>();
             this.SANBAYTRUNGGIAN = new HashSet<SANBAYTRUNGGIAN>();
         }
     
         public string MaSB { get; set; }
         public string TenSB { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LICHBAY> LICHBAY { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LICHBAY> LICHBAY1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SANBAYTRUNGGIAN> SANBAYTRUNGGIAN { get; set; }
     }

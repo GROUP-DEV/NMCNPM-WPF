@@ -159,6 +159,9 @@
     <Compile Include="Views\ThongTinNguoiDung.xaml.cs">
       <DependentUpon>ThongTinNguoiDung.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TraCuu.xaml.cs">
+      <DependentUpon>TraCuu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\trangchu.xaml.cs">
       <DependentUpon>trangchu.xaml</DependentUpon>
     </Compile>
@@ -218,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ThongTinNguoiDung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TraCuu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

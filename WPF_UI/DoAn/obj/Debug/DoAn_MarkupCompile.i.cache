@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\WPF_UI\DoAn\obj\Debug\
+C:\Users\MyPC\Desktop\WPF_UI\DoAn\obj\Debug\
 DoAn
 none
 false
 DEBUG;TRACE
-D:\WPF_UI\DoAn\App.xaml
-141428675083
+C:\Users\MyPC\Desktop\WPF_UI\DoAn\App.xaml
+15-1441519158
 21461537989
-432114423042
-211364890102
-MainWindow.xaml;Views\banve.xaml;Views\chuyenbay.xaml;Views\DangKy.xaml;Views\DangNhap.xaml;Views\mucsic.xaml;Views\NumericBox.xaml;Views\plane.xaml;Views\QuangCao.xaml;Views\SanBayTrungGian.xaml;Views\Setting.xaml;Views\ThongTinNguoiDung.xaml;Views\trangchu.xaml;Views\XemTheoLoai.xaml;
+44-2002918651
+21-926723870
+MainWindow.xaml;Views\banve.xaml;Views\chuyenbay.xaml;Views\DangKy.xaml;Views\DangNhap.xaml;Views\mucsic.xaml;Views\NumericBox.xaml;Views\plane.xaml;Views\QuangCao.xaml;Views\SanBayTrungGian.xaml;Views\Setting.xaml;Views\ThongTinNguoiDung.xaml;Views\TraCuu.xaml;Views\trangchu.xaml;Views\XemTheoLoai.xaml;
 
 True
 

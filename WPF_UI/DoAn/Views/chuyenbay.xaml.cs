@@ -28,7 +28,7 @@ namespace DoAn.Views
         // CONNECT DATABSE
         // CLASS CHUYEN BAY
         Cchuyenbay cb = new Cchuyenbay();
-        int temp=0;
+        int temp = 0;
         public chuyenbay()
         {
             InitializeComponent();
@@ -49,12 +49,17 @@ namespace DoAn.Views
             txtchuyenbay.Visibility = Visibility.Collapsed;
             cbbsanbaydi.Visibility = Visibility.Collapsed;
             cbbsanbayden.Visibility = Visibility.Collapsed;
+            txtgheh1.Value = 1;
+            txtgheh2.Value = 1;
             LoadMaCB();//quay lui nho load lại chuen bay
             txtgheh1.IsEnabled = true;
             txtgheh2.IsEnabled = true;
             dtpicker.IsEnabled = true;
             dtpickerthoigianbay.IsEnabled = true;
             wrsbtg.IsEnabled = true;
+            btnxoaCB.IsEnabled = true;// khi nhấn back thì hiên xóa cập nhật đi
+            btncapnhatCB.IsEnabled = true;
+
         }
         // load cbb chuyen bay
         void LoadMaCB()
@@ -99,23 +104,24 @@ namespace DoAn.Views
                 return;
             }
         }
+       
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadMaCB();
             LoadSB();
-
             // LoadSBtrunggian();
             txtthemsbtg.Visibility = Visibility.Collapsed;// mặc định nó ẩn
         }
         // LAY ID TU COMBOBOX CHUYEN BAY
-        int valuecbb = 0;// lưu ID khi selectItem combobox
+        string valuecbb = "";// lưu ID khi selectItem combobox
         private void cbbMacb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             dtpicker.Text = "";
             tberror.Visibility = Visibility.Collapsed;
             try
             {
-                valuecbb = int.Parse(cbbMacb.SelectedValue.ToString());
+                valuecbb = cbbMacb.SelectedValue.ToString();
+                cbbMacb.Text = valuecbb;
                 cb.bingdingCBB(valuecbb);// hàm bingding element
                 txtSBDen.Text = cb.tenSBden;
                 txtSBDi.Text = cb.TenSBdi;
@@ -124,8 +130,9 @@ namespace DoAn.Views
                 //dtpicker.SelectedDateFormat = String.Format("{0:M/d/yyyy h:mm:ss tt}", cb.ngaygio);  // "3/9/2008 4:05:07 PM" 
                 //dtpicker.SelectedDate = 'dd/MM/yyyy HH:mm:ss';
                 dtpickerthoigianbay.Value = DateTime.Parse(cb.Thoigianbay);
-                txtgheh1.Value = int.Parse(cb.SLghe1);
-                txtgheh2.Value = int.Parse(cb.SLghe2);
+                txtgheh1.Value = int.Parse(cb.SLghe1.ToString());
+                txtgheh2.Value = int.Parse(cb.SLghe2.ToString());
+                // txtTenchuyenbayc.Text = 
                 LoadSBtrunggian();
             }
             catch
@@ -229,7 +236,7 @@ namespace DoAn.Views
                     {
                         try
                         {
-                            if (valuecbb != 0)// phải chọn chuyến bay mới tiến hành thục thi ok
+                            if (valuecbb != "")// phải chọn chuyến bay mới tiến hành thục thi ok
                             {
                                 cb.themsanbaytrunggian(ID, valuecbb);// hàm them sân bây
                                 LoadSBtrunggian();
@@ -284,43 +291,50 @@ namespace DoAn.Views
                 return;
             }
         }
-        string strSB = "";
         string valuesbdi;
         string valuesbden;
+        string masbdi;
+        string masbden;
         // int dem = 0;
+        QLVeMayBayEntities LT = new QLVeMayBayEntities();
         private void cbbsanbaydi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             try
             {
-                valuesbdi = cbbsanbaydi.SelectedValue.ToString();
-                strSB = valuesbdi;
-                txtchuyenbay.Text = strSB;
+                var mavaluesbdi = cbbsanbaydi.SelectedValue.ToString();
+                var query = LT.SANBAY.Where(m => m.MaSB == mavaluesbdi).SingleOrDefault();
+                valuesbdi = query.TenSB;
+                masbdi = query.MaSB;
+                txtchuyenbay.Text = valuesbdi;
             }
             catch (Exception)
             {
                 return;
                 //throw;
             }
-
         }
 
+        // COMBOX SAN BAY DEN
         private void cbbsanbayden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             try
             {
-
-                valuesbden = cbbsanbayden.SelectedValue.ToString();
-                if (valuesbdi == valuesbden)
+                var mavaluesbden = cbbsanbayden.SelectedValue.ToString();
+                var query = LT.SANBAY.Where(m => m.MaSB == mavaluesbden).SingleOrDefault();// lấy ra tên san bay
+                valuesbden = query.TenSB;
+                masbden = query.MaSB;
+                if (valuesbdi == valuesbden)// nếu sân bay đến trùng với sân bay đi
                 {
-                    MessageBox.Show("[CHỌN SÂN BAY ĐẾN KHÁC ĐI]");
-
+                    MessageBox.Show("[CHỌN SÂN BAY ĐẾN KHÁC ĐI!]");
+                    cbbsanbayden.Text = "--Chọn sân bay--";
                 }
                 else
                 {
                     //// if (dem==1)
                     {
-                        strSB = " - " + valuesbden;
+
                         txtchuyenbay.Text = valuesbdi + " - " + valuesbden;
                         //}
                         //else
@@ -328,8 +342,8 @@ namespace DoAn.Views
                         //    strSB = " - " + valuesbden;
                         //    txtchuyenbay.Text += strSB;
                         //}
-                    }
 
+                    }
                 }
             }
             catch (Exception)
@@ -343,67 +357,139 @@ namespace DoAn.Views
         private void btnthemCB_Click(object sender, RoutedEventArgs e)
         {
             temp = 1;
+            wrsbtg.IsEnabled = false;
             txtchuyenbay.Visibility = Visibility.Visible;
             cbbMacb.ItemsSource = null;
             cbbMacb.Text = "--Chọn chuyến bay--";
+            txtchuyenbay.Text = "";
+            cbbsanbaydi.Text = "--Chọn sân bay đi--";
+            cbbsanbayden.Text = "--Chọn Sân bay đến--";
             cbbsanbaydi.Visibility = Visibility.Visible;
             txtSBDen.Text = "";
             txtSBDi.Text = "";
             cbbsanbayden.Visibility = Visibility.Visible;
             txtgheh1.Value = 1;
-            txtgheh1.IsEnabled = false;
             txtgheh2.Value = 1;
-            txtgheh2.IsEnabled = false;
-            //  btnthemCB.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0, 0));
             var bc = new BrushConverter();
             btnthemCB.Background = (Brush)bc.ConvertFrom("#007ACC");
             tbtiltle.Text = "THÊM CHUYẾN BAY MỚI";
             back.Visibility = Visibility.Collapsed;
             backtxs.Visibility = Visibility.Visible;
             dtpicker.Value = DateTime.Now;
-            dtpicker.IsEnabled = false;
-            dtpickerthoigianbay.Value = new DateTime(0);
-            dtpickerthoigianbay.IsEnabled = false;
-            //ObservableCollection<SANBAYTRUNGGIAN> SBTG = new ObservableCollection<SANBAYTRUNGGIAN>();
+            //dtpicker.IsEnabled = false;
+            dtpickerthoigianbay.Value = DateTime.Now;
             gridSBTG.ItemsSource = null;
-            wrsbtg.IsEnabled = false;
+            btnxoaCB.IsEnabled = false;// khi nhấn thêm thì ẩn xóa cập nhật đi
+            btncapnhatCB.IsEnabled = false;
         }
 
         private void btnluulaiCB_Click(object sender, RoutedEventArgs e)
         {
+           
             try
             {
-                Random ran = new Random();
-                int so = ran.Next(123, 98765);
+                var sql = ((from cb in LT.CHUYENBAY
+                            orderby
+                              cb.MaCB.Substring(cb.MaCB.Length - 4, 4) descending
+                            select new
+                            {
+                                soCB = cb.MaCB.Substring(cb.MaCB.Length - 4, 4)
+                            }).Take(1)).FirstOrDefault();
+                int soMaxCB = int.Parse(sql.soCB);
+                int so = soMaxCB + 1;
+                string maso = "000" + so;
+                maso = maso.Substring(maso.Length - 4,4);
+         
                 if (temp == 1)
                 {
-                    var LT = new QLVeMayBayEntities();
-                   // var CB = LT.CHUYENBAY.FirstOrDefault();
-                    var sp = new CHUYENBAY
+                    if (txtchuyenbay.Text == "" )
                     {
-                        MaCB = so,
-                        TenCB = txtchuyenbay.Text
-
-                    };
-
-                    LT.CHUYENBAY.Add(sp);
-                    if (LT.SaveChanges() > 0)
-                    {
-
-                        MessageBox.Show("Thêm Thành công");
-
+                        MessageBox.Show("Chưa chọn Sân Bay Đi - Đến!");
                     }
                     else
                     {
-                        MessageBox.Show("Chưa thêm được!");
+                        if (cbbsanbaydi.Text == "--Chọn sân bay đi--")
+                        {
+                            MessageBox.Show("Vui lòng chọn sân bay đi!");
+                        }
+                        else
+                        {
+                            if (cbbsanbayden.Text == "--Chọn Sân bay đến--")
+                            {
+                                MessageBox.Show("Vui lòng chọn sân bay đến!");
+                            }
+                            else
+                            {
+                                var LT = new QLVeMayBayEntities();
+                                var sp = new CHUYENBAY
+                                {
+                                    MaCB = masbdi + "-" + masbden + maso,
+                                    TenCB = txtchuyenbay.Text
+                                };
+                                var LichB = new LICHBAY
+                                {
+                                    MaCB = masbdi + "-" + masbden + maso,
+                                    MaSanBayDi = masbdi,
+                                    MaSanBayDen = masbden,
+                                    SoLuongGheHang1 = txtgheh1.Value,
+                                    SoLuongGheHang2 = txtgheh2.Value,
+                                    NgayGio = dtpicker.Value,
+                                    ThoiGianBay = dtpickerthoigianbay.Text.ToString(),
+                                    // MaSBTrungGian = null,
+                                };
+
+                                LT.CHUYENBAY.Add(sp);
+
+                                if (LT.SaveChanges() > 0)
+                                {
+                                    txtchuyenbay.Text = "";
+                                    cbbsanbaydi.Text = "--Chọn sân bay đi--";
+                                    cbbsanbayden.Text = "--Chọn Sân bay đến--";
+
+                                    MessageBox.Show("Thêm Thành công");
+                                    LT.LICHBAY.Add(LichB);
+                                    LT.SaveChanges();
+                                    LoadMaCB();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Chưa thêm được!");
+                                }
+                            }
+                        }
                     }
+                   
                 }
             }
             catch (Exception)
             {
-
                 MessageBox.Show("[LỖI THÊM CHUYẾN BAY!]");
             }
+        }
+        void Matutang()
+        {
+            //            var query = SELECT Top(1)cast(RIGHT(MaCB, 4) AS Integer) AS soCB
+            //FROM CHUYENBAY
+            //ORDER BY soCB DESC
+            var sql = ((from cb in LT.CHUYENBAY
+                        orderby
+                          cb.MaCB.Substring(cb.MaCB.Length - 4, 4) descending
+                        select new
+                        {
+                            soCB = cb.MaCB.Substring(cb.MaCB.Length - 4, 4)
+                        }).Take(1)).FirstOrDefault();
+            int soMaxCB = int.Parse(sql.soCB);
+            int chuoi = soMaxCB + 1;
+            MessageBox.Show(chuoi.ToString());
+        }
+        private void btnxoaCB_Click(object sender, RoutedEventArgs e)
+        {
+            Matutang();
+        }
+
+        private void gridSBTG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

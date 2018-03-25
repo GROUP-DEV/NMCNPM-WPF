@@ -20,10 +20,12 @@ namespace DoAn.Views
     /// </summary>
     public partial class plane : UserControl
     {
-        DangNhap dn = new DangNhap();
+        DangNhap dn  = new DangNhap();
         //lich chuyen bay
         chuyenbay cb = new chuyenbay();
-        banve bv = new banve();
+        banve bv     = new banve();
+        TraCuu tc    = new TraCuu();
+      
         public plane()
         {
             InitializeComponent();
@@ -74,6 +76,17 @@ namespace DoAn.Views
         {
             cb.DataCB += new chuyenbay.PassData(Back_Share);//truyen lai cho window chuyenbay
             bv.DataCB += new banve.PassData(Back_Share);//truyen lai cho window chuyenbay
+            tc.DataTC += new TraCuu.PassData(Back_Share);
+         
+
+        }
+
+
+        private void btntracuu_Click(object sender, RoutedEventArgs e)
+        {
+            container.Children.Clear();
+            container.Children.Add(tc);
+            hideCN();
         }
         private void hideCN()
         {
@@ -112,6 +125,9 @@ namespace DoAn.Views
             txtbaocao.Visibility = Visibility.Visible;
         }
 
-       
+        private void btnDSCB_Click(object sender, RoutedEventArgs e)
+        {
+    
+        }
     }
 }

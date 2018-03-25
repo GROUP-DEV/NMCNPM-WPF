@@ -51,3 +51,7 @@ D:\WPF_UI\DoAn\obj\Debug\DoAn.csproj.CoreCompileInputs.cache
 D:\WPF_UI\DoAn\obj\Debug\DoAn.exe
 D:\WPF_UI\DoAn\obj\Debug\DoAn.pdb
 D:\WPF_UI\DoAn\obj\Debug\DoAn.csprojResolveAssemblyReference.cache
+D:\WPF_UI\DoAn\obj\Debug\Views\TraCuu.g.cs
+D:\WPF_UI\DoAn\obj\Debug\Views\TraCuu.baml
+D:\WPF_UI\DoAn\obj\Debug\Views\DSChuyenBay.g.cs
+D:\WPF_UI\DoAn\obj\Debug\Views\DSChuyenBay.baml

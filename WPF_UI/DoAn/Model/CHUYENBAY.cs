@@ -14,7 +14,19 @@ namespace DoAn.Model
     
     public partial class CHUYENBAY
     {
-        public int MaCB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CHUYENBAY()
+        {
+            this.LICHBAY = new HashSet<LICHBAY>();
+            this.PHIEUDATVE = new HashSet<PHIEUDATVE>();
+        }
+    
+        public string MaCB { get; set; }
         public string TenCB { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LICHBAY> LICHBAY { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PHIEUDATVE> PHIEUDATVE { get; set; }
     }
 }

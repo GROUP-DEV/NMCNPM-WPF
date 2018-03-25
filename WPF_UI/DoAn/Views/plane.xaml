@@ -86,14 +86,14 @@
         <TextBlock Name="txtGNdatve" Foreground="Navy" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Ghi Nhận Đặt Vé</TextBlock>
 
         <!--danh sach chuyen bay-->
-        <Button  x:Name="btnDSCB" Background="#EECD50"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="7" Grid.Row="1" >
+        <Button Click="btnDSCB_Click"  x:Name="btnDSCB" Background="#EECD50"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="7" Grid.Row="1" >
             <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="ListUl" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
             </fa:ImageAwesome>
         </Button>
         <TextBlock Name="txtdscb" Foreground="Navy" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Danh Sách Chuyến Bay</TextBlock>
 
         <!--tra cuu -->
-        <Button x:Name="btntracuu" Background="#6A0040"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="2" Grid.Row="4" >
+        <Button Click="btntracuu_Click" x:Name="btntracuu" Background="#6A0040"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="2" Grid.Row="4" >
             <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="SearchPlus" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
             </fa:ImageAwesome>
         </Button>

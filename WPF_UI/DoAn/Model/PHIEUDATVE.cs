@@ -15,11 +15,15 @@ namespace DoAn.Model
     public partial class PHIEUDATVE
     {
         public string CMND { get; set; }
-        public Nullable<int> MaCB { get; set; }
+        public Nullable<int> STT { get; set; }
+        public string MaCB { get; set; }
         public string TenHanhKhach { get; set; }
         public string DienThoai { get; set; }
         public string MaLoai { get; set; }
         public Nullable<int> DonGia { get; set; }
         public Nullable<System.DateTime> NgayDat { get; set; }
+    
+        public virtual CHUYENBAY CHUYENBAY { get; set; }
+        public virtual LOAIVE LOAIVE { get; set; }
     }
 }
