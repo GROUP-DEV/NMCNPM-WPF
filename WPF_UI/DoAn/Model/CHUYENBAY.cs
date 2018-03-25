@@ -14,6 +14,7 @@ namespace DoAn.Model
     
     public partial class CHUYENBAY
     {
+<<<<<<< HEAD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CHUYENBAY()
         {
@@ -21,6 +22,8 @@ namespace DoAn.Model
             this.PHIEUDATVE = new HashSet<PHIEUDATVE>();
         }
     
+=======
+>>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
         public string MaCB { get; set; }
         public string TenCB { get; set; }
     

@@ -72,6 +72,7 @@ namespace DoAn.Views
             db.TotalPage = totalPage;
             ButtunPage(totalPage);
         }
+<<<<<<< HEAD
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadMaCB();
@@ -81,6 +82,8 @@ namespace DoAn.Views
 
 
         }
+=======
+>>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
         string valuecbb = "";
         private void back_Click(object sender, RoutedEventArgs e)
         {
@@ -129,6 +132,7 @@ namespace DoAn.Views
                 return;
             }
           
+<<<<<<< HEAD
         }
 
         //==BÁN VÉ
@@ -230,6 +234,10 @@ namespace DoAn.Views
         }
 
 //======================================================SATRT PAGEs==================================
+=======
+        }
+
+>>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
         // SELECT COMBOX HANGVE
         private void cbbhangve_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -362,6 +370,89 @@ namespace DoAn.Views
             db.TotalPage = totalPage;
         }
 
+<<<<<<< HEAD
         // ========================END PAGES========================
+=======
+        private void btnbanve_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                var LT = new QLVeMayBayEntities();
+                if (cbbhangve.Text=="--Chọn Hạng Vé--" || txtcmnd.Text == "" || txtdienthoai.Text == "" || txthanhkhach.Text == "")
+                {
+                    MessageBox.Show("Bạn Chưa chọn hạng vé");
+                }
+                else
+                {
+                        var PDV = new PHIEUDATVE
+                        {
+                            MaCB = cbbMacb.SelectedValue.ToString(),
+                            TenHanhKhach = txthanhkhach.Text,
+                            CMND = txtcmnd.Text,
+                            DienThoai = txtdienthoai.Text,
+                            DonGia = int.Parse(txtgiave.Text.ToString()),
+                            MaLoai = cbbhangve.SelectedValue.ToString(),
+                            NgayDat = datepk.SelectedDate
+                        };
+
+                        LT.PHIEUDATVE.Add(PDV);
+
+                        if (LT.SaveChanges() > 0)
+                        {
+                            //LoadBV();
+                            MessageBox.Show("bán Thành công");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Chưa thêm được!");
+                        }
+                }
+             
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Chưa Bán được!");
+                return;
+            }
+        
+        }
+
+        private void gridBV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string ID = (gridBV.SelectedItem as PHIEUDATVE).MaCB;
+                string IDma = (gridBV.SelectedItem as PHIEUDATVE).MaLoai;
+
+                var qr = LT.LICHBAY.Where(m => m.MaCB == ID).SingleOrDefault();
+                cbbMacb.Text = qr.MaCB;
+                txttgbay.Text = qr.ThoiGianBay;
+                txtngaygio.Text = qr.NgayGio.ToString();
+                cbbhangve.Text = IDma;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            
+        }
+
+        private void btnres_Click(object sender, RoutedEventArgs e)
+        {
+            cbbMacb.Text        = "--Chọn chuyến bay--";
+            txtngaygio.Text     = "";
+            txtsoluongghetrong.Text = "0";
+            txttgbay.Text       = "";
+            txthanhkhach.Text   = "";
+            txtgiave.Text       = "0";
+            txtdienthoai.Text   = "";
+            txtcmnd.Text        = "";
+            datepk.Text    = "1-1-2018";
+            cbbhangve.Text = "--Chọn hang ve--";
+        }
+
+        // END PAGES
+>>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
     }
 }

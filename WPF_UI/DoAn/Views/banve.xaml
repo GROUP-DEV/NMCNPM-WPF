@@ -571,7 +571,11 @@
         <!--box ngay gio-->
         <TextBox IsEnabled="False" Name="txtngaygio" VerticalAlignment="Center" FontSize="19" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,11"></TextBox>
         <TextBox IsEnabled="False" Name="txtsoluongghetrong" VerticalAlignment="Center" FontSize="19" Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+<<<<<<< HEAD
         <DatePicker  BorderBrush="White"    VerticalAlignment="Center" FontSize="19" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Name="datepk"
+=======
+        <DatePicker Text="{Binding SelectedItem.NgayDat, ElementName=gridBV}"  BorderBrush="White"    VerticalAlignment="Center" FontSize="19" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Name="datepk"
+>>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
                                     DisplayDate="{x:Static clr:DateTime.Now}" 
                                     SelectedDate="{x:Static clr:DateTime.Now}" Margin="0,8"
            >
@@ -594,23 +598,40 @@
         <!--gia ve-->
         <TextBox IsEnabled="False" Text="{Binding SelectedItem.DonGia, ElementName=gridBV}" Name="txtgiave" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
         <!--gia ve-->
+<<<<<<< HEAD
         <TextBox Style="{StaticResource styletextbox}"  Name="txthanhkhach" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,11"></TextBox>
         <TextBox Style="{StaticResource styletextbox}"  Name="txtdienthoai" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
         <TextBox  Name="txtcmnd" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+=======
+        <TextBox Style="{StaticResource styletextbox}" Text="{Binding SelectedItem.TenHanhKhach, ElementName=gridBV}" Name="txthanhkhach" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,11"></TextBox>
+        <TextBox Style="{StaticResource styletextbox}" Text="{Binding SelectedItem.DienThoai, ElementName=gridBV}" Name="txtdienthoai" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+        <TextBox Text="{Binding SelectedItem.CMND, ElementName=gridBV}" Name="txtcmnd" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+>>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
 
         <!--thong tin ban ve-->
         <DataGrid SelectionChanged="gridBV_SelectionChanged" FontSize="20" Name="gridBV" Grid.Row="7" Grid.ColumnSpan="15" Grid.RowSpan="6" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
               AutoGenerateColumns="False" Margin="51 44 "  >
             <DataGrid.Columns>
+<<<<<<< HEAD
 
                 <DataGridTextColumn Binding="{Binding MaCB}"  Header="Mã CB" Width="150"/>
+=======
+                <DataGridTextColumn Binding="{Binding MaCB}"  Header="Mã CB" Width="150"
+                               FontWeight="Bold"/>
+>>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
                 <DataGridTextColumn Binding="{Binding TenHanhKhach}"    Header="Tên khách hàng" Width="210"/>
                 <!--<DataGridTextColumn Binding="{Binding ThoiGianDung}"  Header="Thời Gian Dừng" Width="160"/>-->
                 <DataGridTextColumn Binding="{Binding MaLoai}"  Header="Loại vé" Width="70"/>
                 <DataGridTextColumn Binding="{Binding DonGia}"  Header="Đơn giá" Width="120"/>
+<<<<<<< HEAD
                 <DataGridTextColumn Binding="{Binding NgayDat, StringFormat={}{0:dd/MM/yyyy}}"  Header="Ngày Đặt" Width="170"/>
                 <DataGridTextColumn  Binding="{Binding DienThoai}" Header="Điện thoại" Width="180"/>
                 <DataGridTextColumn  Binding="{Binding CMND}" Header="So CMND" Width="160"/>
+=======
+                <DataGridTextColumn Binding="{Binding NgayDat, StringFormat={}{0:dd/MM/yyyy}}"  Header="Ngày Đặt" Width="220"/>
+                <DataGridTextColumn  Binding="{Binding DienThoai}" Header="Điện thoại" Width="200"/>
+                <DataGridTextColumn  Binding="{Binding CMND}" Header="So CMND" Width="150"/>
+>>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
                 <!--<DataGridTextColumn  Binding="{Binding GhiChu}" Width="230" Header="Ghi Chú"
                                     />-->
 
@@ -652,6 +673,13 @@
 
         </Border>
 
+        <Button Click="btnres_Click" Name="btnres" Grid.Column="11" Grid.Row="6" Grid.ColumnSpan="3"   Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="200"   Height="50" >
+            <Button.Content>
+                <StackPanel>
+                    <fa:ImageAwesome Icon="File"  SpinDuration="30" Width="40" Height="40"  Foreground="AliceBlue" ></fa:ImageAwesome>
+                </StackPanel>
+            </Button.Content>
+        </Button>
         <Button Click="btnres_Click" Name="btnres" Grid.Column="11" Grid.Row="6" Grid.ColumnSpan="3"   Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="200"   Height="50" >
             <Button.Content>
                 <StackPanel>

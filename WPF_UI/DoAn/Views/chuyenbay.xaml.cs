@@ -486,10 +486,13 @@ namespace DoAn.Views
         {
             Matutang();
         }
+<<<<<<< HEAD
 
         private void gridSBTG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+=======
+>>>>>>> ab841a8cbe284e75c92f99ca18b6ce83f8c20180
     }
 }
