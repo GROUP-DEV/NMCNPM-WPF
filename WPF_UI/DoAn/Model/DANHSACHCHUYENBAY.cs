@@ -16,10 +16,7 @@ namespace DoAn.Model
     {
         public int STT { get; set; }
         public string MaCB { get; set; }
-        public string MaSanBayDi { get; set; }
-        public string MaSanBayDen { get; set; }
-        public Nullable<System.DateTime> NgayKhoiHanh { get; set; }
-        public Nullable<System.TimeSpan> ThoiGian { get; set; }
+        public Nullable<int> TongSoGhe { get; set; }
         public Nullable<int> SoLuongGheTrong { get; set; }
         public Nullable<int> SoLuongGheDat { get; set; }
     }

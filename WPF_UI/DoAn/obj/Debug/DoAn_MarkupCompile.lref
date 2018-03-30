@@ -2,9 +2,11 @@
 FD:\WPF_UI\DoAn\App.xaml;;
 FD:\WPF_UI\DoAn\MainWindow.xaml;;
 FD:\WPF_UI\DoAn\Views\banve.xaml;;
+FD:\WPF_UI\DoAn\Views\BaoCao.xaml;;
 FD:\WPF_UI\DoAn\Views\chuyenbay.xaml;;
 FD:\WPF_UI\DoAn\Views\DangKy.xaml;;
 FD:\WPF_UI\DoAn\Views\DangNhap.xaml;;
+FD:\WPF_UI\DoAn\Views\DSChuyenBay.xaml;;
 FD:\WPF_UI\DoAn\Views\NumericBox.xaml;;
 FD:\WPF_UI\DoAn\Views\plane.xaml;;
 FD:\WPF_UI\DoAn\Views\QuangCao.xaml;;
@@ -14,5 +16,4 @@ FD:\WPF_UI\DoAn\Views\ThongTinNguoiDung.xaml;;
 FD:\WPF_UI\DoAn\Views\TraCuu.xaml;;
 FD:\WPF_UI\DoAn\Views\trangchu.xaml;;
 FD:\WPF_UI\DoAn\Views\XemTheoLoai.xaml;;
-FD:\WPF_UI\DoAn\Views\DSChuyenBay.xaml;;
 

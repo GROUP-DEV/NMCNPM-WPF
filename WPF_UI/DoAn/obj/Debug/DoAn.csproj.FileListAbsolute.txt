@@ -55,3 +55,5 @@ D:\WPF_UI\DoAn\obj\Debug\Views\TraCuu.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\TraCuu.baml
 D:\WPF_UI\DoAn\obj\Debug\Views\DSChuyenBay.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\DSChuyenBay.baml
+D:\WPF_UI\DoAn\obj\Debug\Views\BaoCao.g.cs
+D:\WPF_UI\DoAn\obj\Debug\Views\BaoCao.baml

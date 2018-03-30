@@ -35,14 +35,29 @@ namespace DoAn.Views
             //v.Email = "";
             //DataContext = v;
         }
-        void LoadLichBay()
+        void LoadDS()
         {
             try
             {
-                var sql = from cb in LT.CHUYENBAY
-                          from sb in LT.LICHBAY
-                          where sb.MaCB == cb.MaCB
-                          select new { cb.TenCB, sb.NgayGio, sb.SoLuongGheHang1, sb.SoLuongGheHang2, sb.MaCB, sb.ThoiGianBay };
+                //var sql = from cb in LT.CHUYENBAY
+                //          from sb in LT.LICHBAY
+                //          where sb.MaCB == cb.MaCB
+                //          select new { cb.TenCB, sb.NgayGio, sb.SoLuongGheHang1, sb.SoLuongGheHang2, sb.MaCB, sb.ThoiGianBay };
+                //gridDSCB.ItemsSource = sql.ToList();
+                var sql = (from lb in LT.LICHBAY
+                           from ds in LT.DANHSACHCHUYENBAY
+                           from cb in LT.CHUYENBAY
+                           where lb.MaCB == cb.MaCB && cb.MaCB == ds.MaCB
+                           select new
+                           {
+                               cb.TenCB,
+                               lb.MaCB,
+                               lb.NgayGio,
+                               lb.ThoiGianBay,
+                               ds.TongSoGhe,
+                               ds.SoLuongGheDat,
+                               ds.SoLuongGheTrong
+                           });
                 gridDSCB.ItemsSource = sql.ToList();
             }
             catch (Exception)
@@ -55,7 +70,7 @@ namespace DoAn.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadLichBay();
+            LoadDS();
             //LoadBV();
 
 

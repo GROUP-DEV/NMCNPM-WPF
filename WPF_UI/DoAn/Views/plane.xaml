@@ -7,8 +7,9 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              Height="740" Width="1300" Loaded="UserControl_Loaded">
-    <UserControl.Resources> 
-        <Style x:Key="stylebuttonbigIMG"> <!--style cho button-->
+    <UserControl.Resources>
+        <Style x:Key="stylebuttonbigIMG">
+            <!--style cho button-->
             <Style.Triggers>
                 <EventTrigger RoutedEvent="Mouse.MouseEnter">
                     <EventTrigger.Actions>
@@ -62,7 +63,7 @@
             <!--Stretch="Fill"-->
             <ImageBrush  ImageSource="../Images/bg-plane.jpg" TileMode="Tile"/>
         </Grid.Background>
-      
+
         <!--lich chuyen bay-->
         <Button Click="btnchuyenbay_Click" x:Name="btnchuyenbay"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="1" Grid.Row="1" >
             <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="Plane" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
@@ -100,7 +101,7 @@
         <TextBlock Name="txttracuu" Foreground="Navy" Grid.Row="5" Grid.Column="2" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Tra Cứu</TextBlock>
 
         <!--bao cao -->
-        <Button  x:Name="btnbaocao" Background="#3A3145"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="4" Grid.Row="4" >
+        <Button Click="btnbaocao_Click"  x:Name="btnbaocao" Background="#3A3145"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="4" Grid.Row="4" >
             <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="ExternalLink" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
             </fa:ImageAwesome>
         </Button>
@@ -108,15 +109,15 @@
 
         <!--thong tin -->
         <Button Click="btnchuyenbay_Click" x:Name="btnthongtin" Background="#7F5DAA"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="6" Grid.Row="4" >
-            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="UserPlus" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="Cog" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
             </fa:ImageAwesome>
         </Button>
-        <TextBlock Name="txtthongtin" Foreground="Navy" Grid.Row="5" Grid.Column="6" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Thông Tin</TextBlock>
+        <TextBlock Name="txtthongtin" Foreground="Navy" Grid.Row="5" Grid.Column="5" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom" Grid.ColumnSpan="3" Margin="122,0,129,0">Thay đổi quy định</TextBlock>
 
         <!--CONTAINER-->
         <StackPanel  Name="container" Grid.ColumnSpan="9" Grid.RowSpan="7">
         </StackPanel>
-        
+
 
         <WrapPanel Visibility="Collapsed" HorizontalAlignment="right" VerticalAlignment="Bottom" Style="{StaticResource StyleTheLoai}" Margin="0" >
             <TextBlock FontSize="20" FontWeight="Bold" TextAlignment="Center" Width="468" Padding="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="32">Thể Loại</TextBlock>

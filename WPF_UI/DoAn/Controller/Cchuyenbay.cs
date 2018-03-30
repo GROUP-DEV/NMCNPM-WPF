@@ -23,6 +23,7 @@ namespace DoAn.Controller
         public bool LoadCBBChuyenbay()
         {
             var load = LT.CHUYENBAY.ToList();
+
             if (load !=null)
             {
                 CloadcbbMacb = CollectionViewSource.GetDefaultView(load);
@@ -59,7 +60,19 @@ namespace DoAn.Controller
         //select cbb binding text
         public void bingdingCBB(string macb)
         {
-            var query = LT.LICHBAY.Where(m => m.MaCB == macb).FirstOrDefault();
+            // var query = LT.LICHBAY.Where(m => m.MaCB == macb).FirstOrDefault();
+            var query = (from lb in LT.LICHBAY
+                         from cb in LT.CHUYENBAY
+                         where lb.MaCB == cb.MaCB && cb.MaCB == macb
+                         select new
+                         {
+                             cb.TenCB,
+                             lb.MaCB,
+                             lb.NgayGio,
+                             lb.ThoiGianBay,
+                             lb.SoLuongGheHang1,
+                             lb.SoLuongGheHang2
+                         }).FirstOrDefault();
             var sanbaydi = (from lb in LT.LICHBAY
                             from sb in LT.SANBAY
                             where lb.MaSanBayDi == sb.MaSB && lb.MaCB == macb

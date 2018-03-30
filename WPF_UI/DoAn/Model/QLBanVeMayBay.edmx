@@ -27,10 +27,7 @@
           </Key>
           <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaCB" Type="varchar" MaxLength="50" />
-          <Property Name="MaSanBayDi" Type="varchar" MaxLength="10" />
-          <Property Name="MaSanBayDen" Type="varchar" MaxLength="10" />
-          <Property Name="NgayKhoiHanh" Type="datetime" />
-          <Property Name="ThoiGian" Type="time" Precision="7" />
+          <Property Name="TongSoGhe" Type="int" />
           <Property Name="SoLuongGheTrong" Type="int" />
           <Property Name="SoLuongGheDat" Type="int" />
         </EntityType>
@@ -273,10 +270,7 @@
           </Key>
           <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaCB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MaSanBayDi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MaSanBayDen" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NgayKhoiHanh" Type="DateTime" Precision="3" />
-          <Property Name="ThoiGian" Type="Time" Precision="7" />
+          <Property Name="TongSoGhe" Type="Int32" />
           <Property Name="SoLuongGheTrong" Type="Int32" />
           <Property Name="SoLuongGheDat" Type="Int32" />
         </EntityType>
@@ -460,10 +454,7 @@
               <MappingFragment StoreEntitySet="DANHSACHCHUYENBAY">
                 <ScalarProperty Name="SoLuongGheDat" ColumnName="SoLuongGheDat" />
                 <ScalarProperty Name="SoLuongGheTrong" ColumnName="SoLuongGheTrong" />
-                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
-                <ScalarProperty Name="NgayKhoiHanh" ColumnName="NgayKhoiHanh" />
-                <ScalarProperty Name="MaSanBayDen" ColumnName="MaSanBayDen" />
-                <ScalarProperty Name="MaSanBayDi" ColumnName="MaSanBayDi" />
+                <ScalarProperty Name="TongSoGhe" ColumnName="TongSoGhe" />
                 <ScalarProperty Name="MaCB" ColumnName="MaCB" />
                 <ScalarProperty Name="STT" ColumnName="STT" />
               </MappingFragment>

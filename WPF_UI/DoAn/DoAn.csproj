@@ -129,6 +129,9 @@
     <Compile Include="Views\banve.xaml.cs">
       <DependentUpon>banve.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BaoCao.xaml.cs">
+      <DependentUpon>BaoCao.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\chuyenbay.xaml.cs">
       <DependentUpon>chuyenbay.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\banve.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BaoCao.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

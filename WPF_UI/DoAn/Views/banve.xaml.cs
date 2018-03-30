@@ -39,6 +39,10 @@ namespace DoAn.Views
             //v.Email = "";
             //DataContext = v;
             cbbhangve.IsEnabled = false;
+            LoadMaCB();
+            LoadLoaive();
+            LoadBV();
+            loadtrang();
         }
         void LoadBV()
         {
@@ -81,7 +85,7 @@ namespace DoAn.Views
 
 
         }
-        string valuecbb = "";
+        string valuecbb ;
         private void back_Click(object sender, RoutedEventArgs e)
         {
             DataCB?.Invoke("1");// truyền data di cho cac form
@@ -95,42 +99,7 @@ namespace DoAn.Views
             cbbhangve.ItemsSource = LT.LOAIVE.ToList();
         }
         int? soluongghetrong;
-        private void cbbMacb_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                cbbhangve.IsEnabled = true;
-                valuecbb = cbbMacb.SelectedValue.ToString();
-                var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();
-                var sanbaydi = (from lb in LT.LICHBAY
-                                from sb in LT.SANBAY
-                                where lb.MaSanBayDi == sb.MaSB && lb.MaCB == valuecbb
-                                select new { sb.TenSB }).FirstOrDefault();
-                var sanbayden = (from lb in LT.LICHBAY
-                                 from sb in LT.SANBAY
-                                 where lb.MaSanBayDen == sb.MaSB && lb.MaCB == valuecbb
-                                 select new { sb.TenSB }).FirstOrDefault();
-                //txtSBDen.Text = sanbayden.TenSB.ToString();
-                //txtSBDi.Text = sanbaydi.TenSB.ToString();
-                cbbMacb.Text = query.MaCB;
-                txtngaygio.Text = query.NgayGio.ToString();
-                txttgbay.Text = query.ThoiGianBay.ToString();
-                soluongghetrong = query.SoLuongGheHang1 + query.SoLuongGheHang2;
-                txtsoluongghetrong.Text = soluongghetrong.ToString();
-                //txtgheh1.Text = query.SoLuongGheHang1.ToString();
-                //txtgheh2.Text = query.SoLuongGheHang2.ToString();
-                cbbhangve.Text = "--Chọn Hạng Vé--";
-                txtgiave.Text = "0";
-
-            }
-            catch (Exception)
-            {
-                // MessageBox.Show("!!!"); khi nhấn btnres_Click(object sender, RoutedEventArgs e) fild err
-                return;
-            }
-          
-        }
-
+       
         //==BÁN VÉ
         private void btnbanve_Click(object sender, RoutedEventArgs e)
         {
@@ -140,13 +109,19 @@ namespace DoAn.Views
 
                 var LT = new QLVeMayBayEntities();
 
-                if (cbbMacb.Text== "--Chọn chuyến bay--" || cbbhangve.Text == "--Chọn Hạng Vé--" || txtcmnd.Text == "" || txtdienthoai.Text == "" || txthanhkhach.Text == "")
+                if (cbbMacb.Text == "--Chọn chuyến bay--" || cbbhangve.Text == "--Chọn Hạng Vé--" || txtcmnd.Text == "" || txtdienthoai.Text == "" || txthanhkhach.Text == "")
                 {
                     MessageBox.Show("Bạn Chưa chọn đủ");
                 }
                 else
                 {
+                    int ma = int.Parse(cbbhangve.SelectedValue.ToString());
                     // lấy số trong mã chữ
+                    LICHBAY query = LT.LICHBAY.Where(m => m.MaCB == cbbMacb.SelectedValue.ToString()).FirstOrDefault();// update lai so luong ghe
+                    DANHSACHCHUYENBAY ds = LT.DANHSACHCHUYENBAY.Where(m => m.MaCB == cbbMacb.SelectedValue.ToString()).FirstOrDefault();
+                    int cmnd = LT.PHIEUDATVE.Where(m => m.CMND == txtcmnd.Text.ToString()).Count();
+
+                    int? tongsoghe = query.SoLuongGheHang1 + query.SoLuongGheHang2;
                     var sql = ((from cb in LT.CHUYENBAY
                                 where cb.MaCB == cbbMacb.SelectedValue.ToString()
                                 orderby
@@ -169,23 +144,100 @@ namespace DoAn.Views
                     };
 
                     LT.PHIEUDATVE.Add(PDV);
-
-                    if (LT.SaveChanges() > 0)
+                    if (cmnd > 0)// kiểm tra đã tồn tại
                     {
-                        //LoadBV();
-                        loadtrang();
-                        MessageBox.Show("bán Thành công");
+                        MessageBox.Show("Số CMND :[" +txtcmnd.Text+ "] đã tồn tại!");
+                        return;
                     }
                     else
                     {
-                        MessageBox.Show("Chưa thêm được!");
+                        if (ma == 1)// nếu hạng vé là hạng 1
+                        {
+                            if (query.SoLuongGheHang1 == 0)// nếu ghế đã hết
+                            {
+                                MessageBox.Show("[Số Ghế Hang 1 Đã Hết]!");
+                                return;
+                            }
+                            else
+                            {
+                                LT.SaveChanges();
+                                query.SoLuongGheHang1 = query.SoLuongGheHang1 - 1;
+                                ds.SoLuongGheTrong = query.SoLuongGheHang1 + query.SoLuongGheHang2;// sôlượng ghế trống
+                                ds.SoLuongGheDat = ds.SoLuongGheDat + 1;// sốlượng ghế đặt
+                                LT.SaveChanges();
+                                MessageBox.Show("bán Thành công");
+                                cbbhangve.Text = "--Chọn Hạng Vé--";
+                                txtgiave.Text = "0";
+                                txtsoluongghetrong.Text = "";
+                            }
+                        }
+                        else// ngược lại thôi ok
+                        {
+                            if (query.SoLuongGheHang2 == 0)
+                            {
+                                MessageBox.Show("[Số Ghế Hang 2 Đã Hết]!");
+                                return;
+                            }
+                            else
+                            {
+                                LT.SaveChanges();
+                                query.SoLuongGheHang2 = query.SoLuongGheHang2 - 1;
+                                ds.SoLuongGheTrong = tongsoghe - 1;// sôlượng ghế trống
+                                ds.SoLuongGheDat = ds.SoLuongGheDat + 1;// cập nhật lại số ghế đặt
+                                                                        //ds.SoLuongGheDat = tongsoghe - ds.SoLuongGheTrong;// sốlượng ghế đặt
+                                LT.SaveChanges();
+                                MessageBox.Show("bán Thành công");
+                                cbbhangve.Text = "--Chọn Hạng Vé--";
+                                txtgiave.Text = "0";
+                                txtsoluongghetrong.Text = "";
+                            }
+                        }
                     }
+                  
+                    //LoadBV();
+                    loadtrang();
                 }
 
             }
             catch (Exception)
             {
                 MessageBox.Show("Chưa Bán được!");
+                return;
+            }
+
+        }
+
+        private void cbbMacb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+
+                cbbhangve.IsEnabled = true;
+                valuecbb = cbbMacb.SelectedValue.ToString();
+                var query = (from lb in LT.LICHBAY
+                            from cb in LT.CHUYENBAY
+                            where lb.MaCB ==cb.MaCB && cb.MaCB ==valuecbb
+                            select new
+                            {
+                                cb.TenCB,
+                                lb.MaCB,
+                                lb.NgayGio,
+                                lb.ThoiGianBay,
+                                lb.SoLuongGheHang1,
+                                lb.SoLuongGheHang2
+                            }).FirstOrDefault();
+                cbbMacb.Text = query.MaCB;
+                txtngaygio.Text = query.NgayGio.ToString();
+                txttgbay.Text = query.ThoiGianBay.ToString();
+                soluongghetrong = query.SoLuongGheHang1 + query.SoLuongGheHang2;
+                txtsoluongghetrong.Text = soluongghetrong.ToString();
+                LoadLoaive();
+                cbbhangve.Text = "--Chọn Hạng Vé--";
+                txtgiave.Text = "0";
+            }
+            catch (Exception)
+            {
+                // MessageBox.Show("!!!"); khi nhấn btnres_Click(object sender, RoutedEventArgs e) fild err
                 return;
             }
 
@@ -215,6 +267,45 @@ namespace DoAn.Views
 
         }
 
+        // SELECT COMBOX HANGVE
+        private void cbbhangve_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string maloai = cbbhangve.SelectedValue.ToString();// lay ma loai ve tu cbb
+                                                                   // var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();// gia tri de ss neu chua chon chuyen bay
+                var query = (from lb in LT.LICHBAY
+                             from cb in LT.CHUYENBAY
+                             where lb.MaCB == cb.MaCB && cb.MaCB == valuecbb
+                             select new
+                             {
+                                 cb.TenCB,
+                                 lb.MaCB,
+                                 lb.NgayGio,
+                                 lb.ThoiGianBay,
+                                 lb.SoLuongGheHang1,
+                                 lb.SoLuongGheHang2
+                             }).FirstOrDefault();
+                var layDG = LT.LOAIVE.Where(m => m.MaLoai == maloai).FirstOrDefault();// lay ten ma loai
+
+                if (maloai == "1")// neu bang 1 thi thu thi theo nó ok
+                {
+                    txtsoluongghetrong.Text = query.SoLuongGheHang1.ToString();
+
+                    txtgiave.Text = layDG.DonGia.ToString();
+                }
+                else
+                {
+                    txtsoluongghetrong.Text = query.SoLuongGheHang2.ToString();
+                    txtgiave.Text = layDG.DonGia.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("ERROR");
+            }
+
+        }
         private void btnres_Click(object sender, RoutedEventArgs e)
         {
             cbbMacb.Text = "--Chọn chuyến bay--";
@@ -229,34 +320,8 @@ namespace DoAn.Views
             cbbhangve.Text = "--Chọn hang ve--";
         }
 
-//======================================================SATRT PAGEs==================================
-        // SELECT COMBOX HANGVE
-        private void cbbhangve_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                string maloai = cbbhangve.SelectedValue.ToString();// lay ma loai ve tu cbb
-                var query = LT.LICHBAY.Where(m => m.MaCB == valuecbb).FirstOrDefault();// gia tri de ss neu chua chon chuyen bay
-                var layDG = LT.LOAIVE.Where(m => m.MaLoai == maloai).FirstOrDefault();// lay ten ma loai
-
-                if (maloai == "1")// neu bang 1 thi thu thi theo nó ok
-                {
-                    txtsoluongghetrong.Text = query.SoLuongGheHang1.ToString();
-                   
-                    txtgiave.Text = layDG.DonGia.ToString();
-                }
-                else
-                {
-                    txtsoluongghetrong.Text = query.SoLuongGheHang2.ToString();
-                    txtgiave.Text = layDG.DonGia.ToString();
-                }
-            }
-            catch (Exception)
-            {
-                //MessageBox.Show("ERROR");
-            }  
-           
-        }
+        //======================================================SATRT PAGEs==================================
+    
         private void gridSBTG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

@@ -59,10 +59,7 @@
     </Key>
     <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MaCB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="MaSanBayDi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MaSanBayDen" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="NgayKhoiHanh" Type="DateTime" Precision="3" />
-    <Property Name="ThoiGian" Type="Time" Precision="7" />
+    <Property Name="TongSoGhe" Type="Int32" />
     <Property Name="SoLuongGheTrong" Type="Int32" />
     <Property Name="SoLuongGheDat" Type="Int32" />
   </EntityType>

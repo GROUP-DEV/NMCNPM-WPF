@@ -22,11 +22,11 @@
             <StackPanel Orientation="Vertical"
 						Grid.Column="1"						
 						VerticalAlignment="Center">
-                <Button Height="11" x:Name="Increase"
+                <Button  x:Name="Increase"
 					Click="Increase_Click">
                     <fa:ImageAwesome Icon="AngleUp" Spin="False" SpinDuration="30"   Foreground="Black" ></fa:ImageAwesome>
                 </Button>
-                <Button Height="11"  x:Name="Decrease"
+                <Button   x:Name="Decrease"
 					Click="Decrease_Click"					>
                     <fa:ImageAwesome Icon="AngleDown" Spin="False" SpinDuration="30"  Foreground="Black" ></fa:ImageAwesome>
                 </Button>

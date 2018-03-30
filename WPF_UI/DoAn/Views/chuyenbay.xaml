@@ -741,37 +741,54 @@
         <!--end chuc nang them san bay trung gian-->
 
         <!--them chuyen bay-->
-        <Button Name="btnthemCB"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="1" Grid.ColumnSpan="3" Click="btnthemCB_Click">
-            <Button.Content>
-                <StackPanel>
-                    <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Thêm CB" FontSize="21" />
-                </StackPanel>
-            </Button.Content>
-        </Button>
+        <Border Name="bdthem"   BorderBrush="Navy" CornerRadius="6" Grid.Column="9" BorderThickness="2"  Grid.Row="1" Grid.ColumnSpan="3" >
+            <Button Grid.Column="9" BorderThickness="0"  Grid.Row="1" Grid.ColumnSpan="3"  Background="Transparent" Name="btnthemCB"  Click="btnthemCB_Click">
+                <Button.Content>
+                    <DockPanel>
+                        <fa:ImageAwesome Icon="Download" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />
+                        <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Thêm CB " FontSize="21" Width="100" />
+                    </DockPanel>
+                </Button.Content>
+            </Button>
+
+        </Border>
+
         <!--xóa chuyến bay-->
-        <Button Name="btnxoaCB" Click="btnxoaCB_Click"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="3" Grid.ColumnSpan="3">
-            <Button.Content>
-                <StackPanel>
-                    <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Xóa CB" FontSize="21" />
-                </StackPanel>
-            </Button.Content>
-        </Button>
+        <Border Name="bdxoa" BorderBrush="Navy" CornerRadius="6" BorderThickness="2" Grid.Column="9"   Grid.Row="3" Grid.ColumnSpan="3">
+            <Button Background="Transparent" Name="btnxoaCB" Click="btnxoaCB_Click"  Grid.Column="9" BorderThickness="0"  Grid.Row="3" Grid.ColumnSpan="3">
+                <Button.Content>
+                    <DockPanel>
+                        <fa:ImageAwesome Icon="Remove" Foreground="Red" Spin="False" SpinDuration="30" Width="25" Height="25"  />
+                        <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Xóa CB" FontSize="21" />
+                    </DockPanel>
+                </Button.Content>
+            </Button>
+        </Border>
         <!--xóa chuyến bay-->
-        <Button Name="btncapnhatCB"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="5" Grid.ColumnSpan="3">
-            <Button.Content>
-                <StackPanel>
-                    <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Cập nhật CB" FontSize="21" />
-                </StackPanel>
-            </Button.Content>
-        </Button>
+        <Border Name="bdcapnhat" BorderBrush="Navy" CornerRadius="6" BorderThickness="2" Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3">
+            <Button Name="btncapnhatCB" Click="btncapnhatCB_Click" Grid.Column="9" BorderThickness="0"  Grid.Row="5" Grid.ColumnSpan="3" Background="Transparent">
+                <Button.Content>
+                    <DockPanel>
+                        <fa:ImageAwesome Icon="Undo" Foreground="Navy" Spin="False" SpinDuration="30" Width="25" Height="25"  />
+                        <TextBlock Padding="5 0"   FontWeight="DemiBold" Text="Cập nhật CB" FontSize="21" Width="121" />
+                    </DockPanel>
+                </Button.Content>
+            </Button>
+
+        </Border>
         <!--Luu Lai-->
-        <Button Name="btnluulaiCB" Click="btnluulaiCB_Click"    Style="{StaticResource StyleButtonchuyenbay}" Grid.Column="9" BorderThickness="0"  Grid.Row="7" Grid.ColumnSpan="3">
-            <Button.Content>
-                <StackPanel>
-                    <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Lưu" FontSize="21" />
-                </StackPanel>
-            </Button.Content>
-        </Button>
+        <Border Name="bdluu" BorderBrush="Navy" CornerRadius="6" BorderThickness="2" Grid.Column="9"  Grid.Row="7" Grid.ColumnSpan="3">
+            <Button Background="Transparent" Name="btnluulaiCB" Click="btnluulaiCB_Click" Grid.Column="9" BorderThickness="0"  Grid.Row="7" Grid.ColumnSpan="3">
+                <Button.Content>
+                    <DockPanel>
+                        <fa:ImageAwesome Icon="Save" Foreground="Navy" Spin="False" SpinDuration="30" Width="25" Height="25"  />
+                        <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Lưu" FontSize="21" Width="91" />
+                    </DockPanel>
+                </Button.Content>
+            </Button>
+
+        </Border>
+
 
 
         <!-- =======================================CHUC NANG THEM CHUYEN BAY=========================================== -->

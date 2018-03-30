@@ -24,10 +24,7 @@
         <MappingFragment StoreEntitySet="DANHSACHCHUYENBAY">
           <ScalarProperty Name="SoLuongGheDat" ColumnName="SoLuongGheDat" />
           <ScalarProperty Name="SoLuongGheTrong" ColumnName="SoLuongGheTrong" />
-          <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
-          <ScalarProperty Name="NgayKhoiHanh" ColumnName="NgayKhoiHanh" />
-          <ScalarProperty Name="MaSanBayDen" ColumnName="MaSanBayDen" />
-          <ScalarProperty Name="MaSanBayDi" ColumnName="MaSanBayDi" />
+          <ScalarProperty Name="TongSoGhe" ColumnName="TongSoGhe" />
           <ScalarProperty Name="MaCB" ColumnName="MaCB" />
           <ScalarProperty Name="STT" ColumnName="STT" />
         </MappingFragment>

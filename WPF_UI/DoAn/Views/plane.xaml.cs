@@ -26,6 +26,7 @@ namespace DoAn.Views
         banve bv     = new banve();
         TraCuu tc    = new TraCuu();
         DSChuyenBay dscb = new DSChuyenBay();
+        BaoCao bc = new BaoCao();
         public plane()
         {
             InitializeComponent();
@@ -78,7 +79,7 @@ namespace DoAn.Views
             bv.DataCB += new banve.PassData(Back_Share);//truyen lai cho window chuyenbay
             tc.DataTC += new TraCuu.PassData(Back_Share);
             dscb.DataDSCB += new DSChuyenBay.PassData(Back_Share);
-
+            bc.DataDSBC += new BaoCao.PassData(Back_Share);
         }
 
 
@@ -129,6 +130,13 @@ namespace DoAn.Views
         {
             container.Children.Clear();
             container.Children.Add(dscb);
+            hideCN();
+        }
+
+        private void btnbaocao_Click(object sender, RoutedEventArgs e)
+        {
+            container.Children.Clear();
+            container.Children.Add(bc);
             hideCN();
         }
     }

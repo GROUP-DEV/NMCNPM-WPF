@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="QLVeMayBayModel.PHIEUDATVE" Width="1.5" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="QLVeMayBayModel.SANBAY" Width="1.5" PointX="0.75" PointY="5.25" />
         <EntityTypeShape EntityType="QLVeMayBayModel.SANBAYTRUNGGIAN" Width="1.5" PointX="3" PointY="8.875" />
-        <EntityTypeShape EntityType="QLVeMayBayModel.TaiKhoan" Width="1.5" PointX="7.75" PointY="2.75" />
+        <EntityTypeShape EntityType="QLVeMayBayModel.TaiKhoan" Width="1.5" PointX="5.75" PointY="8.75" />
         <AssociationConnector Association="QLVeMayBayModel.FK__LICHBAY__MaCB__20C1E124" />
         <AssociationConnector Association="QLVeMayBayModel.FK__PHIEUDATVE__MaCB__239E4DCF" />
         <AssociationConnector Association="QLVeMayBayModel.FK__LICHBAY__MaSanBa__21B6055D" />

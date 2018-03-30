@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                          xmlns:clr="clr-namespace:System;assembly=mscorlib"
-
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:DoAn.Views"
               xmlns:fa="http://schemas.fontawesome.io/icons/"
               xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
@@ -530,15 +529,17 @@
         <!--box so luong ghe hang 1-->
 
         <!--thong tin ban ve-->
-        <DataGrid IsReadOnly="True" FontSize="20" Name="gridDSCB" Grid.Row="1" Grid.ColumnSpan="15" Grid.RowSpan="8" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
+        <DataGrid IsReadOnly="True" FontSize="20" Name="gridDSCB" Grid.Row="1" Grid.ColumnSpan="15" Grid.RowSpan="10" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
               AutoGenerateColumns="False" Margin="51 " Height="auto">
             <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding STT}"  Header="      STT" Width="120"/>
+
                 <DataGridTextColumn Binding="{Binding MaCB}"  Header="Mã CB" Width="150"/>
                 <DataGridTextColumn Binding="{Binding TenCB}"    Header="Tên chuyến bay" Width="250"/>
                 <DataGridTextColumn Binding="{Binding NgayGio}"  Header="Ngày-Giờ khởi hành" Width="200"/>
                 <DataGridTextColumn Binding="{Binding ThoiGianBay}"  Header="Thời gian bay" Width="140"/>
-                <DataGridTextColumn Binding="{Binding SoLuongGheHang1}"  Header="Số ghế trống" Width="136"/>
-                <DataGridTextColumn Binding="{Binding SoLuongGheHang2}"  Header="Số ghế đặt" Width="136"/>
+                <DataGridTextColumn Binding="{Binding SoLuongGheTrong}"  Header="Số ghế trống" Width="136"/>
+                <DataGridTextColumn Binding="{Binding SoLuongGheDat}"  Header="Số ghế đặt" Width="136"/>
 
                 <!--<DataGridTextColumn Binding="{Binding NgayDat, StringFormat={}{0:dd/MM/yyyy}}"  Header="Ngày Đặt" Width="170"/>-->
                 <!--xoa san bay trung gian-->

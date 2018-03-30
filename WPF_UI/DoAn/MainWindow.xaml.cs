@@ -154,6 +154,8 @@ namespace DoAn
               //  ShowView();
             }
         }
+
+        // Tim kiếm tag name trong datatemplate
         public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
         {
             if (depObj != null)

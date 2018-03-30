@@ -43,6 +43,7 @@ namespace DoAn.Views
         {
             var bc = new BrushConverter();
             btnthemCB.Background = (Brush)bc.ConvertFrom("#A4BEE0");
+            btnthemCB.Background= Brushes.Transparent;
             tbtiltle.Text = "NHẬN LỊCH CHUYẾN BAY";
             back.Visibility = Visibility.Visible;
             backtxs.Visibility = Visibility.Collapsed;
@@ -153,6 +154,10 @@ namespace DoAn.Views
         }
         void hideMouseEnter()
         {
+            bdcapnhat.Visibility = Visibility.Collapsed;
+            bdluu.Visibility = Visibility.Collapsed;
+            bdthem.Visibility = Visibility.Collapsed;
+            bdxoa.Visibility = Visibility.Collapsed;
             //tbcb.Visibility = Visibility.Collapsed;
             tbslghe1.Visibility = Visibility.Collapsed;
             tbslghe2.Visibility = Visibility.Collapsed;
@@ -182,6 +187,10 @@ namespace DoAn.Views
         }
         void showMouseLeave()
         {
+            bdcapnhat.Visibility = Visibility.Visible;
+            bdluu.Visibility = Visibility.Visible;
+            bdthem.Visibility = Visibility.Visible;
+            bdxoa.Visibility = Visibility.Visible;
             //tbcb.Visibility = Visibility.Visible;
             tbslghe1.Visibility = Visibility.Visible;
             tbslghe2.Visibility = Visibility.Visible;
@@ -397,8 +406,8 @@ namespace DoAn.Views
                             }).Take(1)).FirstOrDefault();
                 int soMaxCB = int.Parse(sql.soCB);
                 int so = soMaxCB + 1;
-                string maso = "000" + so;
-                maso = maso.Substring(maso.Length - 4,4);
+                string maso = "000" + so;// tao day chư số tự tăng
+                maso = maso.Substring(maso.Length - 4,4);// vd: 0001 0010
          
                 if (temp == 1)
                 {
@@ -421,12 +430,12 @@ namespace DoAn.Views
                             else
                             {
                                 var LT = new QLVeMayBayEntities();
-                                var sp = new CHUYENBAY
+                                var sp = new CHUYENBAY// thêm chuyến bay mới
                                 {
                                     MaCB = masbdi + "-" + masbden + maso,
                                     TenCB = txtchuyenbay.Text
                                 };
-                                var LichB = new LICHBAY
+                                var LichB = new LICHBAY// thêm chuyến bay vào lịch bay
                                 {
                                     MaCB = masbdi + "-" + masbden + maso,
                                     MaSanBayDi = masbdi,
@@ -437,19 +446,25 @@ namespace DoAn.Views
                                     ThoiGianBay = dtpickerthoigianbay.Text.ToString(),
                                     // MaSBTrungGian = null,
                                 };
-
+                                var dscb = new DANHSACHCHUYENBAY// thêm vào danh sách chuyến bay
+                                {
+                                    MaCB = masbdi + "-" + masbden + maso,
+                                    TongSoGhe = txtgheh1.Value + txtgheh2.Value,
+                                    SoLuongGheTrong = txtgheh1.Value + txtgheh2.Value,
+                                    SoLuongGheDat = 0,
+                                };
                                 LT.CHUYENBAY.Add(sp);
 
-                                if (LT.SaveChanges() > 0)
+                                if (LT.SaveChanges() > 0)// nếu thêm được thì mới chui vào đay ok
                                 {
                                     txtchuyenbay.Text = "";
                                     cbbsanbaydi.Text = "--Chọn sân bay đi--";
                                     cbbsanbayden.Text = "--Chọn Sân bay đến--";
-
-                                    MessageBox.Show("Thêm Thành công");
                                     LT.LICHBAY.Add(LichB);
+                                    LT.DANHSACHCHUYENBAY.Add(dscb);
                                     LT.SaveChanges();
                                     LoadMaCB();
+                                    MessageBox.Show("Thêm Thành công");
                                 }
                                 else
                                 {
@@ -488,6 +503,11 @@ namespace DoAn.Views
         }
 
         private void gridSBTG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btncapnhatCB_Click(object sender, RoutedEventArgs e)
         {
 
         }
