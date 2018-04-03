@@ -17,7 +17,7 @@ namespace DoAn.Controller
         public ICollectionView CLoadSBtrunggian { get; set; }
         public ICollectionView CLoadSB { get; set; }
         public string sbd { get; set; }
-        public string tenSBden, TenSBdi, ngaygio, Thoigianbay,Tenchuyenbay;
+        public string tenSBden, TenSBdi, ngaygio, Thoigianbay;
         public int? SLghe1, SLghe2;
         // load chuyến bay
         public bool LoadCBBChuyenbay()
@@ -99,6 +99,13 @@ namespace DoAn.Controller
         {
             int nsb = (from d in LT.SANBAYTRUNGGIAN
                        where d.MaCB == valuecbb
+                       select d).Count();
+            return nsb;
+        }
+        // DEM SỐ LƯỢNG SÂN BAY
+        public int Soluongsanbay()
+        {
+            int nsb = (from d in LT.SANBAY
                        select d).Count();
             return nsb;
         }

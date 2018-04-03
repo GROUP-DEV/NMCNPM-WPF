@@ -162,6 +162,9 @@
     <Compile Include="Views\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ThemSanBay.xaml.cs">
+      <DependentUpon>ThemSanBay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ThongTinNguoiDung.xaml.cs">
       <DependentUpon>ThongTinNguoiDung.xaml</DependentUpon>
     </Compile>
@@ -231,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Setting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThemSanBay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

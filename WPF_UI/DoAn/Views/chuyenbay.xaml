@@ -11,7 +11,7 @@
              Height="740" Width="1300" Loaded="UserControl_Loaded"
              >
     <UserControl.Resources>
-        
+
         <Style x:Key="Styletxtblock" TargetType="{x:Type TextBlock}">
             <!--style for textblock-->
             <Setter Property="FontSize" Value="20" />
@@ -453,8 +453,8 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-       
+    <Grid Name="gridbody">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70"/>
             <ColumnDefinition Width="180"/>
@@ -497,7 +497,7 @@
                 <MenuItem  Header="Tra Cứu"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <TextBlock Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="3" Grid.ColumnSpan="6" TextAlignment="Center" VerticalAlignment="Bottom" Margin="4,0,0,15">NHẬN LỊCH CHUYẾN BAY
+        <TextBlock Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="2" Grid.ColumnSpan="8" TextAlignment="Center" VerticalAlignment="Bottom" Margin="10,0,10,15">NHẬN LỊCH CHUYẾN BAY
             <TextBlock.ContextMenu>
                 <ContextMenu Width="300" Height="150" Background="White" BorderThickness="1" FontWeight="DemiBold">
                     <MenuItem  Header="Refresh"/>
@@ -552,7 +552,7 @@
         <!--box san bay den-->
 
         <TextBox Name="txtSBDen" VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2"></TextBox>
-        
+
         <!--box thoi gian bay-->
         <!--<TextBox Name="txttgbay" VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>-->
         <!--box san bay den-->
@@ -612,7 +612,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox Text="{Binding ThoiGianDung}" />
-                                <ScrollBar Grid.Column="1" Minimum="10" Maximum="30" SmallChange="1"
+                                <ScrollBar Grid.Column="1" SmallChange="1"
                                         Orientation="Vertical"
                                         Value="{Binding ThoiGianDung,UpdateSourceTrigger=PropertyChanged}"
                                         RenderTransformOrigin="0.5,0.5">
@@ -680,8 +680,8 @@
 
         <!--chuc nang them san bay trung gian-->
         <WrapPanel  Name="wrsbtg"  Width="250" Height="50" MouseLeave="WrapPanel_MouseLeave" MouseEnter="WrapPanel_MouseEnter" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="13" Grid.RowSpan="10" HorizontalAlignment="right" VerticalAlignment="Bottom" Style="{StaticResource StyleTheLoai}" Margin="0" >
-            <TextBlock Margin="400 80 400 35"   Visibility="Collapsed" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Name="txtthemsbtg"  TextAlignment="Center" Width="900"   HorizontalAlignment="Center" VerticalAlignment="Center" Height="32">THÊM SÂN BAY TRUNG GIAN</TextBlock>
-            <Button Name="btnsbtg" Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="250"   Height="50">
+            <TextBlock Margin="350 80 350 35"   Visibility="Collapsed" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Name="txtthemsbtg"  TextAlignment="Center" Width="1050"   HorizontalAlignment="Center" VerticalAlignment="Center" Height="32">THÊM SÂN BAY TRUNG GIAN</TextBlock>
+            <Button Name="btnsbtg" Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="267"   Height="50">
                 <Button.Content>
                     <StackPanel>
                         <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Thêm SB trung gian" FontSize="21" />
@@ -739,6 +739,15 @@
             </StackPanel>
         </WrapPanel>
         <!--end chuc nang them san bay trung gian-->
+
+        <!--them san bay mới-->
+        <Button Click="btnsthemSBmoi_Click"  Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="4" Grid.RowSpan="6" Name="btnsthemSBmoi" Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="250"   Height="50">
+            <Button.Content>
+                <StackPanel>
+                    <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Thêm Sân Bay mới" FontSize="21" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
 
         <!--them chuyen bay-->
         <Border Name="bdthem"   BorderBrush="Navy" CornerRadius="6" Grid.Column="9" BorderThickness="2"  Grid.Row="1" Grid.ColumnSpan="3" >
@@ -848,7 +857,7 @@
         <!--Value="{Binding LastUpdated}"-->
         <wpfx:DateTimeUpDown Name="dtpickerthoigianbay" Height="33"  FontSize="19" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2" Format="Custom" FormatString="HH:mm:ss"/>
         <!-- =======================================END CHUC NANG THEM CHUYEN BAY=========================================== -->
-       
+
     </Grid>
-    
+
 </UserControl>

@@ -227,7 +227,7 @@ namespace DoAn.Views
         {
             nam = txtnam.Value;
             LoadDS(thang, nam);
-            baocaonam(txtBCnam.Value);
+         //   baocaonam(txtBCnam.Value);
             if (gridBC.Items.Count == 0)
             {
                 MessageBox.Show("Tháng " + thang + " không có!");

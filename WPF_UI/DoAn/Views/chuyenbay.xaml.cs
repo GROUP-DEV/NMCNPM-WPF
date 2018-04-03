@@ -292,7 +292,16 @@ namespace DoAn.Views
             {
                 // lay thoi gian dung trong database
                 string ID = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).MaSBTrungGian;
-                cb.capnhatsanbaytrunggian(ID, valuecbb);
+                int? thoigiandungs = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).ThoiGianDung;
+                if (10 < thoigiandungs && thoigiandungs<= 30)
+                {
+                    cb.capnhatsanbaytrunggian(ID, valuecbb);
+                }
+                else
+                {
+                    MessageBox.Show("Thời Gian dừng từ 10 phút -> 30 phút");
+                }
+               
             }
             catch (Exception)
             {
@@ -397,7 +406,7 @@ namespace DoAn.Views
            
             try
             {
-                var sql = ((from cb in LT.CHUYENBAY
+                var sql = ((from cb in LT.CHUYENBAY// tạo mã tăng tự động
                             orderby
                               cb.MaCB.Substring(cb.MaCB.Length - 4, 4) descending
                             select new
@@ -453,23 +462,31 @@ namespace DoAn.Views
                                     SoLuongGheTrong = txtgheh1.Value + txtgheh2.Value,
                                     SoLuongGheDat = 0,
                                 };
-                                LT.CHUYENBAY.Add(sp);
-
-                                if (LT.SaveChanges() > 0)// nếu thêm được thì mới chui vào đay ok
+                                if (dtpickerthoigianbay.Value < DateTime.Parse("00:30:00"))// XÁC ĐỊNH THỜI GIAN BAY THỐI THIỂU
                                 {
-                                    txtchuyenbay.Text = "";
-                                    cbbsanbaydi.Text = "--Chọn sân bay đi--";
-                                    cbbsanbayden.Text = "--Chọn Sân bay đến--";
-                                    LT.LICHBAY.Add(LichB);
-                                    LT.DANHSACHCHUYENBAY.Add(dscb);
-                                    LT.SaveChanges();
-                                    LoadMaCB();
-                                    MessageBox.Show("Thêm Thành công");
+                                    MessageBox.Show("Thời Gian Bay tối thiểu là 30 phút");
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Chưa thêm được!");
+                                    LT.CHUYENBAY.Add(sp);
+
+                                    if (LT.SaveChanges() > 0)// nếu thêm được thì mới chui vào đay ok
+                                    {
+                                        txtchuyenbay.Text = "";
+                                        cbbsanbaydi.Text = "--Chọn sân bay đi--";
+                                        cbbsanbayden.Text = "--Chọn Sân bay đến--";
+                                        LT.LICHBAY.Add(LichB);
+                                        LT.DANHSACHCHUYENBAY.Add(dscb);
+                                        LT.SaveChanges();
+                                        LoadMaCB();
+                                        MessageBox.Show("Thêm Thành công");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Chưa thêm được!");
+                                    }
                                 }
+                               
                             }
                         }
                     }
@@ -510,6 +527,11 @@ namespace DoAn.Views
         private void btncapnhatCB_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnsthemSBmoi_Click(object sender, RoutedEventArgs e)
+        {
+            DataCB?.Invoke("2");// dư liệu truyền đi
         }
     }
 }

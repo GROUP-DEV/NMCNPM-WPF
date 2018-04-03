@@ -27,6 +27,7 @@ namespace DoAn.Views
         TraCuu tc    = new TraCuu();
         DSChuyenBay dscb = new DSChuyenBay();
         BaoCao bc = new BaoCao();
+        ThemSanBay tsb = new ThemSanBay();
         public plane()
         {
             InitializeComponent();
@@ -71,6 +72,18 @@ namespace DoAn.Views
                 container.Children.Clear();
                 showCN();
             }
+            if (i=="2")
+            {
+                container.Children.Clear();
+                //showCN();
+                container.Children.Add(tsb);
+            }
+            if (i == "3")// lui từ them san bay sang chuyến bay nhá
+            {
+                container.Children.Clear();
+                //showCN();
+                container.Children.Add(cb);
+            }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -80,6 +93,7 @@ namespace DoAn.Views
             tc.DataTC += new TraCuu.PassData(Back_Share);
             dscb.DataDSCB += new DSChuyenBay.PassData(Back_Share);
             bc.DataDSBC += new BaoCao.PassData(Back_Share);
+            tsb.DataTSB += new ThemSanBay.PassData(Back_Share);
         }
 
 

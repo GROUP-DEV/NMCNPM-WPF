@@ -634,7 +634,7 @@
         </DataGrid>
 
         <Border BorderThickness="1" BorderBrush="Navy" CornerRadius="6" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,0,25,12">
-            <Button Background="Transparent" Name="btnlapBC"  Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3" Click="btnlapBC_Click" Height="45" VerticalAlignment="Top" Margin="0,0,-1,-3">
+            <Button BorderThickness="0"  Background="Transparent" Name="btnlapBC"  Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3" Click="btnlapBC_Click" Height="43" VerticalAlignment="Top" Margin="0,0,0,-1" >
                 <Button.Content>
                     <DockPanel>
                         <fa:ImageAwesome Icon="FileTextOutline" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />
@@ -645,7 +645,7 @@
 
         </Border>
         <Border BorderThickness="1" BorderBrush="Navy" CornerRadius="6" Grid.Column="6" Grid.Row="9" Grid.ColumnSpan="4" Margin="178,25,25,29" Grid.RowSpan="2">
-            <Button Background="Transparent" Name="btnlapBCnam"  Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3" Click="btnlapBCnam_Click" Margin="0,0,-1,0">
+            <Button BorderThickness="0" Background="Transparent" Name="btnlapBCnam"  Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3" Click="btnlapBCnam_Click" Margin="9,0">
                 <Button.Content>
                     <DockPanel>
                         <fa:ImageAwesome Icon="FileTextOutline" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />
@@ -658,7 +658,7 @@
 
 
         <Border BorderThickness="1" BorderBrush="Navy" CornerRadius="6" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,41,10">
-            <Button Background="Transparent" Name="btnxuatBC"  Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3" Click="btnxuatBC_Click" Margin="-2,0,-1,-1" Height="45" VerticalAlignment="Top">
+            <Button BorderThickness="0" Background="Transparent" Name="btnxuatBC"  Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3" Click="btnxuatBC_Click" Margin="9,0,9,-1" Height="45" VerticalAlignment="Top">
                 <Button.Content>
                     <DockPanel>
                         <fa:ImageAwesome Icon="PencilSquareOutline" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />

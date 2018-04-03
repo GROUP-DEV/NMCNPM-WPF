@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\WPF_UI\DoAn\App.xaml
-17-441896447
+181377391131
 21461537989
-46-1552752993
+47-1132017016
 211364890102
-MainWindow.xaml;Views\banve.xaml;Views\BaoCao.xaml;Views\chuyenbay.xaml;Views\DangKy.xaml;Views\DangNhap.xaml;Views\DSChuyenBay.xaml;Views\mucsic.xaml;Views\NumericBox.xaml;Views\plane.xaml;Views\QuangCao.xaml;Views\SanBayTrungGian.xaml;Views\Setting.xaml;Views\ThongTinNguoiDung.xaml;Views\TraCuu.xaml;Views\trangchu.xaml;Views\XemTheoLoai.xaml;
+MainWindow.xaml;Views\banve.xaml;Views\BaoCao.xaml;Views\chuyenbay.xaml;Views\DangKy.xaml;Views\DangNhap.xaml;Views\DSChuyenBay.xaml;Views\mucsic.xaml;Views\NumericBox.xaml;Views\plane.xaml;Views\QuangCao.xaml;Views\SanBayTrungGian.xaml;Views\Setting.xaml;Views\ThemSanBay.xaml;Views\ThongTinNguoiDung.xaml;Views\TraCuu.xaml;Views\trangchu.xaml;Views\XemTheoLoai.xaml;
 
-True
+False
 
