@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,15 +35,21 @@ namespace DoAn.Views
             var db = this.FindResource("dbForWd") as Pages;// SET PAGES CURR
             db.CurPage = 1;
             // ham kiem tra
-            //checkF v = new checkF();
-            //v.Phone = "";
-            //v.Email = "";
-            //DataContext = v;
+            checbox();
             cbbhangve.IsEnabled = false;
             LoadMaCB();
             LoadLoaive();
             LoadBV();
             loadtrang();
+        }
+        void checbox()
+        {
+            // ham kiem tra
+            checkF v = new checkF();
+            v.Phone = "";
+            v.Email = "";
+            v.CMND = "";
+            DataContext = v;
         }
         void LoadBV()
         {
@@ -82,7 +89,7 @@ namespace DoAn.Views
             LoadLoaive();
             LoadBV();
             loadtrang();
-
+            checbox();
 
         }
         string valuecbb ;
@@ -103,7 +110,6 @@ namespace DoAn.Views
         //==BÁN VÉ
         private void btnbanve_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
 
@@ -426,6 +432,27 @@ namespace DoAn.Views
             db.Products = GetSearchQuery(db.CurPage, Pages.PageSize, out totalPage);
             db.TotalPage = totalPage;
         }
+
+        // sự kiện text change cho text box
+        private void txtdienthoai_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtcmnd.Text.Count() == 9  && txtdienthoai.Text.Count() >= 10 && txtdienthoai.Text.Count() <= 11)
+            {
+                btnbanve.IsEnabled = true;
+            }
+            else
+            {
+                btnbanve.IsEnabled = false;
+            }
+        }
+        // Mặc định không cho nhập chữ ở ô text sđt and cmnd
+        private void txtdienthoai_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+        }
+
+       
 
         // ========================END PAGES========================
     }

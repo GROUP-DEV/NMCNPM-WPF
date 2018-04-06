@@ -22,6 +22,17 @@ namespace DoAn.Controller
             }
         }
 
+        private String _CMND;
+        public String CMND
+        {
+            get { return _CMND; }
+            set
+            {
+                _CMND = value;
+                OnPropertyChanged("CMND");
+            }
+        }
+
         private String _Email;
         public String Email
         {
@@ -50,7 +61,7 @@ namespace DoAn.Controller
         {
             get { return String.Empty; }
         }
-
+      //  public 
         public string this[string columnName]
         {
             get
@@ -76,11 +87,19 @@ namespace DoAn.Controller
                         }
                         break;
                     case "Phone":
-                        Regex regex = new Regex(@"^[-+]?[0-9]*\.?[0-9]+$");
+                        Regex regex = new Regex(@"^[0-9]{10,11}$");
 
-                        if (Phone.Length < 10 || Phone.Length > 11 || !regex.IsMatch(Phone))
+                        if (Phone.Length < 10 || Phone.Length > 11  || !regex.IsMatch(Phone))
                         {
-                            errorMessage = "phone phai hon 8 ki tu";
+                            errorMessage = "SĐT phải 10 hoắc 11 số ";
+                        }
+                        break;
+                    case "CMND":
+                        Regex regexCMND = new Regex(@"^[0-9]{9,9}$");
+
+                        if (CMND.Length < 9 || CMND.Length > 9 || !regexCMND.IsMatch(CMND))
+                        {
+                            errorMessage = "CMND phải đủ 9 số";
                         }
                         break;
                 }
