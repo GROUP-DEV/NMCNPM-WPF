@@ -755,7 +755,7 @@
                 <Button.Content>
                     <DockPanel>
                         <fa:ImageAwesome Icon="Download" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />
-                        <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Thêm CB " FontSize="21" Width="100" />
+                        <TextBlock Margin="20,0,0,0" Padding="10 0" FontWeight="DemiBold" Text="Thêm CB " FontSize="21" Width="100" />
                     </DockPanel>
                 </Button.Content>
             </Button>
@@ -763,18 +763,18 @@
         </Border>
 
         <!--xóa chuyến bay-->
-        <Border Name="bdxoa" BorderBrush="Navy" CornerRadius="6" BorderThickness="2" Grid.Column="9"   Grid.Row="3" Grid.ColumnSpan="3">
-            <Button Background="Transparent" Name="btnxoaCB" Click="btnxoaCB_Click"  Grid.Column="9" BorderThickness="0"  Grid.Row="3" Grid.ColumnSpan="3">
+        <Border Name="bdxoa" BorderBrush="Navy" CornerRadius="6" BorderThickness="2"  Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3">
+            <Button Background="Transparent" Name="btnxoaCB" Click="btnxoaCB_Click"  Grid.Column="9" BorderThickness="0"  Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Left" Width="186">
                 <Button.Content>
                     <DockPanel>
-                        <fa:ImageAwesome Icon="Remove" Foreground="Red" Spin="False" SpinDuration="30" Width="25" Height="25"  />
-                        <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Xóa CB" FontSize="21" />
+                        <fa:ImageAwesome Icon="Refresh" Foreground="BlueViolet" Spin="False" SpinDuration="30" Width="25" Height="25"  />
+                        <TextBlock Margin="20,0,0,0" Padding="10 0" FontWeight="DemiBold" Text="refresh" FontSize="21" />
                     </DockPanel>
                 </Button.Content>
             </Button>
         </Border>
         <!--xóa chuyến bay-->
-        <Border Name="bdcapnhat" BorderBrush="Navy" CornerRadius="6" BorderThickness="2" Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3">
+        <Border Name="bdcapnhat" BorderBrush="Navy" CornerRadius="6" BorderThickness="2" Grid.Column="9"   Grid.Row="3" Grid.ColumnSpan="3">
             <Button Name="btncapnhatCB" Click="btncapnhatCB_Click" Grid.Column="9" BorderThickness="0"  Grid.Row="5" Grid.ColumnSpan="3" Background="Transparent">
                 <Button.Content>
                     <DockPanel>

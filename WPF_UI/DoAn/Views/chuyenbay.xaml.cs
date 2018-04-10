@@ -41,9 +41,12 @@ namespace DoAn.Views
         // BACK THEM XOA SUA
         private void backtxs_Click(object sender, RoutedEventArgs e)
         {
+            bdluu.Visibility = Visibility.Collapsed;// ẩn nút lưu lại đi
+            txtSBDen.IsEnabled = false;// khi lui thì tắt đi
+            txtSBDi.IsEnabled = false;
             var bc = new BrushConverter();
             btnthemCB.Background = (Brush)bc.ConvertFrom("#A4BEE0");
-            btnthemCB.Background= Brushes.Transparent;
+            btnthemCB.Background = Brushes.Transparent;
             tbtiltle.Text = "NHẬN LỊCH CHUYẾN BAY";
             back.Visibility = Visibility.Visible;
             backtxs.Visibility = Visibility.Collapsed;
@@ -105,13 +108,16 @@ namespace DoAn.Views
                 return;
             }
         }
-       
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadMaCB();
             LoadSB();
             // LoadSBtrunggian();
             txtthemsbtg.Visibility = Visibility.Collapsed;// mặc định nó ẩn
+            txtSBDen.IsEnabled = false;
+            txtSBDi.IsEnabled = false;
+            bdluu.Visibility = Visibility.Collapsed;// ẩn nút lưu lại đi
         }
         // LAY ID TU COMBOBOX CHUYEN BAY
         string valuecbb = "";// lưu ID khi selectItem combobox
@@ -187,8 +193,8 @@ namespace DoAn.Views
         }
         void showMouseLeave()
         {
+            bdluu.Visibility = Visibility.Collapsed;// hiện nút lưu lại đen
             bdcapnhat.Visibility = Visibility.Visible;
-            bdluu.Visibility = Visibility.Visible;
             bdthem.Visibility = Visibility.Visible;
             bdxoa.Visibility = Visibility.Visible;
             //tbcb.Visibility = Visibility.Visible;
@@ -293,7 +299,7 @@ namespace DoAn.Views
                 // lay thoi gian dung trong database
                 string ID = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).MaSBTrungGian;
                 int? thoigiandungs = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).ThoiGianDung;
-                if (10 < thoigiandungs && thoigiandungs<= 30)
+                if (10 <= thoigiandungs && thoigiandungs <= 30)
                 {
                     cb.capnhatsanbaytrunggian(ID, valuecbb);
                 }
@@ -301,7 +307,7 @@ namespace DoAn.Views
                 {
                     MessageBox.Show("Thời Gian dừng từ 10 phút -> 30 phút");
                 }
-               
+
             }
             catch (Exception)
             {
@@ -374,27 +380,30 @@ namespace DoAn.Views
         // THÊM CHUYẾN BAY
         private void btnthemCB_Click(object sender, RoutedEventArgs e)
         {
+            bdluu.Visibility = Visibility.Visible;// hiện nút lưu lại đi
+            txtSBDen.IsEnabled = true;// khi click vào thêm thì mở tag này ra ok
+            txtSBDi.IsEnabled = true;
             temp = 1;
             wrsbtg.IsEnabled = false;
             txtchuyenbay.Visibility = Visibility.Visible;
             cbbMacb.ItemsSource = null;
             cbbMacb.Text = "--Chọn chuyến bay--";
             txtchuyenbay.Text = "";
+            txtchuyenbay.IsReadOnly = false;
             cbbsanbaydi.Text = "--Chọn sân bay đi--";
             cbbsanbayden.Text = "--Chọn Sân bay đến--";
-            cbbsanbaydi.Visibility = Visibility.Visible;
             txtSBDen.Text = "";
             txtSBDi.Text = "";
-            cbbsanbayden.Visibility = Visibility.Visible;
             txtgheh1.Value = 1;
             txtgheh2.Value = 1;
             var bc = new BrushConverter();
             btnthemCB.Background = (Brush)bc.ConvertFrom("#007ACC");
             tbtiltle.Text = "THÊM CHUYẾN BAY MỚI";
+            cbbsanbaydi.Visibility = Visibility.Visible;
+            cbbsanbayden.Visibility = Visibility.Visible;
             back.Visibility = Visibility.Collapsed;
             backtxs.Visibility = Visibility.Visible;
             dtpicker.Value = DateTime.Now;
-            //dtpicker.IsEnabled = false;
             dtpickerthoigianbay.Value = DateTime.Now;
             gridSBTG.ItemsSource = null;
             btnxoaCB.IsEnabled = false;// khi nhấn thêm thì ẩn xóa cập nhật đi
@@ -403,24 +412,24 @@ namespace DoAn.Views
 
         private void btnluulaiCB_Click(object sender, RoutedEventArgs e)
         {
-           
+
             try
             {
                 var sql = ((from cb in LT.CHUYENBAY// tạo mã tăng tự động
                             orderby
-                              cb.MaCB.Substring(cb.MaCB.Length - 4, 4) descending
+                              cb.MaCB.Substring(cb.MaCB.Length - 4, 4) descending// cắt chữ số cuối trong MACB rồi sắp xếp nó
                             select new
                             {
-                                soCB = cb.MaCB.Substring(cb.MaCB.Length - 4, 4)
+                                soCB = cb.MaCB.Substring(cb.MaCB.Length - 4, 4) // cắt chữ số cuối trong MACB
                             }).Take(1)).FirstOrDefault();
-                int soMaxCB = int.Parse(sql.soCB);
-                int so = soMaxCB + 1;
+                int soMaxCB = int.Parse(sql.soCB);//
+                int so = soMaxCB + 1;// mỗi lần lưu tăng lên 
                 string maso = "000" + so;// tao day chư số tự tăng
-                maso = maso.Substring(maso.Length - 4,4);// vd: 0001 0010
-         
+                maso = maso.Substring(maso.Length - 4, 4);// vd: 0001 0010
+
                 if (temp == 1)
                 {
-                    if (txtchuyenbay.Text == "" )
+                    if (txtchuyenbay.Text == "")
                     {
                         MessageBox.Show("Chưa chọn Sân Bay Đi - Đến!");
                     }
@@ -486,11 +495,11 @@ namespace DoAn.Views
                                         MessageBox.Show("Chưa thêm được!");
                                     }
                                 }
-                               
+
                             }
                         }
                     }
-                   
+
                 }
             }
             catch (Exception)
@@ -498,35 +507,53 @@ namespace DoAn.Views
                 MessageBox.Show("[LỖI THÊM CHUYẾN BAY!]");
             }
         }
-        void Matutang()
-        {
-            //            var query = SELECT Top(1)cast(RIGHT(MaCB, 4) AS Integer) AS soCB
-            //FROM CHUYENBAY
-            //ORDER BY soCB DESC
-            var sql = ((from cb in LT.CHUYENBAY
-                        orderby
-                          cb.MaCB.Substring(cb.MaCB.Length - 4, 4) descending
-                        select new
-                        {
-                            soCB = cb.MaCB.Substring(cb.MaCB.Length - 4, 4)
-                        }).Take(1)).FirstOrDefault();
-            int soMaxCB = int.Parse(sql.soCB);
-            int chuoi = soMaxCB + 1;
-            MessageBox.Show(chuoi.ToString());
-        }
+
+        // REFRESH DATA
         private void btnxoaCB_Click(object sender, RoutedEventArgs e)
         {
-            Matutang();
+            txtgheh1.Value = 1;
+            txtgheh2.Value = 1;
+            dtpicker.Value = DateTime.Now;
+            dtpickerthoigianbay.Value = DateTime.Now;
         }
 
         private void gridSBTG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
-
+        // CẬP NHẬT CUYẾN BAY
         private void btncapnhatCB_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (cbbMacb.Text == "--Chọn chuyến bay--")
+                {
+                    MessageBox.Show("Bạn Chưa Chọn chuyến bay cần cập nhật!!");
+                }
+                else
+                {
+                    var lb = (LT.LICHBAY.Where(m => m.MaCB == valuecbb)).SingleOrDefault();
+                    lb.SoLuongGheHang1 = txtgheh1.Value;
+                    lb.SoLuongGheHang2 = txtgheh2.Value;
+                    lb.NgayGio = dtpicker.Value;
+                    lb.ThoiGianBay = dtpickerthoigianbay.Text.ToString();
+                    if (lb != null)
+                    {
+                        LT.SaveChanges();
+                        MessageBox.Show("done!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("chưa update được!");
+                    }
+                }
+               
+            }
+            catch (Exception)
+            {
 
+                return;
+            }
         }
 
         private void btnsthemSBmoi_Click(object sender, RoutedEventArgs e)

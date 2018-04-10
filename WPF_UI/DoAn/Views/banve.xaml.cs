@@ -150,6 +150,11 @@ namespace DoAn.Views
                     };
 
                     LT.PHIEUDATVE.Add(PDV);
+                    if (query.NgayGio <= DateTime.Now)
+                    {
+                        MessageBox.Show("[Sorry. Chuyến bay này đã Khởi Hành!!]");
+                        return;
+                    }
                     if (cmnd > 0)// kiểm tra đã tồn tại
                     {
                         MessageBox.Show("Số CMND :[" +txtcmnd.Text+ "] đã tồn tại!");
@@ -321,8 +326,8 @@ namespace DoAn.Views
             txthanhkhach.Text = "";
             txtgiave.Text = "0";
             txtdienthoai.Text = "";
-            txtcmnd.Text = "";
-            datepk.Text = "1-1-2018";
+            txtcmnd.Text ="";
+            datepk.Text = DateTime.Now.ToString();
             cbbhangve.Text = "--Chọn hang ve--";
         }
 

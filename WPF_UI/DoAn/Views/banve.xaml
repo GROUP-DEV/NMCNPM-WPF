@@ -24,7 +24,7 @@
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},
                             Path=(Validation.Errors)[0].ErrorContent}"></Setter>
-                    
+
                 </Trigger>
 
             </Style.Triggers>
@@ -34,11 +34,11 @@
                         <DockPanel DockPanel.Dock="Right">
                             <AdornedElementPlaceholder>
                                 <Border BorderBrush="Red" BorderThickness="2"></Border>
-                                
+
                             </AdornedElementPlaceholder>
                             <TextBlock Margin="3" Text="*" ToolTip="{Binding Path=AdornedElement.ToolTip,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Adorner}}}" Foreground="red" >
                             </TextBlock>
-                            
+
 
                         </DockPanel>
                     </ControlTemplate>
@@ -661,7 +661,7 @@
 
         </Border>
 
-        <Button Click="btnres_Click" Name="btnres" Grid.Column="11" Grid.Row="6" Grid.ColumnSpan="3"   Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="200"   Height="50" >
+        <Button Click="btnres_Click" Name="btnres" Grid.Column="11" Grid.Row="6" Grid.ColumnSpan="3"   Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"   Height="50" Margin="0,0,0,46" Grid.RowSpan="2" >
             <Button.Content>
                 <StackPanel>
                     <fa:ImageAwesome Icon="File"  SpinDuration="30" Width="40" Height="40"  Foreground="AliceBlue" ></fa:ImageAwesome>

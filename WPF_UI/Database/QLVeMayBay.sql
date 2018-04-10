@@ -47,7 +47,7 @@ create table SANBAY
 
 create table CHUYENBAY
 (
-	MaCB char(50) primary key,-- identity(111,1) primary key,
+	MaCB varchar(50) primary key,-- identity(111,1) primary key,
 	TenCB nvarchar(255),
 )
 
@@ -55,7 +55,7 @@ create table SANBAYTRUNGGIAN
 (
 	STT int IDENTITY(1,1) primary key,
 	MaSBTrungGian varchar(10) ,
-	MaCB char(50),
+	MaCB varchar(50),
 	TenSB nvarchar(255),
 	ThoiGianDung int,
 	GhiChu nvarchar(255)
@@ -65,11 +65,11 @@ create table SANBAYTRUNGGIAN
 
 create table LICHBAY
 (
-	MaCB char(50),
+	MaCB varchar(50),
 	MaSanBayDi varchar(10),
 	MaSanBayDen varchar(10),
 	NgayGio datetime,
-	ThoiGianBay  varchar(50),
+	ThoiGianBay varchar(30),
 	SoLuongGheHang1 int,
 	SoLuongGheHang2 int,
 	MaSBTrungGian varchar(10)
@@ -87,7 +87,8 @@ create table LOAIVE
 create table PHIEUDATVE
 (
 	CMND varchar(10) primary key, 
-	MaCB char(50),
+	STT int,
+	MaCB varchar(50),
 	TenHanhKhach nvarchar(255),
 	DienThoai varchar(11),
 	MaLoai varchar(10),
@@ -98,64 +99,29 @@ create table PHIEUDATVE
 create table DANHSACHCHUYENBAY
 (
 	STT int identity(1,1) primary key,
-	MaCB char(50),
-	MaSanBayDi varchar(10),
-	MaSanBayDen varchar(10),
-	NgayKhoiHanh datetime,
-	ThoiGian time,
+	MaCB varchar(50),
+	TongSoGhe int,
 	SoLuongGheTrong int,
 	SoLuongGheDat int
 )
 
 ALTER TABLE SANBAYTRUNGGIAN ADD FOREIGN KEY (MaSBTrungGian)
 REFERENCES SANBAY(MaSB)
---constraint FK_SANBAYTRUNGGIAN_SANBAY
---foreign key (MaSBTrungGian)
---references SANBAY (MaSB),
 
---Buoc 3
---alter table LICHBAY
---add
-----
---constraint FK_LICHBAY_CHUYENBAY
---foreign key (MaCB)
---references CHUYENBAY (MaCB),
-----
---constraint FK_LICHBAY_SANBAY
---foreign key (MaSanBayDi)
---references SANBAY (MaSB),
-----
-----constraint FK_LICHBAY_SANBAY
-----foreign key (MaSanBayDen)
-----references SANBAY (MaSB),
-----
---constraint FK_SANBAYTRUNGGIAN_SANBAY
---foreign key (MaSBTrungGian)
---references SANBAY (MaSB),
+ALTER TABLE LICHBAY ADD FOREIGN KEY (MaCB)
+REFERENCES CHUYENBAY(MaCB)
 
---constraint FK_LICHBAY_SANBAYTRUNGGIAN
---foreign key (MaSBTrungGian)
---references SANBAYTRUNGGIAN (MaSBTrungGian)
+ALTER TABLE LICHBAY ADD FOREIGN KEY (MaSanBayDi)
+REFERENCES SANBAY(MaSB)
 
+ALTER TABLE LICHBAY ADD FOREIGN KEY (MaSanBayDen)
+REFERENCES SANBAY(MaSB)
 
---alter table DANHSACHCHUYENBAY
---add
-----
---constraint FK_DANHSACHCHUYENBAY_LICHBAY
---foreign key (MaCB,MaSanBayDi,MaSanBayDen)
---references LICHBAY (MaCB,MaSanBayDi,MaSanBayDen)
+ALTER TABLE PHIEUDATVE ADD FOREIGN KEY (MaCB)
+REFERENCES CHUYENBAY(MaCB)
 
-
---alter table PHIEUDATVE
---add
-----
---constraint FK_PHIEUDATVE_LOAIVE
---foreign key (MaLoai)
---references LOAIVE (MaLoai),
-----
---constraint FK_PHIEUDATVE_CHUYENBAY
---foreign key (MaCB)
---references CHUYENBAY (MaCB)
+ALTER TABLE PHIEUDATVE ADD FOREIGN KEY (MaLoai)
+REFERENCES LOAIVE(MaLoai)
 
 
 Insert into TaiKhoan(IdNguoiDung, PassND, HoTen,Email, NgaySinh, GioiTinh, DiaChi, SoDT,Avatar,MaLoaiTK) 
@@ -190,59 +156,113 @@ insert into SANBAY(MaSB, TenSB)
 --			('TG', N'ToGo')
 
 insert into CHUYENBAY
-	values	('DN-BT111',N'Đà Nẵng - Bình Thuận'),
-			('BL-GL112',N'Bạc Liêu - Gia Lai'),
-			('BT-DB113',N'Bình Thuận - Đà Nẵng'),
-			('HN-HCM114',N'Hà Nội - Tân Sơn Nhất'),
-			('GL-HN115',N'Gia Lai - Hà Nội'),
-			('CM-DN116',N'Cà Mau - Đồng Nai'),
-			('GL-HCM117',N'Gia Lai - Tân Sơn Nhất'),
-			('NT-BL118',N'Nha Trang - Bạc Liêu'),
-			('DN-BD119',N'Đồng Nai - Bình Định'),
-			('BT-HN120',N'Bình Thuận - Hà Nội')
+	values	('DB-BT0001',N'Đà Nẵng - Bình Thuận'),
+			('BL-GL0002',N'Bạc Liêu - Gia Lai'),
+			('BT-DN0003',N'Bình Thuận - Đà Nẵng'),
+			('HN-HCM0004',N'Hà Nội - Tân Sơn Nhất'),
+			('GL-HN0005',N'Gia Lai - Hà Nội'),
+			('CM-DN0006',N'Cà Mau - Đồng Nai'),
+			('GL-HCM0007',N'Gia Lai - Tân Sơn Nhất'),
+			('NT-BL0008',N'Nha Trang - Bạc Liêu'),
+			('DN-BD0009',N'Đồng Nai - Bình Định'),
+			('BT-HN0010',N'Bình Thuận - Hà Nội')
 
 insert into SANBAYTRUNGGIAN(MaSBTrungGian,MaCB,TenSB, ThoiGianDung, GhiChu)
-	values	('GL', 'BT-HN120' ,N'Gia Lai',null, N'Làm ơn, Sắp xếp thời gian đừng để trể chuyến bay'),
-			('DN', 'BT-HN120',	N'Đồng Nai',null,N'chúc may mắn'),
-			('BT', 'GL-HCM117',	N'Bình Thuận',null,N'Đến đúng giờ nha'),
-			('NT', 'BL-GL112',	N'Nha Trang',null,N'Đến đúng giờ nha'),
-			('DB', 'GL-HN115',	N'Đà Nẵng',null,N'Đến đúng giờ nha')
+	values	('GL', 'BT-HN0010' ,N'Gia Lai',null, N'Làm ơn, Sắp xếp thời gian đừng để trể chuyến bay'),
+			('DN', 'BT-HN0010',	N'Đồng Nai',null,N'chúc may mắn'),
+			('BT', 'GL-HCM0007',	N'Bình Thuận',null,N'Đến đúng giờ nha'),
+			('NT', 'BL-GL0002',	N'Nha Trang',null,N'Đến đúng giờ nha'),
+			('DB', 'GL-HN0005',	N'Đà Nẵng',null,N'Đến đúng giờ nha')
 
 insert into LICHBAY (MaCB, MaSanBayDi, MaSanBayDen, NgayGio, ThoiGianBay, SoLuongGheHang1, SoLuongGheHang2, MaSBTrungGian)
-	values	('HN-HCM114', 'HN', 'HCM',  '5/12/2017 02:30:00', '01:30:00', 20, 9, NULL),
-			('GL-HN115', 'GL', 'HN', '1/12/2017 03:45:00', '02:45:00', 15, 3 , NULL),
-			('DN-BD119', 'DN', 'BD', '1/12/2017 13:45:00', '03:45:00', 3, 7 , NULL),
-			('BT-DB113', 'BT', 'DB', '12/1/2017 12:45:00', '13:45:00', 21, 32 , NULL),
-			('NT-BL118', 'NT', 'BL', '2/16/2017 04:45:00', '02:45:00', 15, 23 , NULL),
-			('BT-HN120', 'BT', 'HN', '3/16/2017 00:00:00', '04:45:00', 25, 27 , NULL),
-			('CM-DN116', 'CM', 'DN', '2/16/2017 00:45:00', '00:45:00', 24, 23 , NULL),
-			('GL-HCM117', 'GL', 'HCM', '3/13/2017 00:00:00', '12:45:00', 16, 22 , NULL),
-			('BL-GL112', 'BL', 'GL', '3/13/2017 00:30:00', '00:00:00', 11, 13 , NULL),
-			('DN-BT111', 'DB', 'BT', '3/13/2017 04:45:00', '00:30:00', 21, 27 , NULL)
+	values	('HN-HCM0004', 'HN', 'HCM',  '5/12/2017 02:30:00', '01:30:00', 2, 2, NULL),
+			('GL-HN0005', 'GL', 'HN', '1/12/2017 03:45:00', '02:45:00', 2, 3 , NULL),
+			('DN-BD0009', 'DN', 'BD', '1/12/2017 13:45:00', '03:45:00', 3, 7 , NULL),
+			('BT-DN0003', 'BT', 'DB', '12/1/2017 12:45:00', '13:45:00', 21, 32 , NULL),
+			('NT-BL0008', 'NT', 'BL', '2/16/2017 04:45:00', '02:45:00', 15, 23 , NULL),
+			('BT-HN0010', 'BT', 'HN', '3/16/2017 00:00:00', '04:45:00', 25, 27 , NULL),
+			('CM-DN0006', 'CM', 'DN', '2/16/2017 00:45:00', '00:45:00', 24, 23 , NULL),
+			('GL-HCM0007', 'GL', 'HCM', '3/13/2017 00:00:00', '12:45:00', 16, 22 , NULL),
+			( 'BL-GL0002', 'BL', 'GL', '3/13/2017 00:30:00', '00:00:00', 2, 1 , NULL),
+			('DB-BT0001', 'DB', 'BT', '3/13/2017 04:45:00', '00:30:00', 21, 27 , NULL)
 
-insert into DANHSACHCHUYENBAY (MaCB, MaSanBayDi, MaSanBayDen, NgayKhoiHanh,ThoiGian, SoLuongGheTrong, SoLuongGheDat)
-	values	('HN-HCM114', 'HN', 'HCM',  '1/12/2017', '00:45:00', 30, 20),
-			('GL-HN115', 'GL', 'HN', '1/12/2017', '00:45:00', 15, 20),
-			('DN-BD119', 'DN', 'BD', '1/12/2017', '00:45:00', 20, 30),
-			('BT-DB113', 'BT', 'DB', '12/1/2017', '00:45:00', 20, 30),
-			('NT-BL118', 'NT', 'BL', '2/16/2017', '00:45:00', 10, 30),
-			('BT-HN120', 'BT', 'HN', '2/16/2017', '00:45:00', 20, 30),
-			('CM-DN116', 'CM', 'DN', '2/16/2017', '00:45:00', 20, 30),
-			('GL-HCM117', 'GL', 'HCM', '3/13/2017', '00:45:00', 20, 30),
-			('BL-GL112', 'BL', 'GL', '3/13/2017', '00:45:00', 20, 30),
-			('DN-BT111', 'DB', 'BT', '3/13/2017', '00:45:00', 20, 30)
+insert into DANHSACHCHUYENBAY (MaCB,TongSoGhe, SoLuongGheTrong, SoLuongGheDat)
+	values	('HN-HCM0004',4, 1, 3),
+			('GL-HN0005',5, 5, 0),
+			('DN-BD0009',10, 10, 0),
+			('BT-DN0003',53, 53, 0),
+			('NT-BL0008',38, 37, 1),
+			('BT-HN0010',52, 51, 1),
+			('CM-DN0006',47, 46, 1),
+			('GL-HCM0007',38, 37, 1),
+			('BL-GL0002', 3, 2, 1),
+			('DB-BT0001',48, 46, 2)
 
 insert into LOAIVE (MaLoai, DonGia)
 	values	('1',	100000),
 			('2',	50000)
 
-insert into PHIEUDATVE (CMND, MaCB, MaLoai, TenHanhKhach, DienThoai, DonGia, NgayDat)
-	values	('123456789', 'HN-HCM114', '1', N'Nguyễn Thị Châu', '0123456789', 100000, '1/12/2017'),
-			('123456788','DN-BT111', '2', N'Nguyễn Thị Tiến Lên', '0123456788', 50000, '1/12/2017'),
-			('123456777','NT-BL118', '1', N'Nguyễn Thanh Trần', '0123456787', 100000, '1/12/2017'),
-			('123456778', 'NT-BL118', '2', N'Lê Doãn Chí Bình ', '0123456786', 50000, '1/12/2017'),
-			('123456779', 'BT-HN120', '1', N'Phan Thị Cẩm Nhung', '0123456785', 100000, '1/12/2017'),
-			('123456780', 'CM-DN116', '2', N'Tạ Biên Cương', '0123456784', 50000, '1/12/2017'),
-			('123456781', 'GL-HCM117', '1', N'Châu Thanh Toàn', '0123456783', 100000, '1/12/2017'),
-			('123456782', 'BL-GL112', '2', N'Đơn Thị Lá', '0123456782', 50000, '1/12/2017'),
-			('123456783','DN-BT111', '1', N'Đôi Thị Hà', '0123456781', 100000, '1/12/2017')
+insert into PHIEUDATVE (STT,CMND, MaCB, MaLoai, TenHanhKhach, DienThoai, DonGia, NgayDat)
+	values	
+			(1,'123456783','DB-BT0001', '1', N'Đôi Thị Hà', '0123456781', 100000, '2/11/2018'),
+			(1,'123456788','DB-BT0001', '2', N'Nguyễn Thị Tiến Lên', '0123456788', 50000, '1/12/2016'),
+			(2,'123456782',  'BL-GL0002', '2', N'Đơn Thị Lá', '0123456782', 50000, '4/7/2017'),
+			(4,'123456789', 'HN-HCM0004', '1', N'Nguyễn Thị Châu', '0123456789', 100000, '2/10/2014'),
+			(6,'123456780', 'CM-DN0006', '2', N'Tạ Biên Cương', '0123456784', 50000, '1/12/2017'),
+			(7,'123456781', 'GL-HCM0007', '1', N'Châu Thanh Toàn', '0123456783', 100000, '6/6/2017'),
+			(8,'123456777','NT-BL0008', '1', N'Nguyễn Thanh Trần', '0123456787', 100000, '4/3/2015'),
+			(8,'123456778', 'NT-BL0008', '2', N'Lê Doãn Chí Bình ', '0123456786', 50000, '1/3/2017'),
+			(10,'123456779', 'BT-HN0010', '1', N'Phan Thị Cẩm Nhung', '0123456785', 100000, '1/12/2017')
+
+----- cái này
+--select ds.MaCB,ds.SoLuongGheDat,tab.TenCB,tab.DoanhThu, (ds.SoLuongGheDat*0.01) as tyle
+--from (select P.MaCB as MaCB,cb.TenCB, sum(p.DonGia) as DoanhThu
+--from PHIEUDATVE p, CHUYENBAY cb
+--where p.MaCB=cb.MaCB and MONTH(p.NgayDat)= 2 and YEAR(p.NgayDat)=2018
+--group by p.MaCB,cb.TenCB) as tab, DANHSACHCHUYENBAY ds
+--where ds.MaCB=tab.MaCB	
+
+select tab.TenCB,tab.MaCB,tab.DoanhThu, tab.sove,CONVERT(decimal(10,4), (0.01 * 250000/300000 ))  as tyle
+from (
+	select P.MaCB as MaCB,cb.TenCB, sum(p.DonGia) as DoanhThu, count(p.MaCB) as sove
+	from PHIEUDATVE p, CHUYENBAY cb
+	where p.MaCB=cb.MaCB and MONTH(p.NgayDat)= 2 and YEAR(p.NgayDat)=2018
+	group by p.MaCB,cb.TenCB
+	) as tab , 
+
+	(select P.MaCB as MaCB, sum(p.DonGia) as DoanhThuNam
+	from PHIEUDATVE p
+    where YEAR(p.NgayDat)=2018
+	group by p.MaCB
+	) as dtnam
+where tab.MaCB = dtnam.MaCB
+
+-- theo tháng
+select tab.DoanhThu, tab.sove,CONVERT(decimal(10,4), (0.01 * 250000/300000 ))  as tyle
+from (
+	select Month(p.NgayDat) as Thang, sum(p.DonGia) as DoanhThu, count(p.MaCB) as sove
+	from PHIEUDATVE p, CHUYENBAY cb
+	where p.MaCB=cb.MaCB and YEAR(p.NgayDat)=2018
+	group by p.MaCB,cb.TenCB, Month(p.NgayDat)
+	) as tab , 
+
+	(select P.MaCB as MaCB, sum(p.DonGia) as DoanhThuNam
+	from PHIEUDATVE p
+    where YEAR(p.NgayDat)=2018
+	group by p.MaCB
+	) as dtnam
+where tab.MaCB = dtnam.MaCB
+--select P.MaCB,ds.SoLuongGheDat
+--from PHIEUDATVE p, DANHSACHCHUYENBAY ds
+--where p.MaCB = ds.MaCB and MONTH(p.NgayDat)= 2 or YEAR(p.NgayDat)=2018
+
+--SELECT Top(1)cast(RIGHT(MaCB,4) AS Integer) AS soCB
+--FROM CHUYENBAY
+--ORDER BY soCB DESC
+
+
+
+
+
+
+                             
