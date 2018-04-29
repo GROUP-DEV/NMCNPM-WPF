@@ -12,11 +12,19 @@
               Height="740" Width="1300">
     <UserControl.Resources>
         <m:Pages x:Key="dbForWd"></m:Pages>
+        <Style TargetType="{x:Type ToolTip}" >
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="Navy" />
+
+        </Style>
         <Style TargetType="{x:Type TextBox}" x:Key="styletextbox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},
                             Path=(Validation.Errors)[0].ErrorContent}"></Setter>
+
                 </Trigger>
 
             </Style.Triggers>
@@ -26,10 +34,11 @@
                         <DockPanel DockPanel.Dock="Right">
                             <AdornedElementPlaceholder>
                                 <Border BorderBrush="Red" BorderThickness="2"></Border>
-                            </AdornedElementPlaceholder>
-                            <TextBox Margin="3" Text="*" Foreground="red" ToolTip="{Binding Path=AdornedElement.ToolTip,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Adorner}}}">
 
-                            </TextBox>
+                            </AdornedElementPlaceholder>
+                            <TextBlock Margin="3" Text="*" ToolTip="{Binding Path=AdornedElement.ToolTip,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Adorner}}}" Foreground="red" >
+                            </TextBlock>
+
 
                         </DockPanel>
                     </ControlTemplate>
@@ -516,8 +525,8 @@
 
 
         </Grid.RowDefinitions>
-
-        <TextBlock Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="4" Grid.ColumnSpan="6" TextAlignment="Center" VerticalAlignment="Bottom" Margin="4,0,0,15">BÁN VÉ CHUYẾN BAY</TextBlock>
+        <TextBlock Text="{Binding Path=errorMessage,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.ColumnSpan="5" Margin="144,30,10,15" Grid.Column="8"></TextBlock>
+        <TextBlock  Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="4" Grid.ColumnSpan="6" TextAlignment="Center" VerticalAlignment="Bottom" Margin="4,0,0,15">BÁN VÉ CHUYẾN BAY</TextBlock>
         <Button Name="back" Click="back_Click"  Style="{StaticResource IconButton}"    Background="Transparent" BorderThickness="0" Width="55" Height="55"  Grid.Column="1" Margin="62,15" Grid.ColumnSpan="2" >
             <Button.ToolTip>
                 <ToolTip>
@@ -536,8 +545,8 @@
         <!--<TextBlock Name="tbsbdi" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="3">SB Đi:</TextBlock>-->
         <TextBlock Name="tbngio" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,12,0,11">Ngày-Giờ:</TextBlock>
         <!--<TextBlock Name="tbslghe1" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5">SLượng Ghé hạng1:</TextBlock>-->
-        <TextBlock Name="tbslghetrong" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11">SL ghế trống: </TextBlock>
-       
+        <TextBlock Name="tbslghetrong" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11">SL ghế trống:</TextBlock>
+
         <!--<TextBlock Visibility="Collapsed" Name="txttemp" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11">Số ghế hạng:</TextBlock>-->
         <!--<TextBlock Visibility="Collapsed" Name="txtsoghetheohang" Grid.Column="2" Grid.Row="5" Style="{StaticResource Styletxtblock}" TextAlignment="Center">1</TextBlock>-->
         <TextBlock Name="tbngayban" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11">Ngày bán:</TextBlock>
@@ -592,11 +601,11 @@
         <!--box thoi gian bay-->
         <TextBox IsEnabled="False" Name="txttgbay" VerticalAlignment="Center" FontSize="19" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11,0,10" ></TextBox>
         <!--gia ve-->
-        <TextBox IsEnabled="False" Text="{Binding SelectedItem.DonGia, ElementName=gridBV}" Name="txtgiave" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+        <TextBox Text="{Binding SelectedItem.DonGia, ElementName=gridBV}" Name="txtgiave" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
         <!--gia ve-->
         <TextBox Style="{StaticResource styletextbox}"  Name="txthanhkhach" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,11"></TextBox>
-        <TextBox Style="{StaticResource styletextbox}"  Name="txtdienthoai" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
-        <TextBox  Name="txtcmnd" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+        <TextBox PreviewTextInput="txtdienthoai_PreviewTextInput" TextChanged="txtdienthoai_TextChanged" Style="{StaticResource styletextbox}" Text="{Binding Path=Phone,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Name="txtdienthoai" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+        <TextBox TextChanged="txtdienthoai_TextChanged" PreviewTextInput="txtdienthoai_PreviewTextInput" Style="{StaticResource styletextbox}" Text="{Binding Path=CMND,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Name="txtcmnd" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
 
         <!--thong tin ban ve-->
         <DataGrid SelectionChanged="gridBV_SelectionChanged" FontSize="20" Name="gridBV" Grid.Row="7" Grid.ColumnSpan="15" Grid.RowSpan="6" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
@@ -626,7 +635,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-               
+
             </DataGrid.Columns>
         </DataGrid>
         <Border BorderThickness="1" BorderBrush="Navy" CornerRadius="6" Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3">
@@ -641,7 +650,7 @@
 
         </Border>
         <Border BorderThickness="2" BorderBrush="Navy" CornerRadius="6" Grid.Column="11" Grid.Row="4" Grid.ColumnSpan="3">
-            <Button Click="btnbanve_Click" Name="btnbanve" Grid.Column="11" Grid.Row="4" Grid.ColumnSpan="3" BorderThickness="0" Background="Transparent"   Height="50" >
+            <Button IsEnabled="False" Click="btnbanve_Click" Name="btnbanve" Grid.Column="11" Grid.Row="4" Grid.ColumnSpan="3" BorderThickness="0" Background="Transparent"   Height="50" >
                 <Button.Content>
                     <DockPanel>
                         <fa:ImageAwesome Icon="Plane" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />
@@ -652,7 +661,7 @@
 
         </Border>
 
-        <Button Click="btnres_Click" Name="btnres" Grid.Column="11" Grid.Row="6" Grid.ColumnSpan="3"   Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"  Width="200"   Height="50" >
+        <Button Click="btnres_Click" Name="btnres" Grid.Column="11" Grid.Row="6" Grid.ColumnSpan="3"   Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"   Height="50" Margin="0,0,0,46" Grid.RowSpan="2" >
             <Button.Content>
                 <StackPanel>
                     <fa:ImageAwesome Icon="File"  SpinDuration="30" Width="40" Height="40"  Foreground="AliceBlue" ></fa:ImageAwesome>

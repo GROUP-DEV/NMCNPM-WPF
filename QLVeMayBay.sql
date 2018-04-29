@@ -238,20 +238,20 @@ from (
 where tab.MaCB = dtnam.MaCB
 
 -- theo tháng
-select tab.DoanhThu, tab.sove,CONVERT(decimal(10,4), (0.01 * 250000/300000 ))  as tyle
-from (
-	select Month(p.NgayDat) as Thang, sum(p.DonGia) as DoanhThu, count(p.MaCB) as sove
-	from PHIEUDATVE p, CHUYENBAY cb
-	where p.MaCB=cb.MaCB and YEAR(p.NgayDat)=2018
-	group by p.MaCB,cb.TenCB, Month(p.NgayDat)
-	) as tab , 
+--select tab.DoanhThu, tab.sove,CONVERT(decimal(10,4), (0.01 * 250000/300000 ))  as tyle
+--from (
+--	select Month(p.NgayDat) as Thang, sum(p.DonGia) as DoanhThu, count(p.MaCB) as sove
+--	from PHIEUDATVE p, CHUYENBAY cb
+--	where p.MaCB=cb.MaCB and YEAR(p.NgayDat)=2018
+--	group by p.MaCB,cb.TenCB, Month(p.NgayDat)
+--	) as tab , 
 
-	(select P.MaCB as MaCB, sum(p.DonGia) as DoanhThuNam
-	from PHIEUDATVE p
-    where YEAR(p.NgayDat)=2018
-	group by p.MaCB
-	) as dtnam
-where tab.MaCB = dtnam.MaCB
+--	(select P.MaCB as MaCB, sum(p.DonGia) as DoanhThuNam
+--	from PHIEUDATVE p
+ --   where YEAR(p.NgayDat)=2018
+--	group by p.MaCB
+--	) as dtnam
+--where tab.MaCB = dtnam.MaCB
 --select P.MaCB,ds.SoLuongGheDat
 --from PHIEUDATVE p, DANHSACHCHUYENBAY ds
 --where p.MaCB = ds.MaCB and MONTH(p.NgayDat)= 2 or YEAR(p.NgayDat)=2018

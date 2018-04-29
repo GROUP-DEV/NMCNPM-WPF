@@ -65,51 +65,51 @@
         </Grid.Background>
 
         <!--lich chuyen bay-->
-        <Button Click="btnchuyenbay_Click" x:Name="btnchuyenbay"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="1" Grid.Row="1" >
-            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="Plane" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+        <Button Background="Transparent" Click="btnchuyenbay_Click" x:Name="btnchuyenbay"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="Navy"  Grid.Column="1" Grid.Row="1" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="Plane" Spin="False" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
                 <!--<Image.Style>
                 </Image.Style>-->
             </fa:ImageAwesome>
         </Button>
         <TextBlock Name="txtchuyenbay" Foreground="Navy" Grid.Row="2" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Nhận Lịch Chuyến Bay</TextBlock>
         <!--BAN VE-->
-        <Button Click="btnbanve_Click"  Style="{StaticResource StyleButtonXem}" Background="#714A28"  Margin="2,0,2,0" x:Name="btnbanve"  BorderThickness="0" BorderBrush="White"  Grid.Column="3" Grid.Row="1" >
-            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="AddressCard" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+        <Button Click="btnbanve_Click"  Style="{StaticResource StyleButtonXem}" Background="Transparent"  Margin="2,0,2,0" x:Name="btnbanve"  BorderThickness="0" BorderBrush="White"  Grid.Column="3" Grid.Row="1" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="AddressCard" Spin="False" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
             </fa:ImageAwesome>
         </Button>
         <TextBlock Name="txtbanve" Foreground="Navy" Grid.Row="2" Grid.Column="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Bán Vé</TextBlock>
 
         <!--ghi nhan dat ve-->
-        <Button  x:Name="btnGNdatve" Background="#90A930"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="5" Grid.Row="1" >
-            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="CalendarCheckOutline" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+        <Button  x:Name="btnGNdatve" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="5" Grid.Row="1" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="CalendarCheckOutline" Spin="False" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
             </fa:ImageAwesome>
         </Button>
         <TextBlock Name="txtGNdatve" Foreground="Navy" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Ghi Nhận Đặt Vé</TextBlock>
 
         <!--danh sach chuyen bay-->
-        <Button Click="btnDSCB_Click"  x:Name="btnDSCB" Background="#EECD50"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="7" Grid.Row="1" >
-            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="ListUl" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+        <Button Click="btnDSCB_Click"  x:Name="btnDSCB" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="7" Grid.Row="1" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="ListUl" Spin="False" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
             </fa:ImageAwesome>
         </Button>
         <TextBlock Name="txtdscb" Foreground="Navy" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Danh Sách Chuyến Bay</TextBlock>
 
         <!--tra cuu -->
-        <Button Click="btntracuu_Click" x:Name="btntracuu" Background="#6A0040"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="2" Grid.Row="4" >
-            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="SearchPlus" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+        <Button Click="btntracuu_Click" x:Name="btntracuu" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="2" Grid.Row="4" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="SearchPlus" Spin="False" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
             </fa:ImageAwesome>
         </Button>
         <TextBlock Name="txttracuu" Foreground="Navy" Grid.Row="5" Grid.Column="2" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Tra Cứu</TextBlock>
 
         <!--bao cao -->
-        <Button Click="btnbaocao_Click"  x:Name="btnbaocao" Background="#3A3145"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="4" Grid.Row="4" >
-            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="ExternalLink" Spin="False" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+        <Button Click="btnbaocao_Click"  x:Name="btnbaocao" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="4" Grid.Row="4" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="ExternalLink" Spin="False" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
             </fa:ImageAwesome>
         </Button>
         <TextBlock Name="txtbaocao" Foreground="Navy" Grid.Row="5" Grid.Column="4" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Báo Cáo</TextBlock>
 
         <!--thong tin -->
-        <Button Click="btnchuyenbay_Click" x:Name="btnthongtin" Background="#7F5DAA"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="6" Grid.Row="4" >
-            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="Cog" SpinDuration="30" Height="60" Width="60"  Foreground="AliceBlue" >
+        <Button Click="btnchuyenbay_Click" x:Name="btnthongtin" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="6" Grid.Row="4" >
+            <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="Cog" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
             </fa:ImageAwesome>
         </Button>
         <TextBlock Name="txtthongtin" Foreground="Navy" Grid.Row="5" Grid.Column="5" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom" Grid.ColumnSpan="3" Margin="122,0,129,0">Thay đổi quy định</TextBlock>

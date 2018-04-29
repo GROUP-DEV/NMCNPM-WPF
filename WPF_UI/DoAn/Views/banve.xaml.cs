@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,15 +35,21 @@ namespace DoAn.Views
             var db = this.FindResource("dbForWd") as Pages;// SET PAGES CURR
             db.CurPage = 1;
             // ham kiem tra
-            //checkF v = new checkF();
-            //v.Phone = "";
-            //v.Email = "";
-            //DataContext = v;
+            checbox();
             cbbhangve.IsEnabled = false;
             LoadMaCB();
             LoadLoaive();
             LoadBV();
             loadtrang();
+        }
+        void checbox()
+        {
+            // ham kiem tra
+            checkF v = new checkF();
+            v.Phone = "";
+            v.Email = "";
+            v.CMND = "";
+            DataContext = v;
         }
         void LoadBV()
         {
@@ -82,7 +89,7 @@ namespace DoAn.Views
             LoadLoaive();
             LoadBV();
             loadtrang();
-
+            checbox();
 
         }
         string valuecbb ;
@@ -103,7 +110,6 @@ namespace DoAn.Views
         //==BÁN VÉ
         private void btnbanve_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
 
@@ -144,6 +150,11 @@ namespace DoAn.Views
                     };
 
                     LT.PHIEUDATVE.Add(PDV);
+                    if (query.NgayGio <= DateTime.Now)
+                    {
+                        MessageBox.Show("[Sorry. Chuyến bay này đã Khởi Hành!!]");
+                        return;
+                    }
                     if (cmnd > 0)// kiểm tra đã tồn tại
                     {
                         MessageBox.Show("Số CMND :[" +txtcmnd.Text+ "] đã tồn tại!");
@@ -315,8 +326,8 @@ namespace DoAn.Views
             txthanhkhach.Text = "";
             txtgiave.Text = "0";
             txtdienthoai.Text = "";
-            txtcmnd.Text = "";
-            datepk.Text = "1-1-2018";
+            txtcmnd.Text ="";
+            datepk.Text = DateTime.Now.ToString();
             cbbhangve.Text = "--Chọn hang ve--";
         }
 
@@ -327,9 +338,48 @@ namespace DoAn.Views
 
         }
 
+
+        // CẬP NHẬT VE chưa test
         private void btnsua_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (cbbMacb.Text == "--Chọn chuyến bay--")
+                {
+                    MessageBox.Show("Bạn Chưa Chọn chuyến bay cần cập nhật!!");
+                }
+                else
+                {
+                    int cmnd = LT.PHIEUDATVE.Where(m => m.CMND == txtcmnd.Text.ToString()).Count();
+                    var lb = (LT.PHIEUDATVE.Where(m => m.MaCB == valuecbb)).SingleOrDefault();
+                    lb.TenHanhKhach = txthanhkhach.Text;
+                    lb.CMND = txtcmnd.Text;
+                    lb.DienThoai = txtdienthoai.Text;
+                    lb.DonGia = int.Parse(txtgiave.Text.ToString());
+                    lb.NgayDat = datepk.SelectedDate;
+                    if (cmnd > 0)
+                    {
+                        MessageBox.Show("CMND đã tồn tại!");
+                        return;
+                    }
+                    if (lb != null)
+                    {
+                        
+                        LT.SaveChanges();
+                        MessageBox.Show("done!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("chưa update được!");
+                    }
+                }
 
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
         }
 
         // START PAGES
@@ -426,6 +476,27 @@ namespace DoAn.Views
             db.Products = GetSearchQuery(db.CurPage, Pages.PageSize, out totalPage);
             db.TotalPage = totalPage;
         }
+
+        // sự kiện text change cho text box
+        private void txtdienthoai_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtcmnd.Text.Count() == 9  && txtdienthoai.Text.Count() >= 10 && txtdienthoai.Text.Count() <= 11)
+            {
+                btnbanve.IsEnabled = true;
+            }
+            else
+            {
+                btnbanve.IsEnabled = false;
+            }
+        }
+        // Mặc định không cho nhập chữ ở ô text sđt and cmnd
+        private void txtdienthoai_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+        }
+
+       
 
         // ========================END PAGES========================
     }

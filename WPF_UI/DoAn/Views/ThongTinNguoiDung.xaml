@@ -16,7 +16,7 @@
             <Grid.Resources>
                 <!--Style Thongtin-->
                 <Style x:Key="StyleInfo" TargetType="TextBox">
-                    <Setter Property="Foreground" Value="Black"></Setter>
+                    <Setter Property="Foreground" Value="Navy"></Setter>
                     <Setter Property="FontSize" Value="15"></Setter>
                     <Setter Property="Height" Value="25"></Setter>
                     <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -26,12 +26,12 @@
                 </Style>
 
                 <Style x:Key="StyleLabel" TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="DarkViolet"></Setter>
+                    <Setter Property="Foreground" Value="Navy"></Setter>
                     <Setter Property="FontSize" Value="18"></Setter>
                     <Setter Property="FontWeight" Value="Bold"></Setter>
                     <Setter Property="Margin" Value="6"></Setter>
                     <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                    <Setter Property="TextAlignment" Value="Center"></Setter>
+                    <Setter Property="TextAlignment" Value="Left"></Setter>
                 </Style>
             </Grid.Resources>
 
@@ -48,15 +48,15 @@
             <TextBox  Text="{Binding Path=HoTen}" Margin="4" TextAlignment="Center" Padding="10" IsReadOnly="True" Background="Transparent" Name="txtName"   FontSize="25" Foreground="DarkGreen" FontWeight="Bold" Height="auto">
 
             </TextBox>
-            <GroupBox Header="Avatar" FontWeight="Bold" Foreground="RoyalBlue" FontFamily="Time New Roman" Grid.Row="1">
+            <GroupBox Header="Avatar" FontWeight="Bold" Foreground="Navy" FontFamily="Time New Roman" Grid.Row="1">
                 <WrapPanel Orientation="Vertical" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="236" >
                     <Image Name="ImgAvatar" Height="220" Width="198" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"   Source="/Image/1.gif" />
                 </WrapPanel>
 
             </GroupBox>
-            <Button Margin="285,55,285,258"  HorizontalAlignment="Stretch" Click="Button_Click" Content="Browse" FontSize="15" FontWeight="Bold" Foreground="Green" Grid.Row="2" />
+            <Button BorderThickness="1" BorderBrush="Navy" Background="Transparent" Margin="285,55,285,258"  HorizontalAlignment="Stretch" Click="Button_Click" Content="Browse" FontSize="15" FontWeight="Bold" Foreground="Navy" Grid.Row="2" />
             <TextBlock Visibility="Hidden"  Width="auto" Margin="4,5" FontSize="25" Foreground="DarkGreen" FontWeight="Bold" Name="txtID" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Height="33" ></TextBlock>
-            <GroupBox Header="Infomation" FontWeight="Bold" Foreground="RoyalBlue" FontFamily="Time New Roman" Grid.Column="1" Grid.Row="1">
+            <GroupBox Header="Infomation" FontWeight="Bold" Foreground="Navy" FontFamily="Time New Roman" Grid.Column="1" Grid.Row="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -77,38 +77,38 @@
                     <StackPanel Grid.Column="1" Margin="0,25,0,0">
                         <TextBox Text="{Binding Path=Email}" Style="{StaticResource  StyleInfo}" Name="txtEmail"></TextBox>
                         <TextBox Text="{Binding Path=GioiTinh}" Style="{StaticResource  StyleInfo}" Name="txtSex"></TextBox>
-                        <DatePicker SelectedDate="{Binding Path=NgaySinh}"  Name="SinhNhat"  Margin="5,5,5,5" FontSize="20" Foreground="BlueViolet" Opacity="0.7" >
+                        <DatePicker SelectedDate="{Binding Path=NgaySinh}"  Name="SinhNhat"  Margin="5,5,5,5" FontSize="15" Foreground="Navy" Opacity="0.7" >
                         </DatePicker>
                         <TextBox Text="{Binding Path=SoDT}" Style="{StaticResource  StyleInfo}" Name="txtSDT"></TextBox>
                         <TextBox Text="{Binding Path=DiaChi}" Style="{StaticResource  StyleInfo}" Name="txtDiaChi"></TextBox>
                     </StackPanel>
-                    <CheckBox Margin="0,10,10,10"  Grid.Row="2" Name="btnEdit" ToolTip="Click để chỉnh sửa thông tin của bạn"  Checked="btnEdit_Checked" Unchecked="btnEdit_Unchecked"   Content="Edit" FontSize="15" FontWeight="Bold" Foreground="Green" Height="25" />
+                    <CheckBox Margin="0,10,10,10"  Grid.Row="2" Name="btnEdit" ToolTip="Click để chỉnh sửa thông tin của bạn"  Checked="btnEdit_Checked" Unchecked="btnEdit_Unchecked"   Content="Edit" FontSize="15" FontWeight="Bold" Foreground="Navy" Height="25" />
                     <WrapPanel Margin="0,10,10,10" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
 
-                        <Button Name="btnSave" Grid.Column="1" Click="btnSave_Click" Width="100" Content="Save" FontSize="15" FontWeight="Bold" Foreground="Green" Height="25" Margin="4,0" />
-                        <Button Name="btnCancel" Grid.Column="1" Click="btnCancel_Click" Width="100" Content="Cancel" FontSize="15" FontWeight="Bold" Foreground="Green" Height="25" Margin="4,0" />
+                        <Button Background="Transparent" BorderBrush="Navy" BorderThickness="1" Name="btnSave" Grid.Column="1" Click="btnSave_Click" Width="100" Content="Save" FontSize="15" FontWeight="Bold" Foreground="Navy" Height="25" Margin="4,0" />
+                        <Button Background="Transparent" BorderBrush="Navy" BorderThickness="1" Name="btnCancel" Grid.Column="1" Click="btnCancel_Click" Width="100" Content="Cancel" FontSize="15" FontWeight="Bold" Foreground="Navy" Height="25" Margin="4,0" />
                     </WrapPanel>
                 </Grid>
             </GroupBox>
             <Expander Name="Expan" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" ExpandDirection="Down" Height="auto" Width="349" >
                 <Expander.Header>
-                    <TextBlock  FontSize="20" FontWeight="Bold" Foreground="GreenYellow" Text="Đổi Mật Khẩu"></TextBlock>
+                    <TextBlock  FontSize="20" FontWeight="Bold" Foreground="Navy" Text="Đổi Mật Khẩu"></TextBlock>
                 </Expander.Header>
                 <StackPanel >
                     <WrapPanel Margin="-50,10,0,0">
-                        <TextBlock FontSize="20" FontWeight="Bold" Text="Old Password"></TextBlock>
+                        <TextBlock Foreground="Navy" FontSize="20" FontWeight="Bold" Text="Old Password"></TextBlock>
                         <PasswordBox Margin="45,0,0,0" Name="pOldPass" Width="202" Height="31"></PasswordBox>
                     </WrapPanel>
                     <WrapPanel Margin="-56,10,0,0">
-                        <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Text="New Password"></TextBlock>
+                        <TextBlock Foreground="Navy" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Text="New Password"></TextBlock>
                         <PasswordBox Margin="40,0,0,0" Name="pNewPass" Width="202" Height="31"></PasswordBox>
                     </WrapPanel>
                     <WrapPanel Margin="-77,10,0,0">
-                        <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Text="Confirm Password" Width="183"/>
+                        <TextBlock Foreground="Navy" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Text="Confirm Password" Width="183"/>
                         <PasswordBox Margin="200,-24,0,0" x:Name="pPass" Width="202" Height="31"/>
                     </WrapPanel>
-                    <Button Margin="0,20,0,0" Click="SavePasswd_Click" Name="SavePasswd" HorizontalAlignment="Right" Background="Cyan" Height="20" Width="70">
-                        <TextBlock   FontWeight="Bold" Foreground="Green" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Update"></TextBlock>
+                    <Button Background="Transparent" Margin="0,20,0,0" Click="SavePasswd_Click" Name="SavePasswd" HorizontalAlignment="Right" BorderBrush="Navy" BorderThickness="1" Height="20" Width="70">
+                        <TextBlock   FontWeight="Bold" Foreground="Navy" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Update"></TextBlock>
                     </Button>
                     <Label  Margin="0,10,0,10" Foreground="Red" Name="error"></Label>
                 </StackPanel>

@@ -12,6 +12,49 @@
              mc:Ignorable="d" 
             Height="740" Width="1300" Loaded="UserControl_Loaded">
     <UserControl.Resources>
+        <!--style button-->
+        <Style TargetType="Button" x:Key="TabButton">
+            <Setter Property="Background" Value="AliceBlue" />
+            <Setter Property="Foreground" Value="Navy" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bdbt" CornerRadius="60 0 0 0" Background="AliceBlue" BorderBrush="Navy" BorderThickness="0,1,1,4" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="TabButtonFirst">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="3,0,0,0" Background="White" BorderBrush="#ccc" BorderThickness="0,1,1,0" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="TabButtonLast">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="0,0,0,3" Background="White" BorderBrush="#ccc" BorderThickness="0,1,1,0" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--end style-->
+
         <m:Pages x:Key="dbForWd"></m:Pages>
         <Style TargetType="{x:Type TextBox}" x:Key="styletextbox">
             <Style.Triggers>
@@ -484,23 +527,24 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70"/>
             <ColumnDefinition Width="86"/>
-            <ColumnDefinition Width="94"/>
-            <ColumnDefinition />
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="131"/>
+            <ColumnDefinition Width="118*" />
+            <ColumnDefinition Width="58"/>
+            <ColumnDefinition Width="63*" />
             <ColumnDefinition Width="180"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="63*" />
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="64*" />
+            <ColumnDefinition Width="63*" />
+            <ColumnDefinition Width="64*" />
+            <ColumnDefinition Width="63*" />
+            <ColumnDefinition Width="64*" />
+            <ColumnDefinition Width="63*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="85"/>
-            <RowDefinition  Height="80"/>
+            <RowDefinition  Height="20"/>
+            <RowDefinition Height="60"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -517,8 +561,18 @@
 
         </Grid.RowDefinitions>
 
-        <TextBlock Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="4" Grid.ColumnSpan="6" TextAlignment="Center" VerticalAlignment="Bottom" Margin="4,0,0,15">TRA CỨU CHUYẾN BAY</TextBlock>
-        <Button Name="back" Click="back_Click"  Style="{StaticResource IconButton}"    Background="Transparent" BorderThickness="0" Width="55" Height="55"  Grid.Column="1" Margin="62,15" Grid.ColumnSpan="2" >
+        <Button   Name="btntccb" Click="btntccb_Click" FontSize="17" Foreground="blue" Grid.Column="2" Grid.Row="2"  Style="{StaticResource TabButton}"  >
+            Tra Cứu CB
+        </Button>
+
+
+        <Button Name="btntcve" Click="btntcve_Click" FontSize="17" Style="{StaticResource TabButton}" BorderBrush="Navy" BorderThickness="2" Grid.Column="3" Grid.Row="2">
+            Tra Cứu Vé
+        </Button>
+
+
+        <TextBlock Name="tbtiltle" FontSize="30" FontWeight="DemiBold" Foreground="Navy" Grid.Column="2" Grid.ColumnSpan="8" TextAlignment="Center" VerticalAlignment="Bottom" Margin="74,0,0,15" Height="40">TRA CỨU CHUYẾN BAY</TextBlock>
+        <Button Name="back" Click="back_Click"  Style="{StaticResource IconButton}"    Background="Transparent" BorderThickness="0"  Grid.Column="1" Margin="62,15" Grid.ColumnSpan="2" >
             <Button.ToolTip>
                 <ToolTip>
                     Quay về trang trước
@@ -526,49 +580,160 @@
             </Button.ToolTip>
             <fa:ImageAwesome Icon="ArrowCircleLeft" Spin="False" SpinDuration="30" Width="40" Height="40"  Foreground="Black" ></fa:ImageAwesome>
         </Button>
-        <GroupBox Name="grinfo" Grid.Row="1" Grid.ColumnSpan="11" Grid.RowSpan="5" Margin="51,42,44,27">
+        <!--TIM kiem chuyen bay-->
+        <GroupBox   Name="grinfo" Grid.Row="3" Grid.ColumnSpan="11" Grid.RowSpan="6" Margin="51,24,44,10">
             <GroupBox.Header>
                 <TextBlock  Style="{StaticResource Styletxtblock}" >Tìm Kiếm Chuyến Bay</TextBlock>
             </GroupBox.Header>
-        </GroupBox>
-        <!--Group text-->
-        <TextBlock Background="#F1E9EA" Name="tbcb" Margin="0 9" FontSize="23"  Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1">
+            <Border  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="9" Grid.RowSpan="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+
+
+                    </Grid.RowDefinitions>
+
+                    <!--Group text-->
+                    <TextBlock Background="#F1E9EA" Name="tbcb" Margin="0,9,0,5" FontSize="23"  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1">
                  <fa:ImageAwesome Icon="MapMarker" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Black" ></fa:ImageAwesome>
                  Từ :
-        </TextBlock>
-        <TextBlock Name="tbngayban" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,11">Ngày Khởi hành:</TextBlock>
-        <!--SÂN BAY ĐẾN-->
-        <TextBlock Margin="1,9,0,9" FontSize="23" Background="#F1E9EA" x:Name="tbhangve"   Grid.Column="6" Grid.Row="2" HorizontalAlignment="Left" Width="87"><InlineUIContainer>
+                    </TextBlock>
+                    <TextBlock Name="tbngaykh" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,8,0,0" Height="36">Từ Tháng:</TextBlock>
+                    <TextBlock Name="tbngaykt" Style="{StaticResource Styletxtblock}"  Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,8,0,0" Height="36">Đến Tháng:</TextBlock>
+
+                    <!--SÂN BAY ĐẾN-->
+                    <TextBlock Margin="1,7,0,7" FontSize="23" Background="#F1E9EA" x:Name="tbhangve"   Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" Width="87" Grid.ColumnSpan="2"><InlineUIContainer>
                 <fa:ImageAwesome Icon="MapMarker" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Black" />
             </InlineUIContainer><Run Text=" Đến :"/></TextBlock>
-        <!--group box-->
-        <ComboBox  BorderThickness="0 0.5 0.5 0.5" SelectionChanged="cbbMaSBdi_SelectionChanged"
+                    <!--group box-->
+                    <ComboBox  BorderThickness="0 0.5 0.5 0.5" SelectionChanged="cbbMaSBdi_SelectionChanged"
             DisplayMemberPath="TenSB"
             SelectedValuePath="MaSB" 
             ItemsSource="{Binding Path=SANBAY}" 
             SelectedValue="{Binding SelectedItem.MaSB}"
             Text="               --Chọn Sân Bay Đi--"
-            Name="cbbMaSBdi" FontSize="19" VerticalAlignment="Top" IsEditable="True" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" Height="30" Margin="0,9,0,0">
-        </ComboBox>
-        <DatePicker  BorderBrush="White"    VerticalAlignment="Center" FontSize="19" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2" Name="datepk"
+            Name="cbbMaSBdi" FontSize="19" VerticalAlignment="Top" IsEditable="True" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3" Height="30" Margin="0,9,0,0">
+                    </ComboBox>
+                    <DatePicker  BorderBrush="White"    VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" Name="datepk"
                                     DisplayDate="{x:Static clr:DateTime.Now}" 
                                     SelectedDate="{x:Static clr:DateTime.Now}" Margin="0,8"
            >
-        </DatePicker>
-        <!--cbb hạng ve-->
-        <ComboBox BorderThickness="0 0.5 0.5 0.5" IsReadOnly="True" SelectionChanged="cbbSBden_SelectionChanged"
+                    </DatePicker>
+                    <DatePicker  BorderBrush="White"    VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="4" Name="datepk2"
+                                    DisplayDate="{x:Static clr:DateTime.Now}" 
+                                    SelectedDate="{x:Static clr:DateTime.Now}" Margin="104,8,0,8"
+           >
+                    </DatePicker>
+                    <!--cbb hạng ve-->
+                    <ComboBox BorderThickness="0 0.5 0.5 0.5" IsReadOnly="True" SelectionChanged="cbbSBden_SelectionChanged"
             DisplayMemberPath="TenSB"
             SelectedValuePath="MaSB"
             ItemsSource="{Binding Path=SANBAY}" 
             SelectedValue="{Binding SelectedItem.MaSB}"
             Text = "            --Chọn Sân Bay Đến-- "
-            Name="cbbSBden" FontSize="19" VerticalAlignment="Center" IsEditable="True" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="3" Margin="88,9,0,9" Height="30">
-        </ComboBox>
-        <!--box so luong ghe hang 1-->
+            Name="cbbSBden" FontSize="19" VerticalAlignment="Center" IsEditable="True" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,7" Height="30">
+                    </ComboBox>
+                    <!--box so luong ghe hang 1-->
 
-        <!--thong tin ban ve-->
-        <DataGrid IsReadOnly="True" MouseDoubleClick="gridBV_MouseDoubleClick" SelectionChanged="gridBV_SelectionChanged"  FontSize="20" Name="gridBV" Grid.Row="5" Grid.ColumnSpan="15" Grid.RowSpan="8" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
-              AutoGenerateColumns="False" Margin="51 " Height="auto">
+                </Grid>
+            </Border>
+        </GroupBox>
+        <!--end tim kiem chuyen bay-->
+
+        <!--Tra cuu ve-->
+        <GroupBox Visibility="Collapsed"  Name="grinfotracuu" Grid.Row="3" Grid.ColumnSpan="11" Grid.RowSpan="6" Margin="51,24,44,10">
+            <GroupBox.Header>
+                <TextBlock  Style="{StaticResource Styletxtblock}" >Tra cứu Vé</TextBlock>
+            </GroupBox.Header>
+            <Border  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="9" Grid.RowSpan="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+
+
+                    </Grid.RowDefinitions>
+
+                    <!--Group text-->
+                    <TextBlock Background="#F1E9EA" Name="tbcbtracuu" Margin="0,7,24,0" FontSize="23"  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                 Số CMND:
+                    </TextBlock>
+                    <TextBlock Name="tbngaykhtracuu" Style="{StaticResource Styletxtblock}"  Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11">Từ Tháng:</TextBlock>
+                    <TextBlock Name="tbngaykttracuu" Style="{StaticResource Styletxtblock}"  Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11">Đến Tháng:</TextBlock>
+
+                    <!--SÂN BAY ĐẾN-->
+                    <TextBlock Visibility="Collapsed" Margin="1,9,0,9" FontSize="23" Background="#F1E9EA" x:Name="tbhangvetracuu"   Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" Width="87"><InlineUIContainer>
+                <fa:ImageAwesome Icon="MapMarker" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Black" />
+            </InlineUIContainer><Run Text=" Đến :"/></TextBlock>
+                    <!--group box-->
+
+
+                    <TextBox Name="txtcmnd" PreviewTextInput="TextBox_PreviewTextInput" 
+                             FontSize="19" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4" Height="40" Margin="67,7,0,0" Grid.RowSpan="2"></TextBox>
+                    <DatePicker  BorderBrush="White"    VerticalAlignment="Center" FontSize="19" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" Name="datepktracuu"
+                                    DisplayDate="{x:Static clr:DateTime.Now}" 
+                                    SelectedDate="{x:Static clr:DateTime.Now}" Margin="0,8"
+           >
+                    </DatePicker>
+                    <DatePicker  BorderBrush="White"    VerticalAlignment="Center" FontSize="19" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="4" Name="datepk2tracuu"
+                                    DisplayDate="{x:Static clr:DateTime.Now}" 
+                                    SelectedDate="{x:Static clr:DateTime.Now}" Margin="104,8,0,8"
+           >
+                    </DatePicker>
+                    <!--cbb hạng ve-->
+                    <ComboBox Visibility="Collapsed" BorderThickness="0 0.5 0.5 0.5" IsReadOnly="True" SelectionChanged="cbbSBden_SelectionChanged"
+            DisplayMemberPath="TenSB"
+            SelectedValuePath="MaSB"
+            ItemsSource="{Binding Path=SANBAY}" 
+            SelectedValue="{Binding SelectedItem.MaSB}"
+            Text = "            --Chọn Sân Bay Đến-- "
+            Name="cbbSBdentracuu" FontSize="19" VerticalAlignment="Center" IsEditable="True" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="4" Margin="88,9,0,9" Height="30">
+                    </ComboBox>
+                    <!--box so luong ghe hang 1-->
+
+                </Grid>
+            </Border>
+        </GroupBox>
+
+        <!--end tra cuu ve-->
+        <!--thong tin chuyen bay-->
+        <DataGrid  IsReadOnly="True" MouseDoubleClick="gridBV_MouseDoubleClick" SelectionChanged="gridBV_SelectionChanged"  FontSize="20" Name="gridBV" Grid.Row="9" Grid.ColumnSpan="13" Grid.RowSpan="5" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
+              AutoGenerateColumns="False" Margin="51,3,10,4" Height="auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding MaCB}"  Header="Mã CB" Width="150"/>
                 <DataGridTextColumn Binding="{Binding TenCB}"    Header="Tên chuyến bay" Width="250"/>
@@ -580,7 +745,7 @@
                 <!--<DataGridTextColumn Binding="{Binding NgayDat, StringFormat={}{0:dd/MM/yyyy}}"  Header="Ngày Đặt" Width="170"/>-->
                 <!--xoa san bay trung gian-->
 
-                <DataGridTemplateColumn >
+                <!--<DataGridTemplateColumn >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Background="Transparent" BorderThickness="0" Name="btnxoasbtg"  Width="70" >
@@ -589,15 +754,60 @@
 
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
 
             </DataGrid.Columns>
         </DataGrid>
-        <Border BorderBrush="Navy" BorderThickness="2" CornerRadius="6"  Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3">
+        <!--end chuyen bay-->
+
+        <!--thong tin dat ve-->
+        <DataGrid Visibility="Collapsed"  SelectionChanged="gridBV_SelectionChanged" FontSize="20" Name="gridBanVe" Grid.Row="9" Grid.ColumnSpan="13" Grid.RowSpan="5" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
+              AutoGenerateColumns="False" Margin="51,9,10,0" >
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Binding="{Binding MaCB}"  Header="Mã CB" Width="150"/>
+                <DataGridTextColumn Binding="{Binding TenHanhKhach}"    Header="Tên khách hàng" Width="210"/>
+                <!--<DataGridTextColumn Binding="{Binding ThoiGianDung}"  Header="Thời Gian Dừng" Width="160"/>-->
+                <DataGridTextColumn Binding="{Binding MaLoai}"  Header="Loại vé" Width="70"/>
+                <DataGridTextColumn Binding="{Binding DonGia}"  Header="Đơn giá" Width="120"/>
+                <DataGridTextColumn Binding="{Binding NgayDat, StringFormat={}{0:dd/MM/yyyy}}"  Header="Ngày Đặt" Width="170"/>
+                <DataGridTextColumn  Binding="{Binding DienThoai}" Header="Điện thoại" Width="180"/>
+                <DataGridTextColumn  Binding="{Binding CMND}" Header="So CMND" Width="160"/>
+                <!--<DataGridTextColumn  Binding="{Binding GhiChu}" Width="230" Header="Ghi Chú"
+                                    />-->
+
+
+                <!--xoa san bay trung gian-->
+                <!--<DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Background="Transparent" BorderThickness="0" Name="btnxoasbtg"  Width="70" >
+                                <fa:ImageAwesome Icon="Remove" SpinDuration="30" Width="18" Height="18"  Foreground="#FF8080" ></fa:ImageAwesome>
+                            </Button>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border BorderBrush="Navy" BorderThickness="2" CornerRadius="6"  Grid.Column="11" Grid.Row="5" Grid.ColumnSpan="3">
+            <Button Background="Transparent" BorderThickness="0"   Name="btntimkiem1"  Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3" Click="btntimkiem1_Click">
+                <Button.Content>
+                    <DockPanel>
+                        <fa:ImageAwesome Icon="AngleDoubleRight" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />
+                        <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Tìm Kiếm " FontSize="21" />
+                    </DockPanel>
+                </Button.Content>
+            </Button>
+        </Border>
+        <!--end thong tin dat ve-->
+        <Border BorderBrush="Navy" BorderThickness="2" CornerRadius="6"  Grid.Column="11" Grid.Row="7" Grid.ColumnSpan="3">
             <Button Background="Transparent" BorderThickness="0"   Name="btntimkiem"  Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="3" Click="btntimkiem_Click">
                 <Button.Content>
                     <DockPanel>
-                        <fa:ImageAwesome Icon="Search" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />
+                        <fa:ImageAwesome Icon="AngleDoubleRight" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />
                         <TextBlock Margin="20,0,0,0" Padding="15 0" FontWeight="DemiBold" Text="Tìm Kiếm " FontSize="21" />
                     </DockPanel>
                 </Button.Content>
