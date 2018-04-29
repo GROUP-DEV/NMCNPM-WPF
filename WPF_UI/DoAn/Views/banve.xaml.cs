@@ -144,6 +144,7 @@ namespace DoAn.Views
                         CMND = txtcmnd.Text,
                         DienThoai = txtdienthoai.Text,
                         DonGia = int.Parse(txtgiave.Text.ToString()),
+                        //DonGia = int.Parse(String.Format("{0:0,0}", txtgiave.Text)),
                         MaLoai = cbbhangve.SelectedValue.ToString(),
                         NgayDat = datepk.SelectedDate,
                         STT = soMaxCB,
@@ -270,6 +271,8 @@ namespace DoAn.Views
                 txtdienthoai.Text = (gridBV.SelectedItem as PHIEUDATVE).DienThoai;
                 txthanhkhach.Text = (gridBV.SelectedItem as PHIEUDATVE).TenHanhKhach;
                 datepk.Text = (gridBV.SelectedItem as PHIEUDATVE).NgayDat.ToString();
+                txtgiave0.Text= String.Format("{0:0,0 VNĐ}", (gridBV.SelectedItem as PHIEUDATVE).DonGia);
+                txtgiave.Text = (gridBV.SelectedItem as PHIEUDATVE).DonGia.ToString();
             }
             catch (Exception)
             {
@@ -302,13 +305,14 @@ namespace DoAn.Views
                 if (maloai == "1")// neu bang 1 thi thu thi theo nó ok
                 {
                     txtsoluongghetrong.Text = query.SoLuongGheHang1.ToString();
-
                     txtgiave.Text = layDG.DonGia.ToString();
+                    txtgiave0.Text = String.Format("{0:0,0 VNĐ}", layDG.DonGia);
                 }
                 else
                 {
                     txtsoluongghetrong.Text = query.SoLuongGheHang2.ToString();
                     txtgiave.Text = layDG.DonGia.ToString();
+                    txtgiave0.Text = String.Format("{0:0,0 VNĐ}", layDG.DonGia);
                 }
             }
             catch (Exception)
@@ -350,21 +354,12 @@ namespace DoAn.Views
                 }
                 else
                 {
-                    int cmnd = LT.PHIEUDATVE.Where(m => m.CMND == txtcmnd.Text.ToString()).Count();
-                    var lb = (LT.PHIEUDATVE.Where(m => m.MaCB == valuecbb)).SingleOrDefault();
-                    lb.TenHanhKhach = txthanhkhach.Text;
-                    lb.CMND = txtcmnd.Text;
-                    lb.DienThoai = txtdienthoai.Text;
-                    lb.DonGia = int.Parse(txtgiave.Text.ToString());
-                    lb.NgayDat = datepk.SelectedDate;
-                    if (cmnd > 0)
+                    var cmnd = LT.PHIEUDATVE.Where(m => m.CMND == txtcmnd.Text.ToString()).SingleOrDefault();
+                    //var lb = (LT.PHIEUDATVE.Where(m => m.MaCB == valuecbb)).SingleOrDefault();        
+                    cmnd.DienThoai = txtdienthoai.Text;
+                 
+                    if (cmnd != null)
                     {
-                        MessageBox.Show("CMND đã tồn tại!");
-                        return;
-                    }
-                    if (lb != null)
-                    {
-                        
                         LT.SaveChanges();
                         MessageBox.Show("done!");
                     }
@@ -495,8 +490,39 @@ namespace DoAn.Views
             var textBox = sender as TextBox;
             e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
         }
+        // XOA PHIEU DAT VE
+        private void btnxoasbtg_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string ID = (gridBV.SelectedItem as PHIEUDATVE).CMND;
+                var xoa = (LT.PHIEUDATVE.Where(m => m.CMND == ID )).SingleOrDefault();
+                if (xoa != null)
+                {
+                    if (MessageBox.Show("BẠN CHẮC CHƯA?", "            THÔNG BÁO    ", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        LT.PHIEUDATVE.Remove(xoa);
+                        LT.SaveChanges();
+                        loadtrang();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("[KHÔNG LÂY ĐƯƠC MÃ SÂN BAY!]");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("row empty!(^^)");
+                return;
+            }
+        }
 
-       
+
 
         // ========================END PAGES========================
     }

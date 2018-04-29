@@ -601,11 +601,15 @@
         <!--box thoi gian bay-->
         <TextBox IsEnabled="False" Name="txttgbay" VerticalAlignment="Center" FontSize="19" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11,0,10" ></TextBox>
         <!--gia ve-->
-        <TextBox Text="{Binding SelectedItem.DonGia, ElementName=gridBV}" Name="txtgiave" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+        <!--cái này để hiển thi-->
+        <TextBox IsReadOnly="True" Text="{Binding SelectedItem.DonGia, ElementName=gridBV}" Name="txtgiave0" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+
+        <TextBox IsReadOnly="True" Text="{Binding SelectedItem.DonGia, ElementName=gridBV}" Name="txtgiave" Visibility="Collapsed" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+
         <!--gia ve-->
         <TextBox Style="{StaticResource styletextbox}"  Name="txthanhkhach" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,11"></TextBox>
         <TextBox PreviewTextInput="txtdienthoai_PreviewTextInput" TextChanged="txtdienthoai_TextChanged" Style="{StaticResource styletextbox}" Text="{Binding Path=Phone,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Name="txtdienthoai" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
-        <TextBox TextChanged="txtdienthoai_TextChanged" PreviewTextInput="txtdienthoai_PreviewTextInput" Style="{StaticResource styletextbox}" Text="{Binding Path=CMND,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Name="txtcmnd" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+        <TextBox IsReadOnly="True" TextChanged="txtdienthoai_TextChanged" PreviewTextInput="txtdienthoai_PreviewTextInput" Style="{StaticResource styletextbox}" Text="{Binding Path=CMND,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Name="txtcmnd" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
 
         <!--thong tin ban ve-->
         <DataGrid SelectionChanged="gridBV_SelectionChanged" FontSize="20" Name="gridBV" Grid.Row="7" Grid.ColumnSpan="15" Grid.RowSpan="6" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"
@@ -628,7 +632,7 @@
                 <DataGridTemplateColumn >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Background="Transparent" BorderThickness="0" Name="btnxoasbtg"  Width="70" >
+                            <Button Background="Transparent" BorderThickness="0" Name="btnxoasbtg"  Width="70" Click="btnxoasbtg_Click">
                                 <fa:ImageAwesome Icon="Remove" SpinDuration="30" Width="18" Height="18"  Foreground="#FF8080" ></fa:ImageAwesome>
                             </Button>
 
@@ -661,11 +665,12 @@
 
         </Border>
 
-        <Button Click="btnres_Click" Name="btnres" Grid.Column="11" Grid.Row="6" Grid.ColumnSpan="3"   Style="{StaticResource StyleButtonchuyenbay}" BorderThickness="0"   Height="50" Margin="0,0,0,46" Grid.RowSpan="2" >
+        <Button BorderBrush="Navy"  Background="Transparent" Click="btnres_Click" Name="btnres" Grid.Column="11" Grid.Row="6" Grid.ColumnSpan="3"    BorderThickness="2" Margin="0,0,0,8" >
             <Button.Content>
-                <StackPanel>
-                    <fa:ImageAwesome Icon="File"  SpinDuration="30" Width="40" Height="40"  Foreground="AliceBlue" ></fa:ImageAwesome>
-                </StackPanel>
+                <DockPanel>
+                    <fa:ImageAwesome Icon="NewspaperOutline" Spin="False" SpinDuration="30" Width="25" Height="25"  Foreground="Navy" />
+                    <TextBlock Padding="25 0 0 0" FontSize="20" Foreground="Navy" Width="112">Refesh</TextBlock>
+                </DockPanel>
             </Button.Content>
         </Button>
         <!--phan trang-->
