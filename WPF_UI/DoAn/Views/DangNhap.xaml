@@ -7,10 +7,16 @@
              mc:Ignorable="d" 
              Background="Transparent"
              Loaded="UserControl_Loaded"
-             Height="700" Width="1300" >
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Background="AliceBlue" Width="627" Height="330">
-        <TextBlock Height="23" HorizontalAlignment="Center" Margin="10,10,0,0" Name="LoginHeading" Text="LOGIN" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed" RenderTransformOrigin="5.246,0.995"/>
-        <TextBlock Height="57" HorizontalAlignment="Center" Margin="97,48,54,0" Name="textBlockHeading" VerticalAlignment="Top" FontSize="12" FontStyle="Italic" Padding="5" Width="368">
+             Height="800" Width="1300" >
+    <Grid  >
+        <Grid.Background >
+            <!--hình nen-->
+            <!--Stretch="Fill"-->
+            <ImageBrush  ImageSource="../Images/bg-plane.jpg" TileMode="Tile"/>
+        </Grid.Background>
+      
+        <TextBlock Height="35" HorizontalAlignment="Center" Margin="549,60,573,0" Name="LoginHeading" Text="ĐĂNG NHẬP" VerticalAlignment="Top" FontSize="25" FontStretch="ExtraCondensed" RenderTransformOrigin="5.246,0.995" Width="178"/>
+        <TextBlock Height="57" HorizontalAlignment="Center" Margin="439,173,493,0" Name="textBlockHeading" VerticalAlignment="Top" FontSize="12" FontStyle="Italic" Padding="5" Width="368">
                     Note: Please login here to Home . If you are new on this site then <LineBreak /><!--line break-->
                 please click on
                 <!--textblock as a Hyperlink.-->
@@ -22,12 +28,12 @@
                     
             </TextBlock>
 
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="49,120,0,0" Name="textBlock1" Text="User Name" VerticalAlignment="Top" Width="84" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,168,0,0" Name="textBlock2" Text="PassWord" VerticalAlignment="Top" Width="77" />
-        <TextBox  KeyDown="txtName_KeyDown" Height="23" HorizontalAlignment="Left" Margin="118,115,0,0" Name="txtName" VerticalAlignment="Top" Width="247" />
-        <PasswordBox KeyDown="txtName_KeyDown" Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" Name="txtPasswd" VerticalAlignment="Top" Width="247" />
-        <Button Click="btnLogin_Click" Content="Login" Height="23" HorizontalAlignment="Left" Margin="118,211,0,0" Name="btnLogin" VerticalAlignment="Top" Width="104" />
-        <Button Click="btnCancel_Click" Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="260,211,0,0" Name="btnCancel" VerticalAlignment="Top" Width="104" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="396,282,0,0" Name="textBlock1" Text="Tên Đăng Nhập" VerticalAlignment="Top" Width="84" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="396,348,0,0" Name="textBlock2" Text="Mật Khẩu" VerticalAlignment="Top" Width="77" />
+        <TextBox  KeyDown="txtName_KeyDown" Height="25" HorizontalAlignment="Left" Margin="526,282,0,0" Name="txtName" VerticalAlignment="Top" Width="247" />
+        <PasswordBox KeyDown="txtName_KeyDown" Height="25" HorizontalAlignment="Left" Margin="526,348,0,0" Name="txtPasswd" VerticalAlignment="Top" Width="247" />
+        <Button BorderBrush="AliceBlue" BorderThickness="1"  Click="btnLogin_Click" Content="Đăng Nhập" Height="23" HorizontalAlignment="Left" Margin="527,433,0,0" Name="btnLogin" VerticalAlignment="Top" Width="104" />
+        <Button BorderBrush="AliceBlue" BorderThickness="1" Click="btnCancel_Click" Content="Thoát" Height="23" HorizontalAlignment="Left" Margin="669,433,0,0" Name="btnCancel" VerticalAlignment="Top" Width="104" />
         <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="118,253,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
     </Grid>
 </UserControl>

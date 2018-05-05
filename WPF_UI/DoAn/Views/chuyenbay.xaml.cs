@@ -86,6 +86,7 @@ namespace DoAn.Views
             bool check = cb.LoadSBtrunggian(valuecbb);
             if (check == true)
             {
+                gridSBTG.Items.Refresh();
                 gridSBTG.ItemsSource = cb.CLoadSBtrunggian;
             }
             else
@@ -233,10 +234,13 @@ namespace DoAn.Views
         {
             try
             {
+                var quydinh = LT.THAYDOIQUYDINH.Where(m => m.STT == 1).SingleOrDefault();
+
                 string ID = (grsbay.SelectedItem as SANBAY).MaSB;// lấy ID từ grid
 
-                if (cb.Soluongsanbaytrunggian(valuecbb) >= 2)
+                if (cb.Soluongsanbaytrunggian(valuecbb) >= quydinh.SoSBTGToiDa)// xác đính số sb trung gian tối đa
                 {
+                    tberror.Text = "Số Sân Bay trung gian tối đa là " + quydinh.SoSBTGToiDa;
                     tberror.Visibility = Visibility.Visible;
                     return;
                 }
@@ -297,15 +301,18 @@ namespace DoAn.Views
             try
             {
                 // lay thoi gian dung trong database
+                var quydinh = LT.THAYDOIQUYDINH.Where(m => m.STT == 1).SingleOrDefault();
                 string ID = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).MaSBTrungGian;
                 int? thoigiandungs = (gridSBTG.SelectedItem as SANBAYTRUNGGIAN).ThoiGianDung;
-                if (10 <= thoigiandungs && thoigiandungs <= 30)
+                if (quydinh.TGDungToiThieu <= thoigiandungs && thoigiandungs <= quydinh.TGDungToiDa)// xác định ràng buộc 
                 {
                     cb.capnhatsanbaytrunggian(ID, valuecbb);
+                    LoadSBtrunggian();
                 }
                 else
                 {
-                    MessageBox.Show("Thời Gian dừng từ 10 phút -> 30 phút");
+                    MessageBox.Show("Thời Gian dừng từ "+ quydinh.TGDungToiThieu + " phút -> "+ quydinh.TGDungToiDa + " phút");
+                    LoadSBtrunggian();
                 }
 
             }
@@ -380,6 +387,7 @@ namespace DoAn.Views
         // THÊM CHUYẾN BAY
         private void btnthemCB_Click(object sender, RoutedEventArgs e)
         {
+
             bdluu.Visibility = Visibility.Visible;// hiện nút lưu lại đi
             txtSBDen.IsEnabled = true;// khi click vào thêm thì mở tag này ra ok
             txtSBDi.IsEnabled = true;
@@ -408,8 +416,9 @@ namespace DoAn.Views
             gridSBTG.ItemsSource = null;
             btnxoaCB.IsEnabled = false;// khi nhấn thêm thì ẩn xóa cập nhật đi
             btncapnhatCB.IsEnabled = false;
+            txtchuyenbay.IsReadOnly = true;
         }
-
+        // Thêm lịch chuyến bay
         private void btnluulaiCB_Click(object sender, RoutedEventArgs e)
         {
 
@@ -427,7 +436,7 @@ namespace DoAn.Views
                 string maso = "000" + so;// tao day chư số tự tăng
                 maso = maso.Substring(maso.Length - 4, 4);// vd: 0001 0010
 
-                if (temp == 1)
+                if (temp == 1)// =1  thì đang ở trang thêm
                 {
                     if (txtchuyenbay.Text == "")
                     {
@@ -448,6 +457,7 @@ namespace DoAn.Views
                             else
                             {
                                 var LT = new QLVeMayBayEntities();
+                                var quydinh = LT.THAYDOIQUYDINH.Where(m => m.STT == 1).SingleOrDefault();
                                 var sp = new CHUYENBAY// thêm chuyến bay mới
                                 {
                                     MaCB = masbdi + "-" + masbden + maso,
@@ -471,9 +481,9 @@ namespace DoAn.Views
                                     SoLuongGheTrong = txtgheh1.Value + txtgheh2.Value,
                                     SoLuongGheDat = 0,
                                 };
-                                if (dtpickerthoigianbay.Value < DateTime.Parse("00:30:00"))// XÁC ĐỊNH THỜI GIAN BAY THỐI THIỂU
+                                if (DateTime.Parse(dtpickerthoigianbay.Value.ToString()) < DateTime.Parse(quydinh.TGBayToiThieu))// XÁC ĐỊNH THỜI GIAN BAY THỐI THIỂU
                                 {
-                                    MessageBox.Show("Thời Gian Bay tối thiểu là 30 phút");
+                                    MessageBox.Show("Thời Gian Bay tối thiểu là "+ quydinh.TGBayToiThieu + " phút");
                                 }
                                 else
                                 {
@@ -532,19 +542,27 @@ namespace DoAn.Views
                 }
                 else
                 {
+                    var quydinh = LT.THAYDOIQUYDINH.Where(m => m.STT == 1).SingleOrDefault();
                     var lb = (LT.LICHBAY.Where(m => m.MaCB == valuecbb)).SingleOrDefault();
                     lb.SoLuongGheHang1 = txtgheh1.Value;
                     lb.SoLuongGheHang2 = txtgheh2.Value;
                     lb.NgayGio = dtpicker.Value;
                     lb.ThoiGianBay = dtpickerthoigianbay.Text.ToString();
-                    if (lb != null)
+                    if (DateTime.Parse(dtpickerthoigianbay.Value.ToString()) < DateTime.Parse(quydinh.TGBayToiThieu))// XÁC ĐỊNH THỜI GIAN BAY THỐI THIỂU
                     {
-                        LT.SaveChanges();
-                        MessageBox.Show("done!");
+                        MessageBox.Show("Thời Gian Bay tối thiểu là " + quydinh.TGBayToiThieu + " phút");
                     }
                     else
                     {
-                        MessageBox.Show("chưa update được!");
+                        if (lb != null)
+                        {
+                            LT.SaveChanges();
+                            MessageBox.Show("done!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("chưa update được!");
+                        }
                     }
                 }
                

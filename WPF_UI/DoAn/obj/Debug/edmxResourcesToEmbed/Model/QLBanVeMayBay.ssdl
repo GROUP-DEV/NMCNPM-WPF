@@ -95,7 +95,18 @@
     <Property Name="Avatar" Type="image" />
     <Property Name="MaLoaiTK" Type="int" />
   </EntityType>
-  <Association Name="FK__LICHBAY__MaCB__20C1E124">
+  <EntityType Name="THAYDOIQUYDINH">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SLSanBay" Type="int" />
+    <Property Name="TGBayToiThieu" Type="varchar" MaxLength="30" />
+    <Property Name="SoSBTGToiDa" Type="int" />
+    <Property Name="TGDungToiThieu" Type="int" />
+    <Property Name="TGDungToiDa" Type="int" />
+  </EntityType>
+  <Association Name="FK__LICHBAY__MaCB__22AA2996">
     <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="1" />
     <End Role="LICHBAY" Type="Self.LICHBAY" Multiplicity="*" />
     <ReferentialConstraint>
@@ -107,7 +118,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LICHBAY__MaSanBa__21B6055D">
+  <Association Name="FK__LICHBAY__MaSanBa__239E4DCF">
     <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
     <End Role="LICHBAY" Type="Self.LICHBAY" Multiplicity="*" />
     <ReferentialConstraint>
@@ -119,7 +130,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LICHBAY__MaSanBa__22AA2996">
+  <Association Name="FK__LICHBAY__MaSanBa__24927208">
     <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
     <End Role="LICHBAY" Type="Self.LICHBAY" Multiplicity="*" />
     <ReferentialConstraint>
@@ -131,7 +142,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PHIEUDATV__MaLoa__24927208">
+  <Association Name="FK__PHIEUDATV__MaLoa__267ABA7A">
     <End Role="LOAIVE" Type="Self.LOAIVE" Multiplicity="0..1" />
     <End Role="PHIEUDATVE" Type="Self.PHIEUDATVE" Multiplicity="*" />
     <ReferentialConstraint>
@@ -143,7 +154,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PHIEUDATVE__MaCB__239E4DCF">
+  <Association Name="FK__PHIEUDATVE__MaCB__25869641">
     <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="0..1" />
     <End Role="PHIEUDATVE" Type="Self.PHIEUDATVE" Multiplicity="*" />
     <ReferentialConstraint>
@@ -155,7 +166,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SANBAYTRU__MaSBT__1FCDBCEB">
+  <Association Name="FK__SANBAYTRU__MaSBT__21B6055D">
     <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="0..1" />
     <End Role="SANBAYTRUNGGIAN" Type="Self.SANBAYTRUNGGIAN" Multiplicity="*" />
     <ReferentialConstraint>
@@ -177,27 +188,28 @@
     <EntitySet Name="SANBAY" EntityType="Self.SANBAY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SANBAYTRUNGGIAN" EntityType="Self.SANBAYTRUNGGIAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__LICHBAY__MaCB__20C1E124" Association="Self.FK__LICHBAY__MaCB__20C1E124">
+    <EntitySet Name="THAYDOIQUYDINH" EntityType="Self.THAYDOIQUYDINH" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__LICHBAY__MaCB__22AA2996" Association="Self.FK__LICHBAY__MaCB__22AA2996">
       <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
       <End Role="LICHBAY" EntitySet="LICHBAY" />
     </AssociationSet>
-    <AssociationSet Name="FK__LICHBAY__MaSanBa__21B6055D" Association="Self.FK__LICHBAY__MaSanBa__21B6055D">
+    <AssociationSet Name="FK__LICHBAY__MaSanBa__239E4DCF" Association="Self.FK__LICHBAY__MaSanBa__239E4DCF">
       <End Role="SANBAY" EntitySet="SANBAY" />
       <End Role="LICHBAY" EntitySet="LICHBAY" />
     </AssociationSet>
-    <AssociationSet Name="FK__LICHBAY__MaSanBa__22AA2996" Association="Self.FK__LICHBAY__MaSanBa__22AA2996">
+    <AssociationSet Name="FK__LICHBAY__MaSanBa__24927208" Association="Self.FK__LICHBAY__MaSanBa__24927208">
       <End Role="SANBAY" EntitySet="SANBAY" />
       <End Role="LICHBAY" EntitySet="LICHBAY" />
     </AssociationSet>
-    <AssociationSet Name="FK__PHIEUDATV__MaLoa__24927208" Association="Self.FK__PHIEUDATV__MaLoa__24927208">
+    <AssociationSet Name="FK__PHIEUDATV__MaLoa__267ABA7A" Association="Self.FK__PHIEUDATV__MaLoa__267ABA7A">
       <End Role="LOAIVE" EntitySet="LOAIVE" />
       <End Role="PHIEUDATVE" EntitySet="PHIEUDATVE" />
     </AssociationSet>
-    <AssociationSet Name="FK__PHIEUDATVE__MaCB__239E4DCF" Association="Self.FK__PHIEUDATVE__MaCB__239E4DCF">
+    <AssociationSet Name="FK__PHIEUDATVE__MaCB__25869641" Association="Self.FK__PHIEUDATVE__MaCB__25869641">
       <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
       <End Role="PHIEUDATVE" EntitySet="PHIEUDATVE" />
     </AssociationSet>
-    <AssociationSet Name="FK__SANBAYTRU__MaSBT__1FCDBCEB" Association="Self.FK__SANBAYTRU__MaSBT__1FCDBCEB">
+    <AssociationSet Name="FK__SANBAYTRU__MaSBT__21B6055D" Association="Self.FK__SANBAYTRU__MaSBT__21B6055D">
       <End Role="SANBAY" EntitySet="SANBAY" />
       <End Role="SANBAYTRUNGGIAN" EntitySet="SANBAYTRUNGGIAN" />
     </AssociationSet>

@@ -103,5 +103,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="THAYDOIQUYDINH">
+      <EntityTypeMapping TypeName="QLVeMayBayModel.THAYDOIQUYDINH">
+        <MappingFragment StoreEntitySet="THAYDOIQUYDINH">
+          <ScalarProperty Name="TGDungToiDa" ColumnName="TGDungToiDa" />
+          <ScalarProperty Name="TGDungToiThieu" ColumnName="TGDungToiThieu" />
+          <ScalarProperty Name="SoSBTGToiDa" ColumnName="SoSBTGToiDa" />
+          <ScalarProperty Name="TGBayToiThieu" ColumnName="TGBayToiThieu" />
+          <ScalarProperty Name="SLSanBay" ColumnName="SLSanBay" />
+          <ScalarProperty Name="STT" ColumnName="STT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

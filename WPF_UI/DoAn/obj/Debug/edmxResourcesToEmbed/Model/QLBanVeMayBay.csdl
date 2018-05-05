@@ -10,30 +10,31 @@
     <EntitySet Name="SANBAY" EntityType="QLVeMayBayModel.SANBAY" />
     <EntitySet Name="SANBAYTRUNGGIAN" EntityType="QLVeMayBayModel.SANBAYTRUNGGIAN" />
     <EntitySet Name="TaiKhoan" EntityType="QLVeMayBayModel.TaiKhoan" />
-    <AssociationSet Name="FK__LICHBAY__MaCB__20C1E124" Association="QLVeMayBayModel.FK__LICHBAY__MaCB__20C1E124">
+    <AssociationSet Name="FK__LICHBAY__MaCB__21B6055D" Association="QLVeMayBayModel.FK__LICHBAY__MaCB__21B6055D">
       <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
       <End Role="LICHBAY" EntitySet="LICHBAY" />
     </AssociationSet>
-    <AssociationSet Name="FK__PHIEUDATVE__MaCB__239E4DCF" Association="QLVeMayBayModel.FK__PHIEUDATVE__MaCB__239E4DCF">
+    <AssociationSet Name="FK__PHIEUDATVE__MaCB__24927208" Association="QLVeMayBayModel.FK__PHIEUDATVE__MaCB__24927208">
       <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
       <End Role="PHIEUDATVE" EntitySet="PHIEUDATVE" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LICHBAY__MaSanBa__21B6055D" Association="QLVeMayBayModel.FK__LICHBAY__MaSanBa__21B6055D">
-      <End Role="SANBAY" EntitySet="SANBAY" />
-      <End Role="LICHBAY" EntitySet="LICHBAY" />
     </AssociationSet>
     <AssociationSet Name="FK__LICHBAY__MaSanBa__22AA2996" Association="QLVeMayBayModel.FK__LICHBAY__MaSanBa__22AA2996">
       <End Role="SANBAY" EntitySet="SANBAY" />
       <End Role="LICHBAY" EntitySet="LICHBAY" />
     </AssociationSet>
-    <AssociationSet Name="FK__PHIEUDATV__MaLoa__24927208" Association="QLVeMayBayModel.FK__PHIEUDATV__MaLoa__24927208">
+    <AssociationSet Name="FK__LICHBAY__MaSanBa__239E4DCF" Association="QLVeMayBayModel.FK__LICHBAY__MaSanBa__239E4DCF">
+      <End Role="SANBAY" EntitySet="SANBAY" />
+      <End Role="LICHBAY" EntitySet="LICHBAY" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUDATV__MaLoa__25869641" Association="QLVeMayBayModel.FK__PHIEUDATV__MaLoa__25869641">
       <End Role="LOAIVE" EntitySet="LOAIVE" />
       <End Role="PHIEUDATVE" EntitySet="PHIEUDATVE" />
     </AssociationSet>
-    <AssociationSet Name="FK__SANBAYTRU__MaSBT__1FCDBCEB" Association="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__1FCDBCEB">
+    <AssociationSet Name="FK__SANBAYTRU__MaSBT__20C1E124" Association="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__20C1E124">
       <End Role="SANBAY" EntitySet="SANBAY" />
       <End Role="SANBAYTRUNGGIAN" EntitySet="SANBAYTRUNGGIAN" />
     </AssociationSet>
+    <EntitySet Name="THAYDOIQUYDINH" EntityType="QLVeMayBayModel.THAYDOIQUYDINH" />
   </EntityContainer>
   <EntityType Name="CaiDat">
     <Key>
@@ -50,8 +51,8 @@
     </Key>
     <Property Name="MaCB" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="TenCB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="LICHBAY" Relationship="QLVeMayBayModel.FK__LICHBAY__MaCB__20C1E124" FromRole="CHUYENBAY" ToRole="LICHBAY" />
-    <NavigationProperty Name="PHIEUDATVE" Relationship="QLVeMayBayModel.FK__PHIEUDATVE__MaCB__239E4DCF" FromRole="CHUYENBAY" ToRole="PHIEUDATVE" />
+    <NavigationProperty Name="LICHBAY" Relationship="QLVeMayBayModel.FK__LICHBAY__MaCB__21B6055D" FromRole="CHUYENBAY" ToRole="LICHBAY" />
+    <NavigationProperty Name="PHIEUDATVE" Relationship="QLVeMayBayModel.FK__PHIEUDATVE__MaCB__24927208" FromRole="CHUYENBAY" ToRole="PHIEUDATVE" />
   </EntityType>
   <EntityType Name="DANHSACHCHUYENBAY">
     <Key>
@@ -77,9 +78,9 @@
     <Property Name="SoLuongGheHang1" Type="Int32" />
     <Property Name="SoLuongGheHang2" Type="Int32" />
     <Property Name="MaSBTrungGian" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="CHUYENBAY" Relationship="QLVeMayBayModel.FK__LICHBAY__MaCB__20C1E124" FromRole="LICHBAY" ToRole="CHUYENBAY" />
-    <NavigationProperty Name="SANBAY" Relationship="QLVeMayBayModel.FK__LICHBAY__MaSanBa__21B6055D" FromRole="LICHBAY" ToRole="SANBAY" />
-    <NavigationProperty Name="SANBAY1" Relationship="QLVeMayBayModel.FK__LICHBAY__MaSanBa__22AA2996" FromRole="LICHBAY" ToRole="SANBAY" />
+    <NavigationProperty Name="CHUYENBAY" Relationship="QLVeMayBayModel.FK__LICHBAY__MaCB__21B6055D" FromRole="LICHBAY" ToRole="CHUYENBAY" />
+    <NavigationProperty Name="SANBAY" Relationship="QLVeMayBayModel.FK__LICHBAY__MaSanBa__22AA2996" FromRole="LICHBAY" ToRole="SANBAY" />
+    <NavigationProperty Name="SANBAY1" Relationship="QLVeMayBayModel.FK__LICHBAY__MaSanBa__239E4DCF" FromRole="LICHBAY" ToRole="SANBAY" />
   </EntityType>
   <EntityType Name="LOAIVE">
     <Key>
@@ -87,7 +88,7 @@
     </Key>
     <Property Name="MaLoai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="DonGia" Type="Int32" />
-    <NavigationProperty Name="PHIEUDATVE" Relationship="QLVeMayBayModel.FK__PHIEUDATV__MaLoa__24927208" FromRole="LOAIVE" ToRole="PHIEUDATVE" />
+    <NavigationProperty Name="PHIEUDATVE" Relationship="QLVeMayBayModel.FK__PHIEUDATV__MaLoa__25869641" FromRole="LOAIVE" ToRole="PHIEUDATVE" />
   </EntityType>
   <EntityType Name="PHIEUDATVE">
     <Key>
@@ -101,8 +102,8 @@
     <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="DonGia" Type="Int32" />
     <Property Name="NgayDat" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="CHUYENBAY" Relationship="QLVeMayBayModel.FK__PHIEUDATVE__MaCB__239E4DCF" FromRole="PHIEUDATVE" ToRole="CHUYENBAY" />
-    <NavigationProperty Name="LOAIVE" Relationship="QLVeMayBayModel.FK__PHIEUDATV__MaLoa__24927208" FromRole="PHIEUDATVE" ToRole="LOAIVE" />
+    <NavigationProperty Name="CHUYENBAY" Relationship="QLVeMayBayModel.FK__PHIEUDATVE__MaCB__24927208" FromRole="PHIEUDATVE" ToRole="CHUYENBAY" />
+    <NavigationProperty Name="LOAIVE" Relationship="QLVeMayBayModel.FK__PHIEUDATV__MaLoa__25869641" FromRole="PHIEUDATVE" ToRole="LOAIVE" />
   </EntityType>
   <EntityType Name="SANBAY">
     <Key>
@@ -110,9 +111,9 @@
     </Key>
     <Property Name="MaSB" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="TenSB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="LICHBAY" Relationship="QLVeMayBayModel.FK__LICHBAY__MaSanBa__21B6055D" FromRole="SANBAY" ToRole="LICHBAY" />
-    <NavigationProperty Name="LICHBAY1" Relationship="QLVeMayBayModel.FK__LICHBAY__MaSanBa__22AA2996" FromRole="SANBAY" ToRole="LICHBAY" />
-    <NavigationProperty Name="SANBAYTRUNGGIAN" Relationship="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__1FCDBCEB" FromRole="SANBAY" ToRole="SANBAYTRUNGGIAN" />
+    <NavigationProperty Name="LICHBAY" Relationship="QLVeMayBayModel.FK__LICHBAY__MaSanBa__22AA2996" FromRole="SANBAY" ToRole="LICHBAY" />
+    <NavigationProperty Name="LICHBAY1" Relationship="QLVeMayBayModel.FK__LICHBAY__MaSanBa__239E4DCF" FromRole="SANBAY" ToRole="LICHBAY" />
+    <NavigationProperty Name="SANBAYTRUNGGIAN" Relationship="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__20C1E124" FromRole="SANBAY" ToRole="SANBAYTRUNGGIAN" />
   </EntityType>
   <EntityType Name="SANBAYTRUNGGIAN">
     <Key>
@@ -124,7 +125,7 @@
     <Property Name="TenSB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="ThoiGianDung" Type="Int32" />
     <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="SANBAY" Relationship="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__1FCDBCEB" FromRole="SANBAYTRUNGGIAN" ToRole="SANBAY" />
+    <NavigationProperty Name="SANBAY" Relationship="QLVeMayBayModel.FK__SANBAYTRU__MaSBT__20C1E124" FromRole="SANBAYTRUNGGIAN" ToRole="SANBAY" />
   </EntityType>
   <EntityType Name="TaiKhoan">
     <Key>
@@ -142,7 +143,7 @@
     <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="MaLoaiTK" Type="Int32" />
   </EntityType>
-  <Association Name="FK__LICHBAY__MaCB__20C1E124">
+  <Association Name="FK__LICHBAY__MaCB__21B6055D">
     <End Type="QLVeMayBayModel.CHUYENBAY" Role="CHUYENBAY" Multiplicity="1" />
     <End Type="QLVeMayBayModel.LICHBAY" Role="LICHBAY" Multiplicity="*" />
     <ReferentialConstraint>
@@ -154,7 +155,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PHIEUDATVE__MaCB__239E4DCF">
+  <Association Name="FK__PHIEUDATVE__MaCB__24927208">
     <End Type="QLVeMayBayModel.CHUYENBAY" Role="CHUYENBAY" Multiplicity="0..1" />
     <End Type="QLVeMayBayModel.PHIEUDATVE" Role="PHIEUDATVE" Multiplicity="*" />
     <ReferentialConstraint>
@@ -166,7 +167,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LICHBAY__MaSanBa__21B6055D">
+  <Association Name="FK__LICHBAY__MaSanBa__22AA2996">
     <End Type="QLVeMayBayModel.SANBAY" Role="SANBAY" Multiplicity="1" />
     <End Type="QLVeMayBayModel.LICHBAY" Role="LICHBAY" Multiplicity="*" />
     <ReferentialConstraint>
@@ -178,7 +179,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LICHBAY__MaSanBa__22AA2996">
+  <Association Name="FK__LICHBAY__MaSanBa__239E4DCF">
     <End Type="QLVeMayBayModel.SANBAY" Role="SANBAY" Multiplicity="1" />
     <End Type="QLVeMayBayModel.LICHBAY" Role="LICHBAY" Multiplicity="*" />
     <ReferentialConstraint>
@@ -190,7 +191,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PHIEUDATV__MaLoa__24927208">
+  <Association Name="FK__PHIEUDATV__MaLoa__25869641">
     <End Type="QLVeMayBayModel.LOAIVE" Role="LOAIVE" Multiplicity="0..1" />
     <End Type="QLVeMayBayModel.PHIEUDATVE" Role="PHIEUDATVE" Multiplicity="*" />
     <ReferentialConstraint>
@@ -202,7 +203,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SANBAYTRU__MaSBT__1FCDBCEB">
+  <Association Name="FK__SANBAYTRU__MaSBT__20C1E124">
     <End Type="QLVeMayBayModel.SANBAY" Role="SANBAY" Multiplicity="0..1" />
     <End Type="QLVeMayBayModel.SANBAYTRUNGGIAN" Role="SANBAYTRUNGGIAN" Multiplicity="*" />
     <ReferentialConstraint>
@@ -214,4 +215,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="THAYDOIQUYDINH">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SLSanBay" Type="Int32" />
+    <Property Name="TGBayToiThieu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="SoSBTGToiDa" Type="Int32" />
+    <Property Name="TGDungToiThieu" Type="Int32" />
+    <Property Name="TGDungToiDa" Type="Int32" />
+  </EntityType>
 </Schema>

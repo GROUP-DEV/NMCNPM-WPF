@@ -181,6 +181,7 @@ namespace DoAn.Views
                                 cbbhangve.Text = "--Chọn Hạng Vé--";
                                 txtgiave.Text = "0";
                                 txtsoluongghetrong.Text = "";
+                                txtcmnd.IsReadOnly = true;
                             }
                         }
                         else// ngược lại thôi ok
@@ -202,6 +203,7 @@ namespace DoAn.Views
                                 cbbhangve.Text = "--Chọn Hạng Vé--";
                                 txtgiave.Text = "0";
                                 txtsoluongghetrong.Text = "";
+                                txtcmnd.IsReadOnly = true;
                             }
                         }
                     }
@@ -273,6 +275,7 @@ namespace DoAn.Views
                 datepk.Text = (gridBV.SelectedItem as PHIEUDATVE).NgayDat.ToString();
                 txtgiave0.Text= String.Format("{0:0,0 VNĐ}", (gridBV.SelectedItem as PHIEUDATVE).DonGia);
                 txtgiave.Text = (gridBV.SelectedItem as PHIEUDATVE).DonGia.ToString();
+                txtcmnd.IsReadOnly = true;
             }
             catch (Exception)
             {
@@ -333,6 +336,7 @@ namespace DoAn.Views
             txtcmnd.Text ="";
             datepk.Text = DateTime.Now.ToString();
             cbbhangve.Text = "--Chọn hang ve--";
+            txtcmnd.IsReadOnly = false;
         }
 
         //======================================================SATRT PAGEs==================================

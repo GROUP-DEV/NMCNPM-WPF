@@ -28,6 +28,7 @@ namespace DoAn.Views
         DSChuyenBay dscb = new DSChuyenBay();
         BaoCao bc = new BaoCao();
         ThemSanBay tsb = new ThemSanBay();
+        Thaydoiquydinh qd = new Thaydoiquydinh();
         public plane()
         {
             InitializeComponent();
@@ -94,6 +95,7 @@ namespace DoAn.Views
             dscb.DataDSCB += new DSChuyenBay.PassData(Back_Share);
             bc.DataDSBC += new BaoCao.PassData(Back_Share);
             tsb.DataTSB += new ThemSanBay.PassData(Back_Share);
+            qd.DataTDQD += new Thaydoiquydinh.PassData(Back_Share);
         }
 
 
@@ -109,7 +111,7 @@ namespace DoAn.Views
             btnbaocao.Visibility = Visibility.Collapsed;
             btnchuyenbay.Visibility = Visibility.Collapsed;
             btnDSCB.Visibility = Visibility.Collapsed;
-            btnthongtin.Visibility = Visibility.Collapsed;
+            btnthaydoiquydinh.Visibility = Visibility.Collapsed;
             btntracuu.Visibility = Visibility.Collapsed;
             btnGNdatve.Visibility = Visibility.Collapsed;
             txtchuyenbay.Visibility = Visibility.Collapsed;
@@ -128,7 +130,7 @@ namespace DoAn.Views
             btnbaocao.Visibility = Visibility.Visible;
             btnchuyenbay.Visibility = Visibility.Visible;
             btnDSCB.Visibility = Visibility.Visible;
-            btnthongtin.Visibility = Visibility.Visible;
+            btnthaydoiquydinh.Visibility = Visibility.Visible;
             btntracuu.Visibility = Visibility.Visible;
             btnGNdatve.Visibility = Visibility.Visible;
             txtchuyenbay.Visibility = Visibility.Visible;
@@ -151,6 +153,13 @@ namespace DoAn.Views
         {
             container.Children.Clear();
             container.Children.Add(bc);
+            hideCN();
+        }
+
+        private void btnthaydoiquydinh_Click(object sender, RoutedEventArgs e)
+        {
+            container.Children.Clear();
+            container.Children.Add(qd);
             hideCN();
         }
     }

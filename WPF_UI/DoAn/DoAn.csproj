@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -124,6 +125,9 @@
       <DependentUpon>QLBanVeMayBay.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TaiKhoan.cs">
+      <DependentUpon>QLBanVeMayBay.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\THAYDOIQUYDINH.cs">
       <DependentUpon>QLBanVeMayBay.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\banve.xaml.cs">

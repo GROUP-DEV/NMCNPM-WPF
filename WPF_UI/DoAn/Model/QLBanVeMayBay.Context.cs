@@ -34,5 +34,6 @@ namespace DoAn.Model
         public virtual DbSet<SANBAY> SANBAY { get; set; }
         public virtual DbSet<SANBAYTRUNGGIAN> SANBAYTRUNGGIAN { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
+        public virtual DbSet<THAYDOIQUYDINH> THAYDOIQUYDINH { get; set; }
     }
 }

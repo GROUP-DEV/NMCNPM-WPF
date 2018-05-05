@@ -106,8 +106,9 @@ create table DANHSACHCHUYENBAY
 )
 create table THAYDOIQUYDINH
 (
+	STT int IDENTITY(1,1) primary key,
 	SLSanBay int,
-	TGBayToiThieu int,
+	TGBayToiThieu varchar(30),
 	SoSBTGToiDa int,
 	TGDungToiThieu int,
 	TGDungToiDa int,
@@ -177,11 +178,11 @@ insert into CHUYENBAY
 			('BT-HN0010',N'Bình Thuận - Hà Nội')
 
 insert into SANBAYTRUNGGIAN(MaSBTrungGian,MaCB,TenSB, ThoiGianDung, GhiChu)
-	values	('GL', 'BT-HN0010' ,N'Gia Lai',null, N'Làm ơn, Sắp xếp thời gian đừng để trể chuyến bay'),
-			('DN', 'BT-HN0010',	N'Đồng Nai',null,N'chúc may mắn'),
-			('BT', 'GL-HCM0007',	N'Bình Thuận',null,N'Đến đúng giờ nha'),
-			('NT', 'BL-GL0002',	N'Nha Trang',null,N'Đến đúng giờ nha'),
-			('DB', 'GL-HN0005',	N'Đà Nẵng',null,N'Đến đúng giờ nha')
+	values	('GL', 'BT-HN0010' ,N'Gia Lai',20, N'Làm ơn, Sắp xếp thời gian đừng để trể chuyến bay'),
+			('DN', 'BT-HN0010',	N'Đồng Nai',10,N'chúc may mắn'),
+			('BT', 'GL-HCM0007',	N'Bình Thuận',30,N'Đến đúng giờ nha'),
+			('NT', 'BL-GL0002',	N'Nha Trang',25,N'Đến đúng giờ nha'),
+			('DB', 'GL-HN0005',	N'Đà Nẵng',10,N'Đến đúng giờ nha')
 
 insert into LICHBAY (MaCB, MaSanBayDi, MaSanBayDen, NgayGio, ThoiGianBay, SoLuongGheHang1, SoLuongGheHang2, MaSBTrungGian)
 	values	('HN-HCM0004', 'HN', 'HCM',  '5/12/2017 02:30:00', '01:30:00', 2, 2, NULL),
@@ -224,7 +225,7 @@ insert into PHIEUDATVE (STT,CMND, MaCB, MaLoai, TenHanhKhach, DienThoai, DonGia,
 			(10,'123456779', 'BT-HN0010', '1', N'Phan Thị Cẩm Nhung', '0123456785', 100000, '1/12/2017')
 
 insert into ThayDoiQuyDinh(SLSanBay,TGBayToiThieu, SoSBTGToiDa, TGDungToiThieu, TGDungToiDa)
-	values	(1,'00:10:00',3,'00:10:00', '00:30:00'),
+	values	(13,'00:10:00',3,10, 30)
 ----- cái này
 --select ds.MaCB,ds.SoLuongGheDat,tab.TenCB,tab.DoanhThu, (ds.SoLuongGheDat*0.01) as tyle
 --from (select P.MaCB as MaCB,cb.TenCB, sum(p.DonGia) as DoanhThu

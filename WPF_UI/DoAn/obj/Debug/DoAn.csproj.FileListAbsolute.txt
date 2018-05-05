@@ -24,6 +24,7 @@ D:\WPF_UI\DoAn\obj\Debug\Views\plane.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\QuangCao.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\SanBayTrungGian.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\Setting.g.cs
+D:\WPF_UI\DoAn\obj\Debug\Views\Thaydoiquydinh.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\ThemSanBay.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\ThongTinNguoiDung.g.cs
 D:\WPF_UI\DoAn\obj\Debug\Views\TraCuu.g.cs
@@ -47,6 +48,7 @@ D:\WPF_UI\DoAn\obj\Debug\Views\plane.baml
 D:\WPF_UI\DoAn\obj\Debug\Views\QuangCao.baml
 D:\WPF_UI\DoAn\obj\Debug\Views\SanBayTrungGian.baml
 D:\WPF_UI\DoAn\obj\Debug\Views\Setting.baml
+D:\WPF_UI\DoAn\obj\Debug\Views\Thaydoiquydinh.baml
 D:\WPF_UI\DoAn\obj\Debug\Views\ThemSanBay.baml
 D:\WPF_UI\DoAn\obj\Debug\Views\ThongTinNguoiDung.baml
 D:\WPF_UI\DoAn\obj\Debug\Views\TraCuu.baml
@@ -59,5 +61,3 @@ D:\WPF_UI\DoAn\obj\Debug\DoAn.csproj.CoreCompileInputs.cache
 D:\WPF_UI\DoAn\obj\Debug\DoAn.exe
 D:\WPF_UI\DoAn\obj\Debug\DoAn.pdb
 D:\WPF_UI\DoAn\obj\Debug\DoAn.csprojResolveAssemblyReference.cache
-D:\WPF_UI\DoAn\obj\Debug\Views\Thaydoiquydinh.g.cs
-D:\WPF_UI\DoAn\obj\Debug\Views\Thaydoiquydinh.baml

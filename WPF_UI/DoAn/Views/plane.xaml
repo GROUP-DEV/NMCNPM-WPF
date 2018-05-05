@@ -80,18 +80,18 @@
         <TextBlock Name="txtbanve" Foreground="Navy" Grid.Row="2" Grid.Column="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Bán Vé</TextBlock>
 
         <!--ghi nhan dat ve-->
-        <Button  x:Name="btnGNdatve" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="5" Grid.Row="1" >
+        <Button Visibility="Collapsed"  x:Name="btnGNdatve" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="5" Grid.Row="1" >
             <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="CalendarCheckOutline" Spin="False" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
             </fa:ImageAwesome>
         </Button>
-        <TextBlock Name="txtGNdatve" Foreground="Navy" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Ghi Nhận Đặt Vé</TextBlock>
+        <TextBlock Visibility="Collapsed" Name="txtGNdatve" Foreground="Navy" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Ghi Nhận Đặt Vé</TextBlock>
 
         <!--danh sach chuyen bay-->
-        <Button Click="btnDSCB_Click"  x:Name="btnDSCB" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="7" Grid.Row="1" >
+        <Button Click="btnDSCB_Click"  x:Name="btnDSCB" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="5" Grid.Row="1" >
             <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="ListUl" Spin="False" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
             </fa:ImageAwesome>
         </Button>
-        <TextBlock Name="txtdscb" Foreground="Navy" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Danh Sách Chuyến Bay</TextBlock>
+        <TextBlock Name="txtdscb" Foreground="Navy" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Danh Sách Chuyến Bay</TextBlock>
 
         <!--tra cuu -->
         <Button Click="btntracuu_Click" x:Name="btntracuu" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="2" Grid.Row="4" >
@@ -108,7 +108,7 @@
         <TextBlock Name="txtbaocao" Foreground="Navy" Grid.Row="5" Grid.Column="4" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">Báo Cáo</TextBlock>
 
         <!--thong tin -->
-        <Button Click="btnchuyenbay_Click" x:Name="btnthongtin" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="6" Grid.Row="4" >
+        <Button Click="btnthaydoiquydinh_Click" x:Name="btnthaydoiquydinh" Background="Transparent"  Style="{StaticResource StyleButtonXem}"  Margin="2,0,2,0" BorderThickness="0" BorderBrush="White"  Grid.Column="6" Grid.Row="4" >
             <fa:ImageAwesome Style="{StaticResource stylebuttonbigIMG}" Icon="Cog" SpinDuration="30" Height="100" Width="100"  Foreground="Navy" >
             </fa:ImageAwesome>
         </Button>

@@ -609,7 +609,7 @@
         <!--gia ve-->
         <TextBox Style="{StaticResource styletextbox}"  Name="txthanhkhach" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,11"></TextBox>
         <TextBox PreviewTextInput="txtdienthoai_PreviewTextInput" TextChanged="txtdienthoai_TextChanged" Style="{StaticResource styletextbox}" Text="{Binding Path=Phone,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Name="txtdienthoai" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
-        <TextBox IsReadOnly="True" TextChanged="txtdienthoai_TextChanged" PreviewTextInput="txtdienthoai_PreviewTextInput" Style="{StaticResource styletextbox}" Text="{Binding Path=CMND,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Name="txtcmnd" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
+        <TextBox  TextChanged="txtdienthoai_TextChanged" PreviewTextInput="txtdienthoai_PreviewTextInput" Style="{StaticResource styletextbox}" Text="{Binding Path=CMND,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Name="txtcmnd" VerticalAlignment="Center" FontSize="19" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,11,0,10"></TextBox>
 
         <!--thong tin ban ve-->
         <DataGrid SelectionChanged="gridBV_SelectionChanged" FontSize="20" Name="gridBV" Grid.Row="7" Grid.ColumnSpan="15" Grid.RowSpan="6" ItemsSource="{Binding  Source={StaticResource SortedPlanets}}"

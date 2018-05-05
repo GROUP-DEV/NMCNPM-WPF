@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace DoAn.Views
 {
     /// <summary>
@@ -241,7 +242,7 @@ namespace DoAn.Views
 
         private void btnxuatBC_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void btnlapBCnam_Click(object sender, RoutedEventArgs e)
